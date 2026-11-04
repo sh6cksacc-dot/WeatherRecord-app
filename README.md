@@ -4,6 +4,12 @@ Weather, time and music discovery. Android APK and a Windows one-click EXE launc
 sharing the existing minimalist interface, portrait/landscape layouts, lyrics,
 album discovery, Liked Songs, swipe history and local workout plans.
 
+The original **SwiftUI iOS app** is now included under [`ios/`](ios/README.md).
+It retains the native App Remote, AtmosRank, rating and queue integration. Open
+`ios/WeatherRecord.xcodeproj`, supply your own Client ID/signing, and add Spotify's
+official iOS SDK as described in the iOS README. SDK binaries and personal data
+are excluded; the bundled local tag file starts empty.
+
 ## Status
 
 This is the first cross-platform port, not a feature-identical replacement for the
@@ -57,6 +63,7 @@ Close its console window to stop the local server. Android requires Android 8+.
 
 ## Project layout
 
+`ios/`: original SwiftUI app, native services and unmodified iOS web interface.
 `web/`: exported UI plus the Spotify Connect/PKCE adapter.
 `android/`: native Android WebView host and loopback callback server.
 `windows/`: .NET local server/browser launcher.

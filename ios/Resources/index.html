@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#f4efe8" />
+    <title>气象唱片 · Weather Record</title>
+    <link rel="stylesheet" href="styles.css?v=20261101-i18n2" />
+  </head>
+  <body class="app-booting">
+    <div class="launch-splash" id="launchSplash" aria-hidden="true">
+      <div class="launch-brand">
+        <img class="launch-icon" src="icon.svg" alt="" />
+        <div class="launch-title" data-i18n="appName">Weather Record</div>
+      </div>
+    </div>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="#" data-i18n="brand">气象唱片 <span>WEATHER RECORD</span></a>
+        <button class="location-btn" id="locationBtn" type="button"><span class="pin">⌖</span> <span id="locationText" data-i18n="locating">正在定位</span></button>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-i18n="eyebrow">TODAY'S RANDOM RECORD</p>
+          <h1 data-i18n="heroTitle">让当下的天气，<br /><em>替你选一张唱片。</em></h1>
+          <p class="intro" data-i18n="intro">每一次打开，都会根据此刻的时间、光线与空气，<br class="desktop" />从你的听觉天气库里捞出一张刚刚好的专辑。</p>
+        </div>
+        <div class="sky-mark" aria-hidden="true"><span>☼</span></div>
+      </section>
+
+      <section class="context-grid" aria-label="当前环境">
+        <article class="context-card time-card"><span class="card-label" data-i18n="localTime">LOCAL TIME</span><strong id="clock">--:--</strong><span id="period" data-i18n="readingPeriod">正在读取时段</span></article>
+        <article class="context-card weather-card"><span class="card-label" data-i18n="weather">WEATHER</span><strong id="temperature">--°</strong><span id="weatherLabel" data-i18n="readingWeather">正在读取天气</span></article>
+        <article class="context-card date-card"><span class="card-label" data-i18n="today">TODAY</span><strong id="date">--</strong><span id="dateLabel" data-i18n="welcomeToday">崭新之日</span></article>
+      </section>
+
+      <section class="result-section">
+        <div class="section-heading"><span>为你抽取</span><span class="rule"></span><span id="moodHint">今日氛围</span></div>
+        <div class="record-layout">
+          <div class="album-art" id="albumArt"><div class="art-noise"></div><span class="art-index" id="artIndex">01</span><div class="art-title" id="artTitle">—</div><div class="art-artist" id="artArtist">—</div><span class="art-sticker" id="artSticker">LISTEN<br />CLOSELY</span><div class="lyrics-view" id="lyricsView" aria-hidden="true"><div class="lyrics-caption" id="lyricsCaption" data-i18n="lyricsCaption">歌词 · 点按返回封面</div><div class="lyrics-window" id="lyricsWindow"><div class="lyrics-lines" id="lyricsLines"></div><p class="lyrics-message" id="lyricsMessage" data-i18n="lyricsIdle">播放歌曲后显示歌词</p></div><div class="lyrics-credit">LYRICS · LRCLIB</div></div></div>
+          <div class="record-info">
+            <p class="match-label">MATCHED TO YOUR MOMENT <span id="matchPercent">96%</span></p>
+            <h2 id="albumName">正在寻找一张唱片…</h2>
+            <p class="artist" id="artistName">—</p>
+            <p class="description" id="albumDescription" data-i18n="waiting">稍等，让天空给我们一个提示。</p>
+            <div class="tags" id="tags"></div>
+            <div class="controls"><button class="play-btn" id="playBtn" type="button"><span id="playIcon">▶</span> <span id="playText" data-i18n="play">播放</span></button><button class="shuffle-btn" id="shuffleBtn" type="button" aria-label="重新抽取">↻</button></div>
+          </div>
+        </div>
+      </section>
+      <footer><span data-i18n="curated">CURATED BY THE SKY</span><span><span data-i18n="updated">更新时间</span> <b id="updatedAt">--:--</b></span></footer>
+    </main>
+    <div class="description-modal" id="descriptionModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="descriptionModalTitle">
+      <button class="description-close" id="descriptionClose" type="button" aria-label="关闭简介">×</button>
+      <div class="description-sheet">
+        <p class="description-kicker" id="descriptionModalTitle">ALBUM NOTE</p>
+        <p class="description-full" id="descriptionFull"></p>
+      </div>
+    </div>
+    <div class="rating-modal" id="trackRatingModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="trackRatingTitle">
+      <div class="rating-sheet">
+        <p class="rating-kicker" id="ratingKicker">YOUR LISTENING PROFILE</p>
+        <h2 id="trackRatingTitle">给这首歌一点感觉</h2>
+        <p class="rating-track" id="ratingTrackName">—</p>
+        <p class="rating-artist" id="ratingArtistName">—</p>
+        <p class="rating-note" id="ratingNote">这是你的主观感受，不是音频测量，也不是喜爱程度。</p>
+        <div class="rating-fields">
+          <label class="rating-field"><span><b data-rating-title="energy">活力感</b><small>ENERGY</small></span><output>50</output><input type="range" min="0" max="100" value="50" data-rating="energy" /></label>
+          <label class="rating-field"><span><b data-rating-title="valence">愉悦度</b><small>VALENCE</small></span><output>50</output><input type="range" min="0" max="100" value="50" data-rating="valence" /></label>
+          <label class="rating-field"><span><b data-rating-title="calmness">平静度</b><small>CALMNESS</small></span><output>50</output><input type="range" min="0" max="100" value="50" data-rating="calmness" /></label>
+          <label class="rating-field"><span><b data-rating-title="acousticness">原声感</b><small>ACOUSTICNESS</small></span><output>50</output><input type="range" min="0" max="100" value="50" data-rating="acousticness" /></label>
+          <label class="rating-field"><span><b data-rating-title="instrumentalness">器乐程度</b><small>INSTRUMENTALNESS</small></span><output>50</output><input type="range" min="0" max="100" value="50" data-rating="instrumentalness" /></label>
+          <label class="rating-field"><span><b data-rating-title="groove">律动感</b><small>GROOVE</small></span><output>50</output><input type="range" min="0" max="100" value="50" data-rating="groove" /></label>
+        </div>
+        <div class="rating-actions"><button id="ratingLater" type="button">稍后再说</button><button id="ratingSave" type="button">保存评分</button></div>
+        <button class="rating-never" id="ratingNever" type="button">不再提醒这首歌</button>
+      </div>
+    </div>
+    <script src="bootstrap.js?v=20261031-1800"></script>
+    <script src="localization.js?v=20261101-newday1"></script>
+    <script src="clean-app.js?v=20261101-track-rating1"></script>
+    <script>
+      if (!window.WEATHER_RECORD_NATIVE) {
+        const spotifyWebSDK = document.createElement('script');
+        spotifyWebSDK.src = 'https://sdk.scdn.co/spotify-player.js';
+        document.body.appendChild(spotifyWebSDK);
+      }
+    </script>
+  </body>
+</html>

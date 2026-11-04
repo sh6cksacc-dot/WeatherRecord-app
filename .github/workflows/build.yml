@@ -7,6 +7,12 @@ on:
 permissions:
   contents: read
 jobs:
+  ios-source:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build iOS source without signing or third-party SDK binary
+        run: xcodebuild -project ios/WeatherRecord.xcodeproj -scheme WeatherRecord -configuration Debug -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build
   android:
     runs-on: ubuntu-latest
     steps:

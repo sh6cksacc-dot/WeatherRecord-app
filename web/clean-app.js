@@ -5,14 +5,16 @@ const state={mode:localStorage.getItem('playback_mode')||'album',token:window.WE
 let acceptRemoteProgress=false;
 let progressVisualPosition=0,progressAnchorPosition=0,progressAnchorTime=0,progressLastFrame=0,progressDisplayedSecond=-1;
 let pendingSeekPosition=null,pendingSeekUntil=0;
+let lastProgressSample=-1;
+function progressCorrection(drift){return Math.max(-300,Math.min(450,drift*.18))}
 function paintProgress(value){const progress=$('progress');if(!progress)return;const safe=Math.max(0,Math.min(100,Number(value)||0));progress.value=safe;progress.style.setProperty('--played',`${safe}%`)}
 function syncProgressAnchor(position,hard=false){
   const now=performance.now(),safe=Math.max(0,Number(position)||0),drift=safe-progressVisualPosition;
   if(hard||Math.abs(drift)>12000){progressVisualPosition=safe;progressAnchorPosition=safe}
   else{
-    // App Remote snapshots can arrive late. Never drag uninterrupted playback
-    // backwards; only absorb a bounded amount when Spotify is ahead.
-    const correction=Math.min(450,Math.max(0,drift)*.14);
+    // Correct in both directions. A small negative correction briefly slows
+    // the visual clock instead of leaving lyrics permanently ahead of audio.
+    const correction=progressCorrection(drift);
     progressAnchorPosition=progressVisualPosition+correction;
   }
   progressAnchorTime=now;
@@ -39,8 +41,11 @@ window.addEventListener('weatherRecordSpotifyState',event=>{
   const selectedIsCurrent=selectedContainsTrack(nativeCurrentTrackURI)||!!planned||(!playbackTargetPending&&!coverTransitioning&&!coverGestureActive&&!!lastConfirmedTrackURI);
   if(typeof d.playing==='boolean')setPlaying(d.connected===false?false:!!d.playing&&selectedIsCurrent);
   state.hasPausedTrack=!!d.connected&&selectedIsCurrent;
-  if(acceptRemoteProgress&&d.duration>0&&selectedIsCurrent){
-    const now=performance.now(),remotePosition=Math.max(0,Number(d.position)||0);
+  const freshSample=d.sampleVersion===undefined||d.sampleVersion>lastProgressSample;
+  if(acceptRemoteProgress&&d.duration>0&&selectedIsCurrent&&freshSample){
+    if(d.sampleVersion!==undefined)lastProgressSample=d.sampleVersion;
+    const age=d.sampledAt?Math.max(0,Math.min(5000,Date.now()-d.sampledAt)):0;
+    const now=performance.now(),remotePosition=Math.min(d.duration,Math.max(0,Number(d.position)||0)+(d.playing?age:0));
     if(pendingSeekPosition!==null&&now>pendingSeekUntil){pendingSeekPosition=null;pendingSeekUntil=0}
     const seekPending=pendingSeekPosition!==null;
     const seekConfirmed=seekPending&&Math.abs(remotePosition-pendingSeekPosition)<2200;
@@ -1063,7 +1068,7 @@ function animateProgress(now){
   if(acceptRemoteProgress&&state.duration&&!state.seeking){
     const target=Math.min(state.duration,progressAnchorPosition+Math.max(0,now-progressAnchorTime));
     const dt=progressLastFrame?Math.min(64,now-progressLastFrame):16.7,delta=target-progressVisualPosition;
-    progressVisualPosition=Math.abs(delta)>2200?target:progressVisualPosition+delta*(1-Math.exp(-dt/72));
+    progressVisualPosition=Math.abs(delta)>2200?target:Math.max(progressVisualPosition,progressVisualPosition+delta*(1-Math.exp(-dt/72)));
     // Keep clock integration at display cadence, but avoid repainting the range
     // control at 120 Hz on ProMotion devices.
     if(now-lastProgressPaint>=1000/60-1){paintProgress(progressVisualPosition/state.duration*100);lastProgressPaint=now}
