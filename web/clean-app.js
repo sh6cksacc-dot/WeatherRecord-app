@@ -20,8 +20,8 @@ function syncProgressAnchor(position,hard=false){
   progressAnchorTime=now;
 }
 function resetProgress(){acceptRemoteProgress=false;state.position=0;state.duration=0;state.manualPosition=0;state.resumePosition=0;state.seeking=false;pendingSeekPosition=null;pendingSeekUntil=0;progressVisualPosition=0;progressAnchorPosition=0;progressAnchorTime=performance.now();progressLastFrame=0;progressDisplayedSecond=0;paintProgress(0);if($('elapsed'))$('elapsed').textContent='0:00';if($('duration'))$('duration').textContent='0:00'}
-const nativeApp=!!window.WEATHER_RECORD_NATIVE;if(nativeApp)document.documentElement.classList.add('native-app');
-const nativeSend=(name,body={})=>window.webkit?.messageHandlers?.[name]?.postMessage(body);
+const nativeApp=!!(window.WEATHER_RECORD_NATIVE||window.WEATHER_RECORD_PORTABLE);if(nativeApp)document.documentElement.classList.add('native-app');
+const nativeSend=(name,body={})=>portableSend(name,body);
 let nativeCurrentTrackURI='';
 function selectedContainsTrack(uri){if(!uri)return false;if(state.mode==='single')return state.track?.uri===uri;return state.albumTracks.some(track=>track.uri===uri)}
 window.addEventListener('weatherRecordSpotifyState',event=>{
@@ -570,7 +570,7 @@ async function atmosChoose(items,mode){
   const unheard=usable.filter(item=>unseen(mode,mode==='album'?albumKey(item):item.uri));
   const choices=unheard.length?unheard:usable;
   let id=null;
-  if(window.webkit?.messageHandlers?.atmosRank){
+  if(window.WEATHER_RECORD_PORTABLE||window.webkit?.messageHandlers?.atmosRank){
     id=await new Promise(resolve=>{
       const requestID=++atmosRequestID;
       const finish=value=>{clearTimeout(timer);atmosPending.delete(requestID);resolve(value)};
@@ -634,9 +634,9 @@ function nextCatalogAlbumQuery(){
   return `year:${year}${randomInt(4)===0?' album:'+letters[randomInt(letters.length)]:''}`;
 }
 async function fetchSelection(mode){
-  if(workoutMode)throw Error(isEnglish?'Workout music filtering is not yet available in this port. Use Everyday mode for playback.':'跨平台版暂未移植健身歌曲筛选，请切换日常模式播放。');
+  if(workoutMode)return atmosLikedSelection('single');
   if(mode==='single'){
-    if(window.webkit?.messageHandlers?.atmosRank)return atmosLikedSelection(mode);
+    if(window.WEATHER_RECORD_PORTABLE||window.webkit?.messageHandlers?.atmosRank)return atmosLikedSelection(mode);
     if(likedTrackTotal===null){const page=await api('https://api.spotify.com/v1/me/tracks?limit=1&offset=0');likedTrackTotal=page.total||0}
     if(!likedTrackTotal)throw Error('你的喜欢歌曲列表为空');
     if(recent.single.length>=likedTrackTotal)recent.single=recent.single.slice(0,Math.min(3,likedTrackTotal-1));

@@ -16,6 +16,8 @@ import java.util.concurrent.*;
 public class MainActivity extends Activity {
     private WebView web;
     private ServerSocket server;
+    private GeolocationPermissions.Callback locationCallback;
+    private String locationOrigin;
     private final ExecutorService worker=Executors.newFixedThreadPool(3);
     private static final String ORIGIN="http://127.0.0.1:5500/";
     @Override public void onCreate(Bundle state){
@@ -41,9 +43,13 @@ public class MainActivity extends Activity {
                 new android.app.AlertDialog.Builder(MainActivity.this).setMessage(message).setView(input).setPositiveButton("OK",(d,w)->result.confirm(input.getText().toString())).setNegativeButton("Cancel",(d,w)->result.cancel()).setOnCancelListener(d->result.cancel()).show();return true;
             }
             @Override public void onGeolocationPermissionsShowPrompt(String origin,GeolocationPermissions.Callback callback){
+                if(!origin.equals(ORIGIN.substring(0,ORIGIN.length()-1))){callback.invoke(origin,false,false);return;}
                 boolean allowed=checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)==PackageManager.PERMISSION_GRANTED;
-                callback.invoke(origin,allowed&&origin.startsWith(ORIGIN.substring(0,ORIGIN.length()-1)),false);
-                if(!allowed)requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},10);
+                if(allowed)callback.invoke(origin,true,false);
+                else{if(locationCallback!=null)locationCallback.invoke(locationOrigin,false,false);locationCallback=callback;locationOrigin=origin;requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},10);}
+            }
+            @Override public boolean onJsAlert(WebView view,String url,String message,JsResult result){
+                new android.app.AlertDialog.Builder(MainActivity.this).setMessage(message).setPositiveButton("OK",(d,w)->result.confirm()).setOnCancelListener(d->result.cancel()).show();return true;
             }
         });
         try{
@@ -71,6 +77,9 @@ public class MainActivity extends Activity {
             }
             if(!"127.0.0.1:5500".equals(host))return;
             Uri uri=Uri.parse(ORIGIN.substring(0,ORIGIN.length()-1)+target);
+            if("/review-search".equals(uri.getPath())||"/review-translate".equals(uri.getPath())){
+                proxyReview(client,uri);return;
+            }
             if(!inside&&(uri.getQueryParameter("code")!=null||uri.getQueryParameter("error")!=null)){
                 runOnUiThread(()->web.loadUrl(ORIGIN+"?"+uri.getEncodedQuery()));
                 respond(client,"text/html","<p>Authorization received. Return to Weather Record.</p>".getBytes(StandardCharsets.UTF_8));return;
@@ -79,13 +88,36 @@ public class MainActivity extends Activity {
             if(path.contains("..")||path.substring(1).contains("/"))return;
             try(InputStream asset=getAssets().open(path.substring(1));ByteArrayOutputStream bytes=new ByteArrayOutputStream()){
                 byte[] buffer=new byte[8192];int n;while((n=asset.read(buffer))!=-1)bytes.write(buffer,0,n);
-                String type=path.endsWith(".js")?"text/javascript":path.endsWith(".css")?"text/css":path.endsWith(".svg")?"image/svg+xml":"text/html";
+                String type=path.endsWith(".js")?"text/javascript":path.endsWith(".json")?"application/json":path.endsWith(".css")?"text/css":path.endsWith(".svg")?"image/svg+xml":"text/html";
                 respond(client,type,bytes.toByteArray());
             }
         }catch(IOException ignored){}
     }
-    private void respond(Socket client,String type,byte[] bytes)throws IOException{
-        OutputStream out=client.getOutputStream();out.write(("HTTP/1.1 200 OK\r\nContent-Type: "+type+"; charset=utf-8\r\nContent-Length: "+bytes.length+"\r\nCache-Control: no-store\r\nConnection: close\r\n\r\n").getBytes(StandardCharsets.UTF_8));out.write(bytes);out.flush();
+    private void proxyReview(Socket client,Uri uri)throws IOException{
+        String q=uri.getQueryParameter("q");if(q==null||q.isEmpty()||q.length()>4000){respond(client,400,"text/plain",new byte[0]);return;}
+        boolean search="/review-search".equals(uri.getPath());
+        String url=search?"https://pitchfork.com/search/?query=":"https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=zh-CN&dt=t&q=";
+        HttpURLConnection connection=(HttpURLConnection)new URL(url+URLEncoder.encode(q,"UTF-8")).openConnection();
+        connection.setConnectTimeout(10000);connection.setReadTimeout(12000);connection.setInstanceFollowRedirects(false);connection.setRequestProperty("User-Agent","WeatherRecord/0.2 (personal music app)");
+        try{
+            int status=connection.getResponseCode();if(status!=200){respond(client,status,"text/plain",new byte[0]);return;}
+            try(InputStream input=connection.getInputStream();ByteArrayOutputStream bytes=new ByteArrayOutputStream()){
+                byte[] buffer=new byte[8192];int n;while((n=input.read(buffer))!=-1){if(bytes.size()+n>8*1024*1024)throw new IOException("Review too large");bytes.write(buffer,0,n);}
+                respond(client,search?"text/plain":"application/json",bytes.toByteArray());
+            }
+        }finally{connection.disconnect();}
     }
+    private void respond(Socket client,String type,byte[] bytes)throws IOException{
+        respond(client,200,type,bytes);
+    }
+    private void respond(Socket client,int status,String type,byte[] bytes)throws IOException{
+        OutputStream out=client.getOutputStream();out.write(("HTTP/1.1 "+status+" Response\r\nContent-Type: "+type+"; charset=utf-8\r\nContent-Length: "+bytes.length+"\r\nCache-Control: no-store\r\nX-Content-Type-Options: nosniff\r\nConnection: close\r\n\r\n").getBytes(StandardCharsets.UTF_8));out.write(bytes);out.flush();
+    }
+    @Override public void onRequestPermissionsResult(int requestCode,String[] permissions,int[] results){
+        super.onRequestPermissionsResult(requestCode,permissions,results);
+        if(requestCode==10&&locationCallback!=null){locationCallback.invoke(locationOrigin,results.length>0&&results[0]==PackageManager.PERMISSION_GRANTED,false);locationCallback=null;}
+    }
+    @Override protected void onResume(){super.onResume();if(web!=null)web.onResume();}
+    @Override protected void onPause(){if(web!=null)web.onPause();super.onPause();}
     @Override protected void onDestroy(){try{if(server!=null)server.close();}catch(IOException ignored){}worker.shutdownNow();web.destroy();super.onDestroy();}
 }

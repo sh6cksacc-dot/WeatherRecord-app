@@ -2,7 +2,12 @@
 window.WEATHER_RECORD_PORTABLE=true;
 document.documentElement.classList.add('native-app');
 const portableRedirect='http://127.0.0.1:5500/';
-let portableRefresh=null,portablePoll=0,portableReading=false;
+let portableRefresh=null,portablePoll=0,portableReading=false,portableBlockedUntil=0,portableSample=0;
+let portableControlTail=Promise.resolve(),portableTransportVersion=0;
+function portableControl(operation){
+  const task=portableControlTail.catch(()=>{}).then(async()=>{portableTransportVersion++;return operation()});
+  portableControlTail=task;return task;
+}
 function portableClientID(){return localStorage.getItem('portable_client_id')||''}
 function portableRandom(){return Array.from(crypto.getRandomValues(new Uint8Array(32)),b=>b.toString(16).padStart(2,'0')).join('')}
 async function portableConnect(){
@@ -24,7 +29,8 @@ async function portableToken(body){
   state.token=token.access_token;return token;
 }
 async function portableEnsureToken(){
-  if(!state.token||Date.now()<Number(localStorage.getItem('portable_token_expires'))-60000)return;
+  if(!state.token)state.token=localStorage.getItem('spotify_access_token');
+  if(Date.now()<Number(localStorage.getItem('portable_token_expires'))-60000)return;
   const refresh=localStorage.getItem('portable_refresh_token');if(!refresh)return;
   if(!portableRefresh)portableRefresh=portableToken({grant_type:'refresh_token',refresh_token:refresh}).finally(()=>portableRefresh=null);
   await portableRefresh;
@@ -38,37 +44,47 @@ async function portableCallback(){
   if(q.has('error'))throw Error('Spotify authorization: '+q.get('error'));
   await portableToken({grant_type:'authorization_code',code:q.get('code'),redirect_uri:portableRedirect,code_verifier:saved.verifier});
 }
-async function portableAPI(path,method='GET',body){
+async function portableResponse(path,method='GET',body){
   await portableEnsureToken();
-  const r=await fetch('https://api.spotify.com/v1'+path,{method,headers:{Authorization:'Bearer '+state.token,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});
-  if(r.status===429){const seconds=Math.max(5,Number(r.headers.get('Retry-After'))||30);clearTimeout(portablePoll);portablePoll=setTimeout(portableRead,seconds*1000);throw Error('Spotify rate limited. Retry after '+seconds+' seconds.')}
-  if(!r.ok)throw Error('Spotify request failed ('+r.status+'). Open Spotify and start a song first.');
-  return r.status===204?null:r.json();
+  if(Date.now()<portableBlockedUntil)return {status:429,retryAfter:Math.ceil((portableBlockedUntil-Date.now())/1000)};
+  const r=await fetch('https://api.spotify.com/v1'+path,{method,headers:{Authorization:'Bearer '+state.token,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(10000)});
+  const retryAfter=Math.max(1,Number(r.headers.get('Retry-After'))||30);
+  if(r.status===429)portableBlockedUntil=Date.now()+retryAfter*1000;
+  const raw=await r.text();let data=null;try{data=raw?JSON.parse(raw):null}catch{}
+  return {status:r.status,body:data,retryAfter};
+}
+async function portableAPI(path,method='GET',body){
+  const r=await portableResponse(path,method,body);
+  if(r.status<200||r.status>=300)throw Error(r.status===429?'Spotify rate limited. Retry after '+r.retryAfter+' seconds.':(r.body?.error?.message||'Spotify request failed ('+r.status+'). Open Spotify and start a song first.'));
+  return r.body;
 }
 async function portableRead(){
-  clearTimeout(portablePoll);
+  clearTimeout(portablePoll);portablePoll=0;
   if(portableReading||document.hidden||!state.token)return;
   portableReading=true;
+  const version=portableTransportVersion;
   try{
     const s=await portableAPI('/me/player');
-    if(!s?.item)return;
+    if(version!==portableTransportVersion)return;
+    if(!s?.item){portableEmit('weatherRecordSpotifyState',{token:state.token,connected:false,playing:false});return}
     state.deviceId=s.device?.id||null;
-    const changed=!!nativeCurrentTrackURI&&nativeCurrentTrackURI!==s.item.uri;
-    nativeCurrentTrackURI=s.item.uri;
-    const selected=selectedContainsTrack(s.item.uri);
-    if(selected||!playbackTargetPending){
-      state.duration=s.item.duration_ms;state.position=s.progress_ms||0;state.updatedAt=performance.now();state.hasPausedTrack=true;
-      if(acceptRemoteProgress&&!state.seeking)syncProgressAnchor(state.position,changed||!s.is_playing);
-      $('duration').textContent=fmt(state.duration);setPlaying(!!s.is_playing);
-      if(!s.is_playing&&!state.seeking){paintProgress(state.duration?state.position/state.duration*100:0);$('elapsed').textContent=fmt(state.position)}
-      if(s.is_playing)observePlaybackTrack(s.item.uri);
-    }
+    portableEmit('weatherRecordSpotifyState',{token:state.token,connected:true,playing:!!s.is_playing,trackURI:s.item.uri,duration:s.item.duration_ms,position:s.progress_ms||0,sampledAt:Date.now(),sampleVersion:++portableSample});
   }catch(error){console.warn(error.message)}
-  finally{portableReading=false;if(!portablePoll&&!document.hidden)portablePoll=setTimeout(portableRead,2500)}
+  finally{portableReading=false;if(!portablePoll&&!document.hidden)portablePoll=setTimeout(portableRead,Math.max(2500,portableBlockedUntil-Date.now()))}
 }
 function portableCreatePlayer(){
   if(state.player||!state.token)return;
   state.player={activateElement:async()=>{},getCurrentState:async()=>({position:state.position}),pause:()=>portableAPI('/me/player/pause','PUT').then(()=>portableRead()),resume:()=>portableAPI('/me/player/play','PUT').then(()=>portableRead()),seek:p=>portableAPI('/me/player/seek?position_ms='+Math.round(p),'PUT').then(()=>portableRead())};
   portableRead();
+}
+function portableEmit(name,detail){window.dispatchEvent(new CustomEvent(name,{detail}))}
+async function portablePlay(uri){
+  const player=await portableAPI('/me/player');
+  if(!player?.device?.id||player.device.is_restricted)throw Error('Open Spotify and start a song to activate a playback device.');
+  state.deviceId=player.device.id;
+  const body=uri.startsWith('spotify:album:')?{context_uri:uri,offset:{position:0},position_ms:0}:{uris:[uri],position_ms:0};
+  if(uri.startsWith('spotify:album:'))await portableAPI('/me/player/shuffle?state=false','PUT');
+  await portableAPI('/me/player/play?device_id='+encodeURIComponent(state.deviceId),'PUT',body);
+  acceptRemoteProgress=true;await portableRead();
 }
 document.addEventListener('visibilitychange',()=>{if(document.hidden){clearTimeout(portablePoll);portablePoll=0}else if(typeof state!=='undefined'&&state.player)portableRead()});

@@ -1,0 +1,4502 @@
+[
+  {
+    "spotifyID": "album-key:bright-eyes-fevers-and-mirrors",
+    "energy": 0.64,
+    "valence": 0.68,
+    "calmness": 0.45,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Fevers_and_Mirrors"
+  },
+  {
+    "spotifyID": "album-key:r-e-m-automatic-for-the-people",
+    "energy": 0.63,
+    "valence": 0.81,
+    "calmness": 0.5,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Automatic_for_the_People"
+  },
+  {
+    "spotifyID": "album-key:the-zombies-odessey-and-oracle",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Odessey_and_Oracle"
+  },
+  {
+    "spotifyID": "album-key:the-beach-boys-the-beach-boys-today",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Beach_Boys_Today!"
+  },
+  {
+    "spotifyID": "album-key:belle-and-sebastian-if-you-re-feeling-sinister",
+    "energy": 0.63,
+    "valence": 0.81,
+    "calmness": 0.5,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/If_You%27re_Feeling_Sinister"
+  },
+  {
+    "spotifyID": "album-key:arcade-fire-funeral",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Funeral_(Arcade_Fire_album)"
+  },
+  {
+    "spotifyID": "album-key:antony-and-the-johnsons-i-am-a-bird-now",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/I_Am_a_Bird_Now"
+  },
+  {
+    "spotifyID": "album-key:xtc-apple-venus-volume-1",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Apple_Venus_Volume_1"
+  },
+  {
+    "spotifyID": "album-key:mercury-rev-deserter-s-songs",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Deserter%27s_Songs"
+  },
+  {
+    "spotifyID": "album-key:lambchop-nixon",
+    "energy": 0.67,
+    "valence": 0.82,
+    "calmness": 0.47,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Nixon_(album)"
+  },
+  {
+    "spotifyID": "album-key:sparks-lil-beethoven",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Lil%27_Beethoven"
+  },
+  {
+    "spotifyID": "album-key:johnny-boy-johnny-boy",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Johnny_Boy_(album)"
+  },
+  {
+    "spotifyID": "album-key:blonde-redhead-23",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/23_(Blonde_Redhead_album)"
+  },
+  {
+    "spotifyID": "album-key:the-high-llamas-hawaii",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Hawaii_(The_High_Llamas_album)"
+  },
+  {
+    "spotifyID": "album-key:bon-iver-bon-iver-bon-iver",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Bon_Iver,_Bon_Iver"
+  },
+  {
+    "spotifyID": "album-key:kate-bush-50-words-for-snow",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.49,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/50_Words_for_Snow"
+  },
+  {
+    "spotifyID": "album-key:vampire-weekend-modern-vampires-of-the-city",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Modern_Vampires_of_the_City"
+  },
+  {
+    "spotifyID": "album-key:natalie-prass-natalie-prass",
+    "energy": 0.67,
+    "valence": 0.82,
+    "calmness": 0.47,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Natalie_Prass_(album)"
+  },
+  {
+    "spotifyID": "album-key:julia-holter-have-you-in-my-wilderness",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Have_You_in_My_Wilderness"
+  },
+  {
+    "spotifyID": "album-key:field-music-commontime",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Commontime_(album)"
+  },
+  {
+    "spotifyID": "album-key:choir-of-young-believers-grasque",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Grasque"
+  },
+  {
+    "spotifyID": "album-key:sparks-hippopotamus",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Hippopotamus_(album)"
+  },
+  {
+    "spotifyID": "album-key:iv-of-spades-clapclapclap",
+    "energy": 0.64,
+    "valence": 0.68,
+    "calmness": 0.45,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/ClapClapClap!"
+  },
+  {
+    "spotifyID": "album-key:mitski-lush",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Lush_(Mitski_album)"
+  },
+  {
+    "spotifyID": "album-key:taylor-swift-folklore",
+    "energy": 0.75,
+    "valence": 0.87,
+    "calmness": 0.4,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Folklore_(Taylor_Swift_album)"
+  },
+  {
+    "spotifyID": "album-key:taylor-swift-evermore",
+    "energy": 0.63,
+    "valence": 0.81,
+    "calmness": 0.5,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Evermore"
+  },
+  {
+    "spotifyID": "album-key:weezer-ok-human",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/OK_Human"
+  },
+  {
+    "spotifyID": "album-key:tori-amos-ocean-to-ocean",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Ocean_to_Ocean"
+  },
+  {
+    "spotifyID": "album-key:black-country-new-road-ants-from-up-there",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Ants_from_Up_There"
+  },
+  {
+    "spotifyID": "album-key:beach-house-once-twice-melody",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Once_Twice_Melody"
+  },
+  {
+    "spotifyID": "album-key:sloppy-jane-madison",
+    "energy": 0.71,
+    "valence": 0.74,
+    "calmness": 0.44,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Madison_(album)"
+  },
+  {
+    "spotifyID": "album-key:andrew-bird-inside-problems",
+    "energy": 0.63,
+    "valence": 0.81,
+    "calmness": 0.5,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Inside_Problems"
+  },
+  {
+    "spotifyID": "album-key:beth-gibbons-lives-outgrown",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Lives_Outgrown"
+  },
+  {
+    "spotifyID": "album-key:alexandra-savior-beneath-the-lilypad",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Beneath_the_Lilypad"
+  },
+  {
+    "spotifyID": "album-key:matt-maltese-hers",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Hers_(album)"
+  },
+  {
+    "spotifyID": "album-key:prima-queen-the-prize",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Prize_(album)"
+  },
+  {
+    "spotifyID": "album-key:maki-kolorcoaster",
+    "energy": 0.74,
+    "valence": 0.78,
+    "calmness": 0.4,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Kolorcoaster"
+  },
+  {
+    "spotifyID": "album-key:margherita-vicario-bingo",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Bingo_(Margherita_Vicario_album)"
+  },
+  {
+    "spotifyID": "album-key:juana-molina-rara",
+    "energy": 0.63,
+    "valence": 0.81,
+    "calmness": 0.5,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Rara_(album)"
+  },
+  {
+    "spotifyID": "album-key:the-beach-boys-pet-sounds",
+    "energy": 0.71,
+    "valence": 0.74,
+    "calmness": 0.44,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Pet_Sounds"
+  },
+  {
+    "spotifyID": "album-key:nirvana-bleach",
+    "energy": 0.78,
+    "valence": 0.6,
+    "calmness": 0.31,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Bleach_(Nirvana_album)"
+  },
+  {
+    "spotifyID": "album-key:r-e-m-out-of-time",
+    "energy": 0.63,
+    "valence": 0.81,
+    "calmness": 0.5,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Out_of_Time_(album)"
+  },
+  {
+    "spotifyID": "album-key:fiona-apple-tidal",
+    "energy": 0.67,
+    "valence": 0.82,
+    "calmness": 0.47,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Tidal_(album)"
+  },
+  {
+    "spotifyID": "album-key:paul-and-linda-mccartney-ram",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Ram_(album)"
+  },
+  {
+    "spotifyID": "album-key:tindersticks-tindersticks",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Tindersticks_(1993_album)"
+  },
+  {
+    "spotifyID": "album-key:xtc-skylarking",
+    "energy": 0.71,
+    "valence": 0.74,
+    "calmness": 0.44,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Skylarking"
+  },
+  {
+    "spotifyID": "album-key:john-cale-paris-1919",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Paris_1919_(album)"
+  },
+  {
+    "spotifyID": "album-key:the-essex-green-cannibal-sea",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Cannibal_Sea"
+  },
+  {
+    "spotifyID": "album-key:brazzaville-somnambulista",
+    "energy": 0.67,
+    "valence": 0.82,
+    "calmness": 0.47,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Somnambulista"
+  },
+  {
+    "spotifyID": "album-key:the-radio-dept-lesser-matters",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Lesser_Matters"
+  },
+  {
+    "spotifyID": "album-key:voxtrot-voxtrot",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Voxtrot_(album)"
+  },
+  {
+    "spotifyID": "album-key:tiger-trap-tiger-trap",
+    "energy": 0.83,
+    "valence": 0.7,
+    "calmness": 0.28,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Tiger_Trap_(album)"
+  },
+  {
+    "spotifyID": "album-key:vampire-weekend-vampire-weekend",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Vampire_Weekend_(album)"
+  },
+  {
+    "spotifyID": "album-key:teitur-the-singer",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Singer_(Teitur_Lassen_album)"
+  },
+  {
+    "spotifyID": "album-key:the-pains-of-being-pure-at-heart-the-pains-of-being-pure-at-heart",
+    "energy": 0.83,
+    "valence": 0.7,
+    "calmness": 0.28,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Pains_of_Being_Pure_at_Heart_(album)"
+  },
+  {
+    "spotifyID": "album-key:grizzly-bear-veckatimest",
+    "energy": 0.65,
+    "valence": 0.77,
+    "calmness": 0.52,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Veckatimest"
+  },
+  {
+    "spotifyID": "album-key:minipop-a-new-hope",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/A_New_Hope_(Minipop_album)"
+  },
+  {
+    "spotifyID": "album-key:the-1975-the-1975",
+    "energy": 0.81,
+    "valence": 0.84,
+    "calmness": 0.32,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_1975_(album)"
+  },
+  {
+    "spotifyID": "album-key:alvvays-alvvays",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Alvvays_(album)"
+  },
+  {
+    "spotifyID": "album-key:ben-folds-so-there",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/So_There"
+  },
+  {
+    "spotifyID": "album-key:various-artists-c86",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/C86"
+  },
+  {
+    "spotifyID": "album-key:field-music-open-here",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Open_Here"
+  },
+  {
+    "spotifyID": "album-key:weyes-blood-titanic-rising",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Titanic_Rising"
+  },
+  {
+    "spotifyID": "album-key:modern-studies-the-weight-of-the-sun",
+    "energy": 0.63,
+    "valence": 0.81,
+    "calmness": 0.5,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Weight_of_the_Sun"
+  },
+  {
+    "spotifyID": "album-key:perfume-genius-ugly-season",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Ugly_Season"
+  },
+  {
+    "spotifyID": "album-key:post-malone-austin",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Austin_(album)"
+  },
+  {
+    "spotifyID": "album-key:taylor-swift-the-tortured-poets-department",
+    "energy": 0.63,
+    "valence": 0.81,
+    "calmness": 0.5,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Tortured_Poets_Department"
+  },
+  {
+    "spotifyID": "album-key:nell-smith-anxious",
+    "energy": 0.71,
+    "valence": 0.74,
+    "calmness": 0.44,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Anxious_(album)"
+  },
+  {
+    "spotifyID": "album-key:the-bug-club-every-single-muscle",
+    "energy": 0.78,
+    "valence": 0.6,
+    "calmness": 0.31,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Every_Single_Muscle"
+  },
+  {
+    "spotifyID": "album-key:rosa-walton-tell-me-it-s-a-dream",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Tell_Me_It%27s_a_Dream"
+  },
+  {
+    "spotifyID": "album-key:remi-wolf-mud",
+    "energy": 0.64,
+    "valence": 0.68,
+    "calmness": 0.45,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Mud_(Remi_Wolf_album)"
+  },
+  {
+    "spotifyID": "album-key:belle-sebastian-dear-catastrophe-waitress",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Dear_Catastrophe_Waitress"
+  },
+  {
+    "spotifyID": "album-key:deerhoof-apple-o",
+    "energy": 0.85,
+    "valence": 0.66,
+    "calmness": 0.3,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Apple_O%27"
+  },
+  {
+    "spotifyID": "album-key:of-montreal-the-early-four-track-recordings",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Early_Four_Track_Recordings"
+  },
+  {
+    "spotifyID": "album-key:bearsuit-cat-spectacular",
+    "energy": 0.69,
+    "valence": 0.78,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Cat_Spectacular!"
+  },
+  {
+    "spotifyID": "album-key:aaliyah-aaliyah",
+    "energy": 0.73,
+    "valence": 0.83,
+    "calmness": 0.5,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Aaliyah_(album)"
+  },
+  {
+    "spotifyID": "album-key:darius-rucker-back-to-then",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Back_to_Then"
+  },
+  {
+    "spotifyID": "album-key:earth-wind-fire-illumination",
+    "energy": 0.58,
+    "valence": 0.63,
+    "calmness": 0.58,
+    "confidence": 0.24,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Illumination_(Earth,_Wind_%26_Fire_album)"
+  },
+  {
+    "spotifyID": "album-key:earth-wind-fire-the-promise",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Promise_(Earth,_Wind_%26_Fire_album)"
+  },
+  {
+    "spotifyID": "album-key:babyface-face2face",
+    "energy": 0.58,
+    "valence": 0.63,
+    "calmness": 0.58,
+    "confidence": 0.24,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Face2Face_(Babyface_album)"
+  },
+  {
+    "spotifyID": "album-key:chico-debarge-long-time-no-see",
+    "energy": 0.58,
+    "valence": 0.63,
+    "calmness": 0.58,
+    "confidence": 0.24,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Long_Time_No_See_(album)"
+  },
+  {
+    "spotifyID": "album-key:vivian-green-a-love-story",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/A_Love_Story_(Vivian_Green_album)"
+  },
+  {
+    "spotifyID": "album-key:koffee-brown-mars-venus",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Mars/Venus"
+  },
+  {
+    "spotifyID": "album-key:algebra-purpose",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Purpose_(Algebra_album)"
+  },
+  {
+    "spotifyID": "album-key:florence-and-the-machine-ceremonials",
+    "energy": 0.61,
+    "valence": 0.77,
+    "calmness": 0.6,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Ceremonials"
+  },
+  {
+    "spotifyID": "album-key:res-how-i-do",
+    "energy": 0.75,
+    "valence": 0.69,
+    "calmness": 0.46,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/How_I_Do"
+  },
+  {
+    "spotifyID": "album-key:frank-ocean-channel-orange",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Channel_Orange"
+  },
+  {
+    "spotifyID": "album-key:justin-timberlake-the-20-20-experience",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_20/20_Experience"
+  },
+  {
+    "spotifyID": "album-key:laura-mvula-sing-to-the-moon",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Sing_to_the_Moon"
+  },
+  {
+    "spotifyID": "album-key:joe-doubleback-evolution-of-r-b",
+    "energy": 0.58,
+    "valence": 0.63,
+    "calmness": 0.58,
+    "confidence": 0.24,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Doubleback:_Evolution_of_R%26B"
+  },
+  {
+    "spotifyID": "album-key:christon-gray-school-of-roses",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/School_of_Roses"
+  },
+  {
+    "spotifyID": "album-key:super-junior-mamacita",
+    "energy": 0.61,
+    "valence": 0.77,
+    "calmness": 0.6,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Mamacita_(album)"
+  },
+  {
+    "spotifyID": "album-key:robin-gibb-50-st-catherine-s-drive",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/50_St._Catherine%27s_Drive"
+  },
+  {
+    "spotifyID": "album-key:kendrick-lamar-to-pimp-a-butterfly",
+    "energy": 0.58,
+    "valence": 0.63,
+    "calmness": 0.65,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/To_Pimp_a_Butterfly"
+  },
+  {
+    "spotifyID": "album-key:beats-international-let-them-eat-bingo",
+    "energy": 0.73,
+    "valence": 0.83,
+    "calmness": 0.5,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Let_Them_Eat_Bingo"
+  },
+  {
+    "spotifyID": "album-key:willow-ardipithecus",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Ardipithecus_(album)"
+  },
+  {
+    "spotifyID": "album-key:noname-telefone",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Telefone_(mixtape)"
+  },
+  {
+    "spotifyID": "album-key:chuck-brown-beautiful-life",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Beautiful_Life_(Chuck_Brown_album)"
+  },
+  {
+    "spotifyID": "album-key:dram-big-baby-dram",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Big_Baby_DRAM"
+  },
+  {
+    "spotifyID": "album-key:pru-pru",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Pru_(album)"
+  },
+  {
+    "spotifyID": "album-key:tyler-the-creator-flower-boy",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Flower_Boy"
+  },
+  {
+    "spotifyID": "album-key:kali-uchis-isolation",
+    "energy": 0.61,
+    "valence": 0.77,
+    "calmness": 0.6,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Isolation_(Kali_Uchis_album)"
+  },
+  {
+    "spotifyID": "album-key:saba-care-for-me",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Care_for_Me"
+  },
+  {
+    "spotifyID": "album-key:standing-on-the-corner-red-burns",
+    "energy": 0.63,
+    "valence": 0.73,
+    "calmness": 0.62,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Red_Burns_(album)"
+  },
+  {
+    "spotifyID": "album-key:tyler-the-creator-igor",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Igor_(album)"
+  },
+  {
+    "spotifyID": "album-key:ybn-cordae-the-lost-boy",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Lost_Boy_(album)"
+  },
+  {
+    "spotifyID": "album-key:childish-gambino-3-15-20",
+    "energy": 0.58,
+    "valence": 0.63,
+    "calmness": 0.65,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/3.15.20"
+  },
+  {
+    "spotifyID": "album-key:spillage-village-jid-earthgang-spilligion",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Spilligion"
+  },
+  {
+    "spotifyID": "album-key:sivion-group-therapy",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Group_Therapy_(Sivion_album)"
+  },
+  {
+    "spotifyID": "album-key:sault-nine",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Nine_(Sault_album)"
+  },
+  {
+    "spotifyID": "album-key:pink-siifu-gumbo",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Gumbo%27!"
+  },
+  {
+    "spotifyID": "album-key:b-cool-aid-leather-blvd",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Leather_Blvd"
+  },
+  {
+    "spotifyID": "album-key:mac-miller-balloonerism",
+    "energy": 0.58,
+    "valence": 0.63,
+    "calmness": 0.65,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Balloonerism"
+  },
+  {
+    "spotifyID": "album-key:redveil-sankofa",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Sankofa_(album)"
+  },
+  {
+    "spotifyID": "album-key:raveena-lucid",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Lucid_(Raveena_album)"
+  },
+  {
+    "spotifyID": "album-key:roxy-music-avalon",
+    "energy": 0.61,
+    "valence": 0.77,
+    "calmness": 0.6,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Avalon_(Roxy_Music_album)"
+  },
+  {
+    "spotifyID": "album-key:erykah-badu-live",
+    "energy": 0.58,
+    "valence": 0.63,
+    "calmness": 0.58,
+    "confidence": 0.21,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Live_(Erykah_Badu_album)"
+  },
+  {
+    "spotifyID": "album-key:d-angelo-brown-sugar",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Brown_Sugar_(D%27Angelo_album)"
+  },
+  {
+    "spotifyID": "album-key:marvin-gaye-i-want-you",
+    "energy": 0.68,
+    "valence": 0.73,
+    "calmness": 0.53,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/I_Want_You_(Marvin_Gaye_album)"
+  },
+  {
+    "spotifyID": "album-key:heather-nova-south",
+    "energy": 0.61,
+    "valence": 0.77,
+    "calmness": 0.6,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/South_(Heather_Nova_album)"
+  },
+  {
+    "spotifyID": "album-key:destiny-s-child-destiny-s-child",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Destiny%27s_Child_(album)"
+  },
+  {
+    "spotifyID": "album-key:joi-the-pendulum-vibe",
+    "energy": 0.58,
+    "valence": 0.63,
+    "calmness": 0.65,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Pendulum_Vibe"
+  },
+  {
+    "spotifyID": "album-key:maxwell-embrya",
+    "energy": 0.58,
+    "valence": 0.63,
+    "calmness": 0.58,
+    "confidence": 0.24,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Embrya"
+  },
+  {
+    "spotifyID": "album-key:angie-stone-mahogany-soul",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Mahogany_Soul"
+  },
+  {
+    "spotifyID": "album-key:angie-stone-unexpected",
+    "energy": 0.58,
+    "valence": 0.63,
+    "calmness": 0.58,
+    "confidence": 0.24,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Unexpected_(Angie_Stone_album)"
+  },
+  {
+    "spotifyID": "album-key:d-angelo-and-the-vanguard-black-messiah",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Black_Messiah_(album)"
+  },
+  {
+    "spotifyID": "album-key:eric-roberson-the-vault-vol-1",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Vault,_Vol._1"
+  },
+  {
+    "spotifyID": "album-key:solange-true",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/True_(EP)"
+  },
+  {
+    "spotifyID": "album-key:sza-z",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Z_(EP)"
+  },
+  {
+    "spotifyID": "album-key:hiatus-kaiyote-choose-your-weapon",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Choose_Your_Weapon"
+  },
+  {
+    "spotifyID": "album-key:boss-ac-manda-chuva",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Manda_Chuva"
+  },
+  {
+    "spotifyID": "album-key:boss-ac-rimar-contra-a-maré",
+    "energy": 0.58,
+    "valence": 0.63,
+    "calmness": 0.58,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Rimar_Contra_a_Mar%C3%A9"
+  },
+  {
+    "spotifyID": "album-key:chuck-brown-we-got-this",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/We_Got_This_(Chuck_Brown_album)"
+  },
+  {
+    "spotifyID": "album-key:sza-ctrl",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Ctrl_(SZA_album)"
+  },
+  {
+    "spotifyID": "album-key:sir-november",
+    "energy": 0.56,
+    "valence": 0.67,
+    "calmness": 0.63,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/November_(Sir_album)"
+  },
+  {
+    "spotifyID": "album-key:miles-davis-miles-ahead",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Miles_Ahead_(album)"
+  },
+  {
+    "spotifyID": "album-key:modern-jazz-quartet-django",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Django_(album)"
+  },
+  {
+    "spotifyID": "album-key:sade-love-deluxe",
+    "energy": 0.39,
+    "valence": 0.72,
+    "calmness": 0.82,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Love_Deluxe"
+  },
+  {
+    "spotifyID": "album-key:clifford-brown-and-max-roach-study-in-brown",
+    "energy": 0.48,
+    "valence": 0.58,
+    "calmness": 0.68,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Study_in_Brown"
+  },
+  {
+    "spotifyID": "album-key:betty-carter-out-there",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Out_There_(Betty_Carter_album)"
+  },
+  {
+    "spotifyID": "album-key:dave-burrell-and-david-murray-daybreak",
+    "energy": 0.48,
+    "valence": 0.58,
+    "calmness": 0.75,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Daybreak_(Dave_Burrell_and_David_Murray_album)"
+  },
+  {
+    "spotifyID": "album-key:gerry-mulligan-historically-speaking",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Historically_Speaking_(Gerry_Mulligan_album)"
+  },
+  {
+    "spotifyID": "album-key:randy-napoleon-and-jared-gold-enjoy-the-moment",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Enjoy_the_Moment"
+  },
+  {
+    "spotifyID": "album-key:randy-napoleon-between-friends",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Between_Friends_(Randy_Napoleon_album)"
+  },
+  {
+    "spotifyID": "album-key:lennie-tristano-lennie-tristano",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Lennie_Tristano_(album)"
+  },
+  {
+    "spotifyID": "album-key:clifford-brown-max-roach-quintet-clifford-brown-max-roach",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Clifford_Brown_%26_Max_Roach"
+  },
+  {
+    "spotifyID": "album-key:dizzy-gillespie-groovin-high",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Groovin%27_High_(Dizzy_Gillespie_album)"
+  },
+  {
+    "spotifyID": "album-key:willie-nelson-angel-eyes",
+    "energy": 0.53,
+    "valence": 0.68,
+    "calmness": 0.65,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Angel_Eyes_(Willie_Nelson_album)"
+  },
+  {
+    "spotifyID": "album-key:joe-pass-intercontinental",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Intercontinental_(album)"
+  },
+  {
+    "spotifyID": "album-key:kenny-dorham-whistle-stop",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Whistle_Stop_(album)"
+  },
+  {
+    "spotifyID": "album-key:modern-jazz-quartet-concorde",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Concorde_(album)"
+  },
+  {
+    "spotifyID": "album-key:jean-luc-ponty-jazz-long-playing",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Jazz_Long_Playing"
+  },
+  {
+    "spotifyID": "album-key:the-dave-brubeck-quartet-bernstein-plays-brubeck-plays-bernstein",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Bernstein_Plays_Brubeck_Plays_Bernstein"
+  },
+  {
+    "spotifyID": "album-key:tommy-vig-welcome-to-hungary-the-tommy-vig-orchestra-2012-featuring-david-murray",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Welcome_to_Hungary!_The_Tommy_Vig_Orchestra_2012_Featuring_David_Murray"
+  },
+  {
+    "spotifyID": "album-key:pepper-adams-cecil-payne-julius-watkins-dave-amram-modern-jazz-survey-baritones-and-french-horns",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Baritones_and_French_Horns"
+  },
+  {
+    "spotifyID": "album-key:dizzy-gillespie-the-complete-rca-victor-recordings",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Complete_RCA_Victor_Recordings"
+  },
+  {
+    "spotifyID": "album-key:stan-getz-the-complete-roost-recordings",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Complete_Roost_Recordings"
+  },
+  {
+    "spotifyID": "album-key:paul-desmond-quintet-quartet-desmond-here-i-am",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Desmond:_Here_I_AM"
+  },
+  {
+    "spotifyID": "album-key:clifford-brown-the-beginning-and-the-end",
+    "energy": 0.48,
+    "valence": 0.58,
+    "calmness": 0.68,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Beginning_and_the_End_(Clifford_Brown_album)"
+  },
+  {
+    "spotifyID": "album-key:clifford-brown-jazz-time-paris-vol-13-clifford-brownie-brown-quartet",
+    "energy": 0.48,
+    "valence": 0.58,
+    "calmness": 0.68,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Clifford_Brown_Quartet_(album)"
+  },
+  {
+    "spotifyID": "album-key:anat-cohen-tentet-triple-helix",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Triple_Helix_(album)"
+  },
+  {
+    "spotifyID": "album-key:terraza-big-band-one-day-wonder",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/One_Day_Wonder"
+  },
+  {
+    "spotifyID": "album-key:vince-guaraldi-the-charlie-brown-suite-other-favorites",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Charlie_Brown_Suite_%26_Other_Favorites"
+  },
+  {
+    "spotifyID": "album-key:muh-trio-prague-after-dark",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Prague_After_Dark"
+  },
+  {
+    "spotifyID": "album-key:gruppo-jazz-marca-comunicazione-sonora",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Comunicazione_Sonora"
+  },
+  {
+    "spotifyID": "album-key:gruppo-jazz-marca-mitteleuropa",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Mitteleuropa_(album)"
+  },
+  {
+    "spotifyID": "album-key:imagene-peise-atlas-eets-christmas",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Atlas_Eets_Christmas"
+  },
+  {
+    "spotifyID": "album-key:lance-hayward-lance-hayward-at-the-half-moon-hotel",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.24,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Lance_Hayward_at_the_Half_Moon_Hotel"
+  },
+  {
+    "spotifyID": "album-key:bud-powell-inner-fires",
+    "energy": 0.48,
+    "valence": 0.58,
+    "calmness": 0.68,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Inner_Fires"
+  },
+  {
+    "spotifyID": "album-key:arooj-aftab-night-reign",
+    "energy": 0.4,
+    "valence": 0.65,
+    "calmness": 0.81,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Night_Reign"
+  },
+  {
+    "spotifyID": "album-key:lance-hayward-lance-hayward-at-the-half-moon-hotel-volume-2",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.24,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Lance_Hayward_at_the_Half_Moon_Hotel,_Volume_2"
+  },
+  {
+    "spotifyID": "album-key:joy-joy",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Joy_(Joy_album)"
+  },
+  {
+    "spotifyID": "album-key:june-christy-june-s-got-rhythm",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/June%27s_Got_Rhythm"
+  },
+  {
+    "spotifyID": "album-key:miles-davis-kind-of-blue",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Kind_of_Blue"
+  },
+  {
+    "spotifyID": "album-key:steely-dan-aja",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Aja_(album)"
+  },
+  {
+    "spotifyID": "album-key:weather-report-heavy-weather",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Heavy_Weather_(album)"
+  },
+  {
+    "spotifyID": "album-key:queen-jazz",
+    "energy": 0.67,
+    "valence": 0.6,
+    "calmness": 0.51,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Jazz_(Queen_album)"
+  },
+  {
+    "spotifyID": "album-key:john-coltrane-blue-train",
+    "energy": 0.48,
+    "valence": 0.58,
+    "calmness": 0.68,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Blue_Train_(album)"
+  },
+  {
+    "spotifyID": "album-key:ornette-coleman-the-shape-of-jazz-to-come",
+    "energy": 0.48,
+    "valence": 0.58,
+    "calmness": 0.75,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Shape_of_Jazz_to_Come"
+  },
+  {
+    "spotifyID": "album-key:the-dave-brubeck-quartet-time-out",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Time_Out_(Dave_Brubeck_Quartet_album)"
+  },
+  {
+    "spotifyID": "album-key:tortoise-tnt",
+    "energy": 0.34,
+    "valence": 0.62,
+    "calmness": 0.85,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/TNT_(Tortoise_album)"
+  },
+  {
+    "spotifyID": "album-key:ornette-coleman-free-jazz-a-collective-improvisation",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Free_Jazz:_A_Collective_Improvisation"
+  },
+  {
+    "spotifyID": "album-key:stan-getz-focus",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Focus_(Stan_Getz_album)"
+  },
+  {
+    "spotifyID": "album-key:little-stevie-wonder-the-jazz-soul-of-little-stevie",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Jazz_Soul_of_Little_Stevie"
+  },
+  {
+    "spotifyID": "album-key:john-coltrane-coltrane-jazz",
+    "energy": 0.46,
+    "valence": 0.62,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Coltrane_Jazz"
+  },
+  {
+    "spotifyID": "album-key:harold-budd-and-cocteau-twins-the-moon-and-the-melodies",
+    "energy": 0.11,
+    "valence": 0.65,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Moon_and_the_Melodies"
+  },
+  {
+    "spotifyID": "album-key:non-children-of-the-black-sun",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Children_of_the_Black_Sun"
+  },
+  {
+    "spotifyID": "album-key:robert-rich-and-alio-die-fissures",
+    "energy": 0.12,
+    "valence": 0.64,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Fissures_(album)"
+  },
+  {
+    "spotifyID": "album-key:paul-schwartz-café-del-mar-aria",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Caf%C3%A9_del_Mar_Aria"
+  },
+  {
+    "spotifyID": "album-key:robin-guthrie-and-harold-budd-mysterious-skin-music-from-the-film",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Mysterious_Skin_(soundtrack)"
+  },
+  {
+    "spotifyID": "album-key:andy-partridge-and-harold-budd-through-the-hill",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Through_the_Hill"
+  },
+  {
+    "spotifyID": "album-key:dargaard-eternity-rites",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Eternity_Rites"
+  },
+  {
+    "spotifyID": "album-key:dargaard-in-nomine-aeternitatis",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/In_Nomine_Aeternitatis"
+  },
+  {
+    "spotifyID": "album-key:william-basinski-the-disintegration-loops",
+    "energy": 0.08,
+    "valence": 0.51,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Disintegration_Loops"
+  },
+  {
+    "spotifyID": "album-key:dargaard-the-dissolution-of-eternity",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Dissolution_of_Eternity"
+  },
+  {
+    "spotifyID": "album-key:robert-rich-and-markus-reuter-eleven-questions",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Eleven_Questions"
+  },
+  {
+    "spotifyID": "album-key:nine-inch-nails-ghosts-i-iv",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Ghosts_I%E2%80%93IV"
+  },
+  {
+    "spotifyID": "album-key:robert-rich-and-ian-boddy-react",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/React_(Robert_Rich_and_Ian_Boddy_album)"
+  },
+  {
+    "spotifyID": "album-key:sibel-the-diving-belle",
+    "energy": 0.11,
+    "valence": 0.65,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Diving_Belle"
+  },
+  {
+    "spotifyID": "album-key:jack-dejohnette-music-in-the-key-of-om",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Music_in_the_Key_of_Om"
+  },
+  {
+    "spotifyID": "album-key:alio-die-and-vidna-obmana-echo-passage",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Echo_Passage"
+  },
+  {
+    "spotifyID": "album-key:0096-lucid-dreams-lucid-dreams",
+    "energy": 0.18,
+    "valence": 0.61,
+    "calmness": 0.97,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Lucid_Dreams_0096"
+  },
+  {
+    "spotifyID": "album-key:arca-mutant",
+    "energy": 0.32,
+    "valence": 0.57,
+    "calmness": 0.87,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Mutant_(album)"
+  },
+  {
+    "spotifyID": "album-key:karol-gwóźdź-tamte-czasy",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Tamte_Czasy"
+  },
+  {
+    "spotifyID": "album-key:clark-the-last-panthers",
+    "energy": 0.2,
+    "valence": 0.57,
+    "calmness": 0.99,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Last_Panthers_(album)"
+  },
+  {
+    "spotifyID": "album-key:2814-birth-of-a-new-day",
+    "energy": 0.2,
+    "valence": 0.47,
+    "calmness": 0.93,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Birth_of_a_New_Day"
+  },
+  {
+    "spotifyID": "album-key:nick-edwards-plekzationz",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Plekzationz"
+  },
+  {
+    "spotifyID": "album-key:arca-sheep",
+    "energy": 0.18,
+    "valence": 0.55,
+    "calmness": 0.95,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Sheep_(mixtape)"
+  },
+  {
+    "spotifyID": "album-key:tony-scott-music-for-yoga-meditation-and-other-joys",
+    "energy": 0.04,
+    "valence": 0.59,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Music_for_Yoga_Meditation_and_Other_Joys"
+  },
+  {
+    "spotifyID": "album-key:fatima-al-qadiri-brute",
+    "energy": 0.2,
+    "valence": 0.57,
+    "calmness": 0.99,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Brute_(album)"
+  },
+  {
+    "spotifyID": "album-key:how-to-dress-well-the-anteroom",
+    "energy": 0.23,
+    "valence": 0.71,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Anteroom"
+  },
+  {
+    "spotifyID": "album-key:akira-rabelais-spellewauerynsherde",
+    "energy": 0.2,
+    "valence": 0.57,
+    "calmness": 0.99,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Spellewauerynsherde"
+  },
+  {
+    "spotifyID": "album-key:the-caretaker-everywhere-at-the-end-of-time",
+    "energy": 0.2,
+    "valence": 0.57,
+    "calmness": 0.99,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Everywhere_at_the_End_of_Time"
+  },
+  {
+    "spotifyID": "album-key:arca-kick-iiiii",
+    "energy": 0.12,
+    "valence": 0.64,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Kick_IIIII"
+  },
+  {
+    "spotifyID": "album-key:klaus-schulze-deus-arrakis",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.24,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Deus_Arrakis"
+  },
+  {
+    "spotifyID": "album-key:psyclon-nine-icon-of-the-adversary",
+    "energy": 0.2,
+    "valence": 0.47,
+    "calmness": 0.93,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Icon_of_the_Adversary"
+  },
+  {
+    "spotifyID": "album-key:various-artists-the-fire-this-time",
+    "energy": 0.18,
+    "valence": 0.61,
+    "calmness": 0.97,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Fire_This_Time_(audio_documentary)"
+  },
+  {
+    "spotifyID": "album-key:fred-again-and-brian-eno-secret-life",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Secret_Life_(album)"
+  },
+  {
+    "spotifyID": "album-key:the-gerogerigegege-moenai-hai",
+    "energy": 0.2,
+    "valence": 0.47,
+    "calmness": 0.93,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Moenai_Hai"
+  },
+  {
+    "spotifyID": "album-key:kmru-dissolution-grip",
+    "energy": 0.08,
+    "valence": 0.51,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Dissolution_Grip"
+  },
+  {
+    "spotifyID": "album-key:seamus-ó-muíneacháin-liminality",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Liminality_(album)"
+  },
+  {
+    "spotifyID": "album-key:ethel-cain-perverts",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Perverts_(album)"
+  },
+  {
+    "spotifyID": "album-key:damián-anache-lento-en-un-jardín-reticular",
+    "energy": 0.28,
+    "valence": 0.52,
+    "calmness": 0.93,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Lento,_en_un_jard%C3%ADn_reticular"
+  },
+  {
+    "spotifyID": "album-key:ned-lagin-cat-dreams",
+    "energy": 0.16,
+    "valence": 0.65,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Cat_Dreams_(album)"
+  },
+  {
+    "spotifyID": "album-key:eno-another-green-world",
+    "energy": 0.23,
+    "valence": 0.71,
+    "calmness": 0.94,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Another_Green_World"
+  },
+  {
+    "spotifyID": "album-key:brian-eno-ambient-1-music-for-airports",
+    "energy": 0.18,
+    "valence": 0.61,
+    "calmness": 0.97,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Ambient_1:_Music_for_Airports"
+  },
+  {
+    "spotifyID": "album-key:aphex-twin-selected-ambient-works-volume-ii",
+    "energy": 0.18,
+    "valence": 0.61,
+    "calmness": 0.97,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Selected_Ambient_Works_Volume_II"
+  },
+  {
+    "spotifyID": "album-key:the-klf-chill-out",
+    "energy": 0.18,
+    "valence": 0.61,
+    "calmness": 0.97,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Chill_Out_(KLF_album)"
+  },
+  {
+    "spotifyID": "album-key:brian-eno-discreet-music",
+    "energy": 0.08,
+    "valence": 0.51,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Discreet_Music"
+  },
+  {
+    "spotifyID": "album-key:fripp-eno-evening-star",
+    "energy": 0.08,
+    "valence": 0.51,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Evening_Star_(Fripp_%26_Eno_album)"
+  },
+  {
+    "spotifyID": "album-key:harold-budd-and-brian-eno-ambient-2-the-plateaux-of-mirror",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Ambient_2:_The_Plateaux_of_Mirror"
+  },
+  {
+    "spotifyID": "album-key:laraaji-ambient-3-day-of-radiance",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Ambient_3:_Day_of_Radiance"
+  },
+  {
+    "spotifyID": "album-key:brian-eno-ambient-4-on-land",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Ambient_4:_On_Land"
+  },
+  {
+    "spotifyID": "album-key:harold-budd-and-brian-eno-the-pearl",
+    "energy": 0.06,
+    "valence": 0.55,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Pearl_(album)"
+  },
+  {
+    "spotifyID": "album-key:burzum-hliðskjálf",
+    "energy": 0.0,
+    "valence": 0.58,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Hli%C3%B0skj%C3%A1lf_(album)"
+  },
+  {
+    "spotifyID": "album-key:daft-punk-discovery",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Discovery_(Daft_Punk_album)"
+  },
+  {
+    "spotifyID": "album-key:george-harrison-electronic-sound",
+    "energy": 0.9,
+    "valence": 0.69,
+    "calmness": 0.3,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Electronic_Sound"
+  },
+  {
+    "spotifyID": "album-key:goldfrapp-felt-mountain",
+    "energy": 0.76,
+    "valence": 0.73,
+    "calmness": 0.4,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Felt_Mountain"
+  },
+  {
+    "spotifyID": "album-key:electronic-electronic",
+    "energy": 0.93,
+    "valence": 0.83,
+    "calmness": 0.25,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Electronic_(album)"
+  },
+  {
+    "spotifyID": "album-key:chris-clark-clarence-park",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Clarence_Park_(album)"
+  },
+  {
+    "spotifyID": "album-key:justice-cross",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Cross_(Justice_album)"
+  },
+  {
+    "spotifyID": "album-key:manuel-göttsching-e2-e4",
+    "energy": 0.76,
+    "valence": 0.73,
+    "calmness": 0.4,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/E2-E4"
+  },
+  {
+    "spotifyID": "album-key:burial-untrue",
+    "energy": 0.64,
+    "valence": 0.67,
+    "calmness": 0.5,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Untrue_(album)"
+  },
+  {
+    "spotifyID": "album-key:clark-turning-dragon",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Turning_Dragon"
+  },
+  {
+    "spotifyID": "album-key:psapp-the-camel-s-back",
+    "energy": 0.95,
+    "valence": 0.79,
+    "calmness": 0.27,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Camel%27s_Back"
+  },
+  {
+    "spotifyID": "album-key:lady-gaga-the-fame",
+    "energy": 0.93,
+    "valence": 0.83,
+    "calmness": 0.25,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Fame"
+  },
+  {
+    "spotifyID": "album-key:clark-totems-flare",
+    "energy": 0.9,
+    "valence": 0.69,
+    "calmness": 0.3,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Totems_Flare"
+  },
+  {
+    "spotifyID": "album-key:sugababes-sweet-7",
+    "energy": 0.91,
+    "valence": 0.87,
+    "calmness": 0.3,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Sweet_7"
+  },
+  {
+    "spotifyID": "album-key:agnez-mo-agnez-mo",
+    "energy": 0.86,
+    "valence": 0.77,
+    "calmness": 0.33,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Agnez_Mo_(album)"
+  },
+  {
+    "spotifyID": "album-key:aphex-twin-syro",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Syro"
+  },
+  {
+    "spotifyID": "album-key:clark-death-peak",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Death_Peak"
+  },
+  {
+    "spotifyID": "album-key:hailu-mergia-hailu-mergia-his-classical-instrument",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.35,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Hailu_Mergia_%26_His_Classical_Instrument"
+  },
+  {
+    "spotifyID": "album-key:ask-embla-northern-light",
+    "energy": 0.87,
+    "valence": 0.86,
+    "calmness": 0.33,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Northern_Light_(Ask_Embla_album)"
+  },
+  {
+    "spotifyID": "album-key:mort-garson-mother-earth-s-plantasia",
+    "energy": 0.81,
+    "valence": 0.77,
+    "calmness": 0.35,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Mother_Earth%27s_Plantasia"
+  },
+  {
+    "spotifyID": "album-key:marshmello-shockwave",
+    "energy": 0.76,
+    "valence": 0.67,
+    "calmness": 0.38,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Shockwave_(album)"
+  },
+  {
+    "spotifyID": "album-key:808-state-blueprint",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Blueprint_(808_State_album)"
+  },
+  {
+    "spotifyID": "album-key:slayyyter-starfucker",
+    "energy": 0.93,
+    "valence": 0.83,
+    "calmness": 0.25,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Starfucker_(Slayyyter_album)"
+  },
+  {
+    "spotifyID": "album-key:justice-hyperdrama",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Hyperdrama"
+  },
+  {
+    "spotifyID": "album-key:four-tet-three",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Three_(Four_Tet_album)"
+  },
+  {
+    "spotifyID": "album-key:charli-xcx-brat",
+    "energy": 0.93,
+    "valence": 0.83,
+    "calmness": 0.25,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Brat_(album)"
+  },
+  {
+    "spotifyID": "album-key:omar-souleyman-wenu-wenu",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Wenu_Wenu"
+  },
+  {
+    "spotifyID": "album-key:ata-kak-obaa-sima",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Obaa_Sima"
+  },
+  {
+    "spotifyID": "album-key:gershon-kingsley-s-first-moog-quartet-first-moog-quartet",
+    "energy": 0.78,
+    "valence": 0.63,
+    "calmness": 0.4,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/First_Moog_Quartet_(album)"
+  },
+  {
+    "spotifyID": "album-key:vanessa-mai-traumfabrik",
+    "energy": 0.93,
+    "valence": 0.83,
+    "calmness": 0.25,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Traumfabrik_(album)"
+  },
+  {
+    "spotifyID": "album-key:arca-xxxxx",
+    "energy": 0.9,
+    "valence": 0.69,
+    "calmness": 0.3,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/XXXXX_(album)"
+  },
+  {
+    "spotifyID": "album-key:tangerine-dream-electronic-meditation",
+    "energy": 0.9,
+    "valence": 0.69,
+    "calmness": 0.3,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Electronic_Meditation"
+  },
+  {
+    "spotifyID": "album-key:yellow-magic-orchestra-yellow-magic-orchestra",
+    "energy": 0.81,
+    "valence": 0.77,
+    "calmness": 0.35,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Yellow_Magic_Orchestra_(album)"
+  },
+  {
+    "spotifyID": "album-key:bent-programmed-to-love",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.21,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Programmed_to_Love"
+  },
+  {
+    "spotifyID": "album-key:she-wants-revenge-she-wants-revenge",
+    "energy": 1.0,
+    "valence": 0.65,
+    "calmness": 0.14,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/She_Wants_Revenge_(album)"
+  },
+  {
+    "spotifyID": "album-key:black-dog-productions-bytes",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Bytes_(album)"
+  },
+  {
+    "spotifyID": "album-key:susumu-yokota-sakura",
+    "energy": 0.64,
+    "valence": 0.67,
+    "calmness": 0.5,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Sakura_(Susumu_Yokota_album)"
+  },
+  {
+    "spotifyID": "album-key:kosheen-resist",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Resist_(Kosheen_album)"
+  },
+  {
+    "spotifyID": "album-key:various-artists-columbia-princeton-electronic-music-center",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Columbia%E2%80%93Princeton_Electronic_Music_Center_(album)"
+  },
+  {
+    "spotifyID": "album-key:teddybears-sthlm-rock-n-roll-highschool",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Rock_%27n%27_Roll_Highschool"
+  },
+  {
+    "spotifyID": "album-key:morton-subotnick-silver-apples-of-the-moon",
+    "energy": 0.9,
+    "valence": 0.69,
+    "calmness": 0.3,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Silver_Apples_of_the_Moon_(Morton_Subotnick_album)"
+  },
+  {
+    "spotifyID": "album-key:3oh-3-want",
+    "energy": 0.93,
+    "valence": 0.83,
+    "calmness": 0.25,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Want_(3OH!3_album)"
+  },
+  {
+    "spotifyID": "album-key:lmfao-party-rock",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.24,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Party_Rock"
+  },
+  {
+    "spotifyID": "album-key:divine-my-first-album",
+    "energy": 0.76,
+    "valence": 0.67,
+    "calmness": 0.38,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/My_First_Album_(Divine_album)"
+  },
+  {
+    "spotifyID": "album-key:imogen-heap-imogen-heap-discography",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.24,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Imogen_Heap_discography"
+  },
+  {
+    "spotifyID": "album-key:grimes-visions",
+    "energy": 0.93,
+    "valence": 0.83,
+    "calmness": 0.25,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Visions_(Grimes_album)"
+  },
+  {
+    "spotifyID": "album-key:daft-punk-random-access-memories",
+    "energy": 0.93,
+    "valence": 0.83,
+    "calmness": 0.25,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Random_Access_Memories"
+  },
+  {
+    "spotifyID": "album-key:blood-on-the-dance-floor-epic",
+    "energy": 0.93,
+    "valence": 0.83,
+    "calmness": 0.25,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Epic_(Blood_on_the_Dance_Floor_album)"
+  },
+  {
+    "spotifyID": "album-key:tycho-awake",
+    "energy": 0.76,
+    "valence": 0.73,
+    "calmness": 0.4,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Awake_(Tycho_album)"
+  },
+  {
+    "spotifyID": "album-key:duck-sauce-quack",
+    "energy": 0.88,
+    "valence": 0.73,
+    "calmness": 0.28,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Quack_(album)"
+  },
+  {
+    "spotifyID": "album-key:sylvan-esso-sylvan-esso",
+    "energy": 0.93,
+    "valence": 0.83,
+    "calmness": 0.25,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Sylvan_Esso_(album)"
+  },
+  {
+    "spotifyID": "album-key:neutral-milk-hotel-in-the-aeroplane-over-the-sea",
+    "energy": 0.3,
+    "valence": 0.59,
+    "calmness": 0.94,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/In_the_Aeroplane_Over_the_Sea"
+  },
+  {
+    "spotifyID": "album-key:blur-blur",
+    "energy": 0.34,
+    "valence": 0.6,
+    "calmness": 0.84,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Blur_(Blur_album)"
+  },
+  {
+    "spotifyID": "album-key:ween-godweensatan-the-oneness",
+    "energy": 0.5,
+    "valence": 0.48,
+    "calmness": 0.72,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/GodWeenSatan:_The_Oneness"
+  },
+  {
+    "spotifyID": "album-key:gorillaz-gorillaz",
+    "energy": 0.34,
+    "valence": 0.6,
+    "calmness": 0.84,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Gorillaz_(album)"
+  },
+  {
+    "spotifyID": "album-key:the-beach-boys-friends",
+    "energy": 0.39,
+    "valence": 0.7,
+    "calmness": 0.81,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Friends_(The_Beach_Boys_album)"
+  },
+  {
+    "spotifyID": "album-key:king-crimson-earthbound",
+    "energy": 0.32,
+    "valence": 0.64,
+    "calmness": 0.89,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Earthbound_(King_Crimson_album)"
+  },
+  {
+    "spotifyID": "album-key:julie-ruin-kathleen-hanna-julie-ruin",
+    "energy": 0.46,
+    "valence": 0.66,
+    "calmness": 0.74,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Julie_Ruin"
+  },
+  {
+    "spotifyID": "album-key:iron-wine-the-creek-drank-the-cradle",
+    "energy": 0.28,
+    "valence": 0.63,
+    "calmness": 0.92,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Creek_Drank_the_Cradle"
+  },
+  {
+    "spotifyID": "album-key:my-bloody-valentine-isn-t-anything",
+    "energy": 0.55,
+    "valence": 0.58,
+    "calmness": 0.69,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Isn%27t_Anything"
+  },
+  {
+    "spotifyID": "album-key:sufjan-stevens-illinois",
+    "energy": 0.28,
+    "valence": 0.63,
+    "calmness": 0.92,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Illinois_(Sufjan_Stevens_album)"
+  },
+  {
+    "spotifyID": "album-key:tripping-daisy-jesus-hits-like-the-atom-bomb",
+    "energy": 0.34,
+    "valence": 0.6,
+    "calmness": 0.84,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Jesus_Hits_Like_the_Atom_Bomb"
+  },
+  {
+    "spotifyID": "album-key:teenage-fanclub-the-king",
+    "energy": 0.48,
+    "valence": 0.52,
+    "calmness": 0.7,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_King_(Teenage_Fanclub_album)"
+  },
+  {
+    "spotifyID": "album-key:eric-s-trip-love-tara",
+    "energy": 0.34,
+    "valence": 0.6,
+    "calmness": 0.84,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Love_Tara"
+  },
+  {
+    "spotifyID": "album-key:the-evens-the-evens",
+    "energy": 0.42,
+    "valence": 0.55,
+    "calmness": 0.78,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Evens_(album)"
+  },
+  {
+    "spotifyID": "album-key:the-microphones-don-t-wake-me-up",
+    "energy": 0.48,
+    "valence": 0.52,
+    "calmness": 0.7,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Don%27t_Wake_Me_Up_(album)"
+  },
+  {
+    "spotifyID": "album-key:cody-chesnutt-the-headphone-masterpiece",
+    "energy": 0.32,
+    "valence": 0.64,
+    "calmness": 0.89,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Headphone_Masterpiece"
+  },
+  {
+    "spotifyID": "album-key:fred-frith-cheap-at-half-the-price",
+    "energy": 0.36,
+    "valence": 0.56,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Cheap_at_Half_the_Price"
+  },
+  {
+    "spotifyID": "album-key:the-proclaimers-born-innocent",
+    "energy": 0.48,
+    "valence": 0.52,
+    "calmness": 0.7,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Born_Innocent_(The_Proclaimers_album)"
+  },
+  {
+    "spotifyID": "album-key:jimi-hendrix-bleeding-heart",
+    "energy": 0.34,
+    "valence": 0.6,
+    "calmness": 0.84,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Bleeding_Heart_(album)"
+  },
+  {
+    "spotifyID": "album-key:gorillaz-the-fall",
+    "energy": 0.46,
+    "valence": 0.66,
+    "calmness": 0.74,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Fall_(Gorillaz_album)"
+  },
+  {
+    "spotifyID": "album-key:grimes-geidi-primes",
+    "energy": 0.53,
+    "valence": 0.72,
+    "calmness": 0.73,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Geidi_Primes"
+  },
+  {
+    "spotifyID": "album-key:com-truise-in-decay",
+    "energy": 0.51,
+    "valence": 0.76,
+    "calmness": 0.71,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/In_Decay"
+  },
+  {
+    "spotifyID": "album-key:neil-young-a-letter-home",
+    "energy": 0.28,
+    "valence": 0.63,
+    "calmness": 0.92,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/A_Letter_Home"
+  },
+  {
+    "spotifyID": "album-key:lil-b-05-fuck-em",
+    "energy": 0.34,
+    "valence": 0.6,
+    "calmness": 0.84,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/05_Fuck_Em"
+  },
+  {
+    "spotifyID": "album-key:karen-o-crush-songs",
+    "energy": 0.34,
+    "valence": 0.6,
+    "calmness": 0.84,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Crush_Songs"
+  },
+  {
+    "spotifyID": "album-key:sufjan-stevens-carrie-lowell",
+    "energy": 0.28,
+    "valence": 0.63,
+    "calmness": 0.92,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Carrie_%26_Lowell"
+  },
+  {
+    "spotifyID": "album-key:ariel-pink-early-live-recordings",
+    "energy": 0.34,
+    "valence": 0.6,
+    "calmness": 0.84,
+    "confidence": 0.24,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Early_Live_Recordings"
+  },
+  {
+    "spotifyID": "album-key:ramona-lisa-arcadia",
+    "energy": 0.39,
+    "valence": 0.76,
+    "calmness": 0.83,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Arcadia_(Ramona_Lisa_album)"
+  },
+  {
+    "spotifyID": "album-key:the-cribs-24-7-rock-star-shit",
+    "energy": 0.48,
+    "valence": 0.52,
+    "calmness": 0.7,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/24-7_Rock_Star_Shit"
+  },
+  {
+    "spotifyID": "album-key:martin-newell-the-greatest-living-englishman",
+    "energy": 0.34,
+    "valence": 0.6,
+    "calmness": 0.84,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Greatest_Living_Englishman"
+  },
+  {
+    "spotifyID": "album-key:beverly-glenn-copeland-keyboard-fantasies",
+    "energy": 0.28,
+    "valence": 0.69,
+    "calmness": 0.94,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Keyboard_Fantasies"
+  },
+  {
+    "spotifyID": "album-key:vatican-shadow-death-is-unity-with-god",
+    "energy": 0.36,
+    "valence": 0.62,
+    "calmness": 0.88,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Death_Is_Unity_With_God"
+  },
+  {
+    "spotifyID": "album-key:king-princess-cheap-queen",
+    "energy": 0.33,
+    "valence": 0.73,
+    "calmness": 0.89,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Cheap_Queen"
+  },
+  {
+    "spotifyID": "album-key:shamir-heterosexuality",
+    "energy": 0.34,
+    "valence": 0.6,
+    "calmness": 0.84,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Heterosexuality_(album)"
+  },
+  {
+    "spotifyID": "album-key:arthur-doyle-do-the-breakdown",
+    "energy": 0.32,
+    "valence": 0.64,
+    "calmness": 0.89,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Do_the_Breakdown"
+  },
+  {
+    "spotifyID": "album-key:the-brave-little-abacus-just-got-back-from-the-discomfort-we-re-alright",
+    "energy": 0.34,
+    "valence": 0.6,
+    "calmness": 0.84,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Just_Got_Back_From_the_Discomfort%E2%80%94We%27re_Alright"
+  },
+  {
+    "spotifyID": "album-key:weatherday-come-in",
+    "energy": 0.53,
+    "valence": 0.62,
+    "calmness": 0.67,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Come_In_(Weatherday_album)"
+  },
+  {
+    "spotifyID": "album-key:weatherday-hornet-disaster",
+    "energy": 0.53,
+    "valence": 0.62,
+    "calmness": 0.67,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Hornet_Disaster"
+  },
+  {
+    "spotifyID": "album-key:bring-me-the-horizon-lo-files",
+    "energy": 0.34,
+    "valence": 0.6,
+    "calmness": 0.84,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Lo-files"
+  },
+  {
+    "spotifyID": "album-key:beck-one-foot-in-the-grave",
+    "energy": 0.28,
+    "valence": 0.63,
+    "calmness": 0.92,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/One_Foot_in_the_Grave_(Beck_album)"
+  },
+  {
+    "spotifyID": "album-key:elliott-smith-either-or",
+    "energy": 0.66,
+    "valence": 0.65,
+    "calmness": 0.46,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Either/Or_(album)"
+  },
+  {
+    "spotifyID": "album-key:death-cab-for-cutie-we-have-the-facts-and-we-re-voting-yes",
+    "energy": 0.72,
+    "valence": 0.62,
+    "calmness": 0.38,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/We_Have_the_Facts_and_We%27re_Voting_Yes"
+  },
+  {
+    "spotifyID": "album-key:black-rebel-motorcycle-club-b-r-m-c",
+    "energy": 0.72,
+    "valence": 0.62,
+    "calmness": 0.38,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/B.R.M.C._(album)"
+  },
+  {
+    "spotifyID": "album-key:the-sundays-blind",
+    "energy": 0.77,
+    "valence": 0.72,
+    "calmness": 0.35,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Blind_(The_Sundays_album)"
+  },
+  {
+    "spotifyID": "album-key:metric-grow-up-and-blow-away",
+    "energy": 0.86,
+    "valence": 0.54,
+    "calmness": 0.24,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Grow_Up_and_Blow_Away"
+  },
+  {
+    "spotifyID": "album-key:the-sea-and-cake-the-sea-and-cake",
+    "energy": 0.72,
+    "valence": 0.62,
+    "calmness": 0.38,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Sea_and_Cake_(album)"
+  },
+  {
+    "spotifyID": "album-key:flipper-album-generic-flipper",
+    "energy": 0.86,
+    "valence": 0.54,
+    "calmness": 0.24,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Album_%E2%80%93_Generic_Flipper"
+  },
+  {
+    "spotifyID": "album-key:superchunk-superchunk",
+    "energy": 0.86,
+    "valence": 0.54,
+    "calmness": 0.24,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Superchunk_(album)"
+  },
+  {
+    "spotifyID": "album-key:the-vaselines-dying-for-it",
+    "energy": 0.91,
+    "valence": 0.64,
+    "calmness": 0.21,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Dying_for_It"
+  },
+  {
+    "spotifyID": "album-key:12-rods-split-personalities",
+    "energy": 0.72,
+    "valence": 0.62,
+    "calmness": 0.38,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Split_Personalities_(album)"
+  },
+  {
+    "spotifyID": "album-key:germans-cape-fear",
+    "energy": 0.72,
+    "valence": 0.62,
+    "calmness": 0.38,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Cape_Fear_(album)"
+  },
+  {
+    "spotifyID": "album-key:imperial-teen-on",
+    "energy": 0.77,
+    "valence": 0.72,
+    "calmness": 0.35,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/On_(Imperial_Teen_album)"
+  },
+  {
+    "spotifyID": "album-key:the-killers-glamorous-indie-rock-roll",
+    "energy": 0.86,
+    "valence": 0.54,
+    "calmness": 0.24,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Glamorous_Indie_Rock_%26_Roll"
+  },
+  {
+    "spotifyID": "album-key:sebadoh-gimme-indie-rock",
+    "energy": 0.72,
+    "valence": 0.62,
+    "calmness": 0.38,
+    "confidence": 0.24,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Gimme_Indie_Rock!"
+  },
+  {
+    "spotifyID": "album-key:mother-mother-o-my-heart",
+    "energy": 0.72,
+    "valence": 0.62,
+    "calmness": 0.38,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/O_My_Heart"
+  },
+  {
+    "spotifyID": "album-key:pixies-indie-cindy",
+    "energy": 0.77,
+    "valence": 0.72,
+    "calmness": 0.35,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Indie_Cindy"
+  },
+  {
+    "spotifyID": "album-key:manchester-orchestra-hope",
+    "energy": 0.66,
+    "valence": 0.65,
+    "calmness": 0.46,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Hope_(Manchester_Orchestra_album)"
+  },
+  {
+    "spotifyID": "album-key:the-hotelier-goodness",
+    "energy": 0.72,
+    "valence": 0.62,
+    "calmness": 0.38,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Goodness_(The_Hotelier_album)"
+  },
+  {
+    "spotifyID": "album-key:cherry-glazerr-apocalipstick",
+    "energy": 0.72,
+    "valence": 0.62,
+    "calmness": 0.38,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Apocalipstick_(album)"
+  },
+  {
+    "spotifyID": "album-key:phoebe-bridgers-punisher",
+    "energy": 0.66,
+    "valence": 0.65,
+    "calmness": 0.46,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Punisher_(album)"
+  },
+  {
+    "spotifyID": "album-key:jane-remover-frailty",
+    "energy": 0.89,
+    "valence": 0.78,
+    "calmness": 0.25,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Frailty_(Jane_Remover_album)"
+  },
+  {
+    "spotifyID": "album-key:geese-projector",
+    "energy": 0.86,
+    "valence": 0.54,
+    "calmness": 0.24,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Projector_(Geese_album)"
+  },
+  {
+    "spotifyID": "album-key:trapt-the-fall",
+    "energy": 0.72,
+    "valence": 0.62,
+    "calmness": 0.38,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Fall_(Trapt_album)"
+  },
+  {
+    "spotifyID": "album-key:mother-mother-mother",
+    "energy": 0.72,
+    "valence": 0.62,
+    "calmness": 0.38,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Mother_(Mother_Mother_album)"
+  },
+  {
+    "spotifyID": "album-key:good-kid-can-we-hang-out-sometime",
+    "energy": 0.72,
+    "valence": 0.62,
+    "calmness": 0.38,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Can_We_Hang_Out_Sometime%3F"
+  },
+  {
+    "spotifyID": "album-key:jaimin-cutting-loose",
+    "energy": 0.66,
+    "valence": 0.65,
+    "calmness": 0.46,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Cutting_Loose_(album)"
+  },
+  {
+    "spotifyID": "album-key:the-smashing-pumpkins-siamese-dream",
+    "energy": 0.72,
+    "valence": 0.62,
+    "calmness": 0.38,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Siamese_Dream"
+  },
+  {
+    "spotifyID": "album-key:the-smiths-the-smiths",
+    "energy": 0.86,
+    "valence": 0.54,
+    "calmness": 0.24,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Smiths_(album)"
+  },
+  {
+    "spotifyID": "album-key:pavement-slanted-and-enchanted",
+    "energy": 0.91,
+    "valence": 0.64,
+    "calmness": 0.21,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Slanted_and_Enchanted"
+  },
+  {
+    "spotifyID": "album-key:metric-old-world-underground-where-are-you-now",
+    "energy": 0.86,
+    "valence": 0.54,
+    "calmness": 0.24,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Old_World_Underground,_Where_Are_You_Now%3F"
+  },
+  {
+    "spotifyID": "album-key:green-day-kerplunk",
+    "energy": 0.91,
+    "valence": 0.64,
+    "calmness": 0.21,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Kerplunk_(album)"
+  },
+  {
+    "spotifyID": "album-key:ok-go-ok-go",
+    "energy": 0.91,
+    "valence": 0.64,
+    "calmness": 0.21,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/OK_Go_(album)"
+  },
+  {
+    "spotifyID": "album-key:crooked-fingers-crooked-fingers",
+    "energy": 0.72,
+    "valence": 0.62,
+    "calmness": 0.38,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Crooked_Fingers_(album)"
+  },
+  {
+    "spotifyID": "album-key:pinback-pinback",
+    "energy": 0.72,
+    "valence": 0.62,
+    "calmness": 0.38,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Pinback_(album)"
+  },
+  {
+    "spotifyID": "album-key:doug-martsch-now-you-know",
+    "energy": 0.72,
+    "valence": 0.62,
+    "calmness": 0.38,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Now_You_Know_(album)"
+  },
+  {
+    "spotifyID": "album-key:metric-live-it-out",
+    "energy": 0.86,
+    "valence": 0.54,
+    "calmness": 0.24,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Live_It_Out"
+  },
+  {
+    "spotifyID": "album-key:the-sea-and-cake-nassau",
+    "energy": 0.7,
+    "valence": 0.66,
+    "calmness": 0.43,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Nassau_(album)"
+  },
+  {
+    "spotifyID": "album-key:chavez-gone-glimmering",
+    "energy": 0.86,
+    "valence": 0.54,
+    "calmness": 0.24,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Gone_Glimmering"
+  },
+  {
+    "spotifyID": "album-key:bishop-allen-charm-school",
+    "energy": 0.72,
+    "valence": 0.62,
+    "calmness": 0.38,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Charm_School_(Bishop_Allen_album)"
+  },
+  {
+    "spotifyID": "album-key:danielson-famile-tri-danielson-alpha",
+    "energy": 0.72,
+    "valence": 0.62,
+    "calmness": 0.38,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Tri-Danielson!!!_(Alpha)"
+  },
+  {
+    "spotifyID": "album-key:various-artists-anthology-of-american-folk-music",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Anthology_of_American_Folk_Music"
+  },
+  {
+    "spotifyID": "album-key:toad-the-wet-sprocket-coil",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Coil_(album)"
+  },
+  {
+    "spotifyID": "album-key:muddy-waters-folk-singer",
+    "energy": 0.38,
+    "valence": 0.62,
+    "calmness": 0.78,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Folk_Singer_(album)"
+  },
+  {
+    "spotifyID": "album-key:stan-rogers-turnaround",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Turnaround_(Stan_Rogers_album)"
+  },
+  {
+    "spotifyID": "album-key:paul-westerberg-folker",
+    "energy": 0.38,
+    "valence": 0.62,
+    "calmness": 0.78,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Folker_(album)"
+  },
+  {
+    "spotifyID": "album-key:john-denver-rocky-mountain-high",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Rocky_Mountain_High_(album)"
+  },
+  {
+    "spotifyID": "album-key:the-be-good-tanyas-blue-horse",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Blue_Horse_(album)"
+  },
+  {
+    "spotifyID": "album-key:monsters-of-folk-monsters-of-folk",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Monsters_of_Folk_(album)"
+  },
+  {
+    "spotifyID": "album-key:anaïs-mitchell-hadestown",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Hadestown_(album)"
+  },
+  {
+    "spotifyID": "album-key:joe-lovano-us-five-folk-art",
+    "energy": 0.36,
+    "valence": 0.66,
+    "calmness": 0.83,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Folk_Art_(album)"
+  },
+  {
+    "spotifyID": "album-key:andreas-scholl-orpheus-chamber-orchestra-edin-karamazov-wayfaring-stranger",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Wayfaring_Stranger_(Andreas_Scholl_album)"
+  },
+  {
+    "spotifyID": "album-key:tyler-childers-purgatory",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Purgatory_(Tyler_Childers_album)"
+  },
+  {
+    "spotifyID": "album-key:exuma-exuma",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Exuma_(album)"
+  },
+  {
+    "spotifyID": "album-key:brymo-oṣó",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/O%E1%B9%A3%C3%B3"
+  },
+  {
+    "spotifyID": "album-key:frederica-von-stade-chants-d-auvergne-vol-1",
+    "energy": 0.38,
+    "valence": 0.62,
+    "calmness": 0.78,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Chants_d%27Auvergne,_Vol._1"
+  },
+  {
+    "spotifyID": "album-key:frederica-von-stade-chants-d-auvergne-vol-2",
+    "energy": 0.38,
+    "valence": 0.62,
+    "calmness": 0.78,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Chants_d%27Auvergne,_Vol._2"
+  },
+  {
+    "spotifyID": "album-key:brymo-yellow",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Yellow_(Brymo_album)"
+  },
+  {
+    "spotifyID": "album-key:josé-gonzález-local-valley",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Local_Valley"
+  },
+  {
+    "spotifyID": "album-key:noah-kahan-stick-season",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Stick_Season_(album)"
+  },
+  {
+    "spotifyID": "album-key:the-jolly-boys-pop-n-mento",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Pop_%27n%27_Mento"
+  },
+  {
+    "spotifyID": "album-key:the-tallest-man-on-earth-henry-st",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Henry_St."
+  },
+  {
+    "spotifyID": "album-key:brymo-theta",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Theta_(album)"
+  },
+  {
+    "spotifyID": "album-key:ryan-beatty-calico",
+    "energy": 0.37,
+    "valence": 0.75,
+    "calmness": 0.83,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Calico_(album)"
+  },
+  {
+    "spotifyID": "album-key:paul-giovanni-and-magnet-the-wicker-man",
+    "energy": 0.34,
+    "valence": 0.61,
+    "calmness": 0.88,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Wicker_Man_(soundtrack)"
+  },
+  {
+    "spotifyID": "album-key:arlo-guthrie-hobo-s-lullaby",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Hobo%27s_Lullaby_(album)"
+  },
+  {
+    "spotifyID": "album-key:arlo-guthrie-arlo",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Arlo_(album)"
+  },
+  {
+    "spotifyID": "album-key:clannad-clannad",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Clannad_(album)"
+  },
+  {
+    "spotifyID": "album-key:arlo-guthrie-arlo-guthrie",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Arlo_Guthrie_(album)"
+  },
+  {
+    "spotifyID": "album-key:the-tallest-man-on-earth-shallow-grave",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Shallow_Grave_(album)"
+  },
+  {
+    "spotifyID": "album-key:bert-jansch-rosemary-lane",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Rosemary_Lane_(album)"
+  },
+  {
+    "spotifyID": "album-key:stealers-wheel-stealers-wheel",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Stealers_Wheel_(album)"
+  },
+  {
+    "spotifyID": "album-key:the-civil-wars-barton-hollow",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Barton_Hollow"
+  },
+  {
+    "spotifyID": "album-key:mumford-sons-babel",
+    "energy": 0.37,
+    "valence": 0.75,
+    "calmness": 0.83,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Babel_(Mumford_%26_Sons_album)"
+  },
+  {
+    "spotifyID": "album-key:the-wolfe-tones-sing-out-for-ireland",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Sing_Out_for_Ireland"
+  },
+  {
+    "spotifyID": "album-key:richie-havens-alarm-clock",
+    "energy": 0.32,
+    "valence": 0.65,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Alarm_Clock_(album)"
+  },
+  {
+    "spotifyID": "album-key:miles-davis-doo-bop",
+    "energy": 0.72,
+    "valence": 0.64,
+    "calmness": 0.4,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Doo-Bop"
+  },
+  {
+    "spotifyID": "album-key:nas-hip-hop-is-dead",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Hip_Hop_Is_Dead"
+  },
+  {
+    "spotifyID": "album-key:madlib-shades-of-blue",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Shades_of_Blue:_Madlib_Invades_Blue_Note"
+  },
+  {
+    "spotifyID": "album-key:chance-the-rapper-acid-rap",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.42,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Acid_Rap"
+  },
+  {
+    "spotifyID": "album-key:skee-lo-i-wish",
+    "energy": 0.72,
+    "valence": 0.64,
+    "calmness": 0.4,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/I_Wish_(Skee-Lo_album)"
+  },
+  {
+    "spotifyID": "album-key:sampa-the-great-the-return",
+    "energy": 0.72,
+    "valence": 0.64,
+    "calmness": 0.4,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Return_(Sampa_the_Great_album)"
+  },
+  {
+    "spotifyID": "album-key:bartees-strange-live-forever",
+    "energy": 0.72,
+    "valence": 0.64,
+    "calmness": 0.4,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Live_Forever_(Bartees_Strange_album)"
+  },
+  {
+    "spotifyID": "album-key:lupe-fiasco-samurai",
+    "energy": 0.72,
+    "valence": 0.64,
+    "calmness": 0.4,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Samurai_(Lupe_Fiasco_album)"
+  },
+  {
+    "spotifyID": "album-key:boldy-james-and-sterling-toles-manger-on-mcnichols",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.42,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Manger_on_McNichols"
+  },
+  {
+    "spotifyID": "album-key:denzel-curry-and-kenneth-blume-ii",
+    "energy": 0.72,
+    "valence": 0.64,
+    "calmness": 0.4,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/II_(Denzel_Curry_and_Kenneth_Blume_album)"
+  },
+  {
+    "spotifyID": "album-key:fugees-the-score",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Score_(album)"
+  },
+  {
+    "spotifyID": "album-key:hiphop-tamizha-hip-hop-tamizhan",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Hip_Hop_Tamizhan"
+  },
+  {
+    "spotifyID": "album-key:run-dmc-raising-hell",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Raising_Hell_(album)"
+  },
+  {
+    "spotifyID": "album-key:snoop-doggy-dogg-doggystyle",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Doggystyle"
+  },
+  {
+    "spotifyID": "album-key:jay-z-reasonable-doubt",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Reasonable_Doubt_(album)"
+  },
+  {
+    "spotifyID": "album-key:outkast-southernplayalisticadillacmuzik",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Southernplayalisticadillacmuzik"
+  },
+  {
+    "spotifyID": "album-key:eric-b-rakim-paid-in-full",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Paid_in_Full_(album)"
+  },
+  {
+    "spotifyID": "album-key:kanye-west-graduation",
+    "energy": 0.79,
+    "valence": 0.7,
+    "calmness": 0.32,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Graduation_(album)"
+  },
+  {
+    "spotifyID": "album-key:run-d-m-c-run-d-m-c",
+    "energy": 0.88,
+    "valence": 0.52,
+    "calmness": 0.21,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Run-D.M.C._(album)"
+  },
+  {
+    "spotifyID": "album-key:diamond-d-stunts-blunts-hip-hop",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Stunts,_Blunts_%26_Hip_Hop"
+  },
+  {
+    "spotifyID": "album-key:kxng-crooked-sex-money-and-hip-hop",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Sex,_Money_and_Hip-Hop"
+  },
+  {
+    "spotifyID": "album-key:the-notorious-b-i-g-ready-to-die",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Ready_to_Die"
+  },
+  {
+    "spotifyID": "album-key:drake-views",
+    "energy": 0.79,
+    "valence": 0.7,
+    "calmness": 0.32,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Views_(album)"
+  },
+  {
+    "spotifyID": "album-key:juvenile-400-degreez",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/400_Degreez"
+  },
+  {
+    "spotifyID": "album-key:2pac-me-against-the-world",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Me_Against_the_World"
+  },
+  {
+    "spotifyID": "album-key:outkast-stankonia",
+    "energy": 0.76,
+    "valence": 0.56,
+    "calmness": 0.37,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Stankonia"
+  },
+  {
+    "spotifyID": "album-key:dj-jazzy-jeff-the-fresh-prince-homebase",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Homebase_(album)"
+  },
+  {
+    "spotifyID": "album-key:keyshia-cole-the-way-it-is",
+    "energy": 0.72,
+    "valence": 0.64,
+    "calmness": 0.4,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Way_It_Is_(Keyshia_Cole_album)"
+  },
+  {
+    "spotifyID": "album-key:j-dilla-donuts",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Donuts_(album)"
+  },
+  {
+    "spotifyID": "album-key:boogie-down-productions-ghetto-music-the-blueprint-of-hip-hop",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Ghetto_Music:_The_Blueprint_of_Hip_Hop"
+  },
+  {
+    "spotifyID": "album-key:nas-illmatic",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Illmatic"
+  },
+  {
+    "spotifyID": "album-key:krs-one-and-marley-marl-hip-hop-lives",
+    "energy": 0.88,
+    "valence": 0.52,
+    "calmness": 0.21,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Hip_Hop_Lives"
+  },
+  {
+    "spotifyID": "album-key:cartel-cartel",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Cartel_(hip-hop_album)"
+  },
+  {
+    "spotifyID": "album-key:eminem-recovery",
+    "energy": 0.79,
+    "valence": 0.7,
+    "calmness": 0.32,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Recovery_(Eminem_album)"
+  },
+  {
+    "spotifyID": "album-key:kendrick-lamar-damn",
+    "energy": 0.74,
+    "valence": 0.6,
+    "calmness": 0.35,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Damn_(album)"
+  },
+  {
+    "spotifyID": "album-key:vangelis-el-greco",
+    "energy": 0.42,
+    "valence": 0.55,
+    "calmness": 0.82,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/El_Greco_(album)"
+  },
+  {
+    "spotifyID": "album-key:laurie-anderson-big-science",
+    "energy": 0.47,
+    "valence": 0.71,
+    "calmness": 0.81,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Big_Science_(Laurie_Anderson_album)"
+  },
+  {
+    "spotifyID": "album-key:elend-leçons-de-ténèbres",
+    "energy": 0.42,
+    "valence": 0.55,
+    "calmness": 0.82,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Le%C3%A7ons_de_t%C3%A9n%C3%A8bres_(album)"
+  },
+  {
+    "spotifyID": "album-key:yngwie-malmsteen-perpetual-flame",
+    "energy": 0.56,
+    "valence": 0.47,
+    "calmness": 0.68,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Perpetual_Flame"
+  },
+  {
+    "spotifyID": "album-key:kanon-wakeshima-shinshoku-dolce",
+    "energy": 0.42,
+    "valence": 0.55,
+    "calmness": 0.82,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Shinshoku_Dolce"
+  },
+  {
+    "spotifyID": "album-key:hossein-alizâdeh-neynava",
+    "energy": 0.42,
+    "valence": 0.55,
+    "calmness": 0.82,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/NeyNava"
+  },
+  {
+    "spotifyID": "album-key:yngwie-malmsteen-relentless",
+    "energy": 0.56,
+    "valence": 0.47,
+    "calmness": 0.68,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Relentless_(Yngwie_Malmsteen_album)"
+  },
+  {
+    "spotifyID": "album-key:jozef-van-wissem-and-jim-jarmusch-concerning-the-entrance-into-eternity",
+    "energy": 0.26,
+    "valence": 0.54,
+    "calmness": 1.0,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Concerning_the_Entrance_into_Eternity"
+  },
+  {
+    "spotifyID": "album-key:these-new-puritans-field-of-reeds",
+    "energy": 0.42,
+    "valence": 0.55,
+    "calmness": 0.82,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Field_of_Reeds"
+  },
+  {
+    "spotifyID": "album-key:kanon-wakeshima-lolitawork-libretto",
+    "energy": 0.42,
+    "valence": 0.55,
+    "calmness": 0.82,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Lolitawork_Libretto"
+  },
+  {
+    "spotifyID": "album-key:kanon-wakeshima-tsukinami",
+    "energy": 0.47,
+    "valence": 0.65,
+    "calmness": 0.79,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Tsukinami_(album)"
+  },
+  {
+    "spotifyID": "album-key:anna-von-hausswolff-the-miraculous",
+    "energy": 0.43,
+    "valence": 0.6,
+    "calmness": 0.85,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Miraculous"
+  },
+  {
+    "spotifyID": "album-key:elysia-crampton-american-drift",
+    "energy": 0.56,
+    "valence": 0.57,
+    "calmness": 0.74,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/American_Drift"
+  },
+  {
+    "spotifyID": "album-key:cfcf-exercises",
+    "energy": 0.47,
+    "valence": 0.71,
+    "calmness": 0.81,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Exercises_(EP)"
+  },
+  {
+    "spotifyID": "album-key:logos-cold-mission",
+    "energy": 0.44,
+    "valence": 0.57,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Cold_Mission"
+  },
+  {
+    "spotifyID": "album-key:susumu-yokota-acid-mt-fuji",
+    "energy": 0.44,
+    "valence": 0.57,
+    "calmness": 0.86,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Acid_Mt._Fuji"
+  },
+  {
+    "spotifyID": "album-key:tina-guo-eternity",
+    "energy": 0.56,
+    "valence": 0.47,
+    "calmness": 0.68,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Eternity_(Tina_Guo_album)"
+  },
+  {
+    "spotifyID": "album-key:tina-guo-autumn-winds",
+    "energy": 0.42,
+    "valence": 0.55,
+    "calmness": 0.82,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Autumn_Winds"
+  },
+  {
+    "spotifyID": "album-key:cep-drawing-the-target-around-the-arrow",
+    "energy": 0.3,
+    "valence": 0.55,
+    "calmness": 0.94,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Drawing_the_Target_Around_the_Arrow"
+  },
+  {
+    "spotifyID": "album-key:john-lunn-and-chamber-orchestra-of-london-downton-abbey-the-ultimate-collection",
+    "energy": 0.42,
+    "valence": 0.55,
+    "calmness": 0.82,
+    "confidence": 0.24,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Downton_Abbey:_The_Ultimate_Collection"
+  },
+  {
+    "spotifyID": "album-key:john-lunn-and-chamber-orchestra-of-london-downton-abbey-the-essential-collection",
+    "energy": 0.42,
+    "valence": 0.55,
+    "calmness": 0.82,
+    "confidence": 0.24,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Downton_Abbey:_The_Essential_Collection"
+  },
+  {
+    "spotifyID": "album-key:africa-express-africa-express-presents-terry-riley-s-in-c-mali",
+    "energy": 0.3,
+    "valence": 0.55,
+    "calmness": 0.94,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Africa_Express_Presents..._Terry_Riley%27s_In_C_Mali"
+  },
+  {
+    "spotifyID": "album-key:the-durutti-column-a-paean-to-wilson",
+    "energy": 0.3,
+    "valence": 0.55,
+    "calmness": 0.94,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/A_Paean_to_Wilson"
+  },
+  {
+    "spotifyID": "album-key:borut-kržišnik-a-life-in-suitcases",
+    "energy": 0.44,
+    "valence": 0.51,
+    "calmness": 0.84,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/A_Life_in_Suitcases_(album)"
+  },
+  {
+    "spotifyID": "album-key:rondò-veneziano-honeymoon-luna-di-miele",
+    "energy": 0.42,
+    "valence": 0.55,
+    "calmness": 0.82,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Honeymoon_%E2%80%93_Luna_di_miele"
+  },
+  {
+    "spotifyID": "album-key:journey-dream-after-dream",
+    "energy": 0.43,
+    "valence": 0.62,
+    "calmness": 0.78,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Dream,_After_Dream"
+  },
+  {
+    "spotifyID": "album-key:my-bloody-valentine-loveless",
+    "energy": 0.62,
+    "valence": 0.64,
+    "calmness": 0.61,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Loveless_(album)"
+  },
+  {
+    "spotifyID": "album-key:the-smashing-pumpkins-gish",
+    "energy": 0.43,
+    "valence": 0.62,
+    "calmness": 0.78,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Gish_(album)"
+  },
+  {
+    "spotifyID": "album-key:dio-dream-evil",
+    "energy": 0.62,
+    "valence": 0.64,
+    "calmness": 0.61,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Dream_Evil_(album)"
+  },
+  {
+    "spotifyID": "album-key:kate-bush-the-dreaming",
+    "energy": 0.48,
+    "valence": 0.72,
+    "calmness": 0.75,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Dreaming_(album)"
+  },
+  {
+    "spotifyID": "album-key:janet-jackson-dream-street",
+    "energy": 0.46,
+    "valence": 0.76,
+    "calmness": 0.8,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Dream_Street_(Janet_Jackson_album)"
+  },
+  {
+    "spotifyID": "album-key:broadcast-tender-buttons",
+    "energy": 0.6,
+    "valence": 0.78,
+    "calmness": 0.65,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Tender_Buttons_(album)"
+  },
+  {
+    "spotifyID": "album-key:dream-it-was-all-a-dream",
+    "energy": 0.58,
+    "valence": 0.82,
+    "calmness": 0.7,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/It_Was_All_a_Dream_(Dream_album)"
+  },
+  {
+    "spotifyID": "album-key:dream-reality",
+    "energy": 0.46,
+    "valence": 0.76,
+    "calmness": 0.8,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Reality_(Dream_album)"
+  },
+  {
+    "spotifyID": "album-key:simple-minds-new-gold-dream-81-82-83-84",
+    "energy": 0.48,
+    "valence": 0.72,
+    "calmness": 0.75,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/New_Gold_Dream_(81/82/83/84)"
+  },
+  {
+    "spotifyID": "album-key:sting-the-dream-of-the-blue-turtles",
+    "energy": 0.46,
+    "valence": 0.76,
+    "calmness": 0.8,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Dream_of_the_Blue_Turtles"
+  },
+  {
+    "spotifyID": "album-key:selena-dreaming-of-you",
+    "energy": 0.48,
+    "valence": 0.72,
+    "calmness": 0.75,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Dreaming_of_You_(Selena_album)"
+  },
+  {
+    "spotifyID": "album-key:his-name-is-alive-mouth-by-mouth",
+    "energy": 0.48,
+    "valence": 0.72,
+    "calmness": 0.75,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Mouth_by_Mouth"
+  },
+  {
+    "spotifyID": "album-key:lush-split",
+    "energy": 0.62,
+    "valence": 0.64,
+    "calmness": 0.61,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Split_(Lush_album)"
+  },
+  {
+    "spotifyID": "album-key:the-dream-love-hate",
+    "energy": 0.46,
+    "valence": 0.76,
+    "calmness": 0.8,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Love/Hate_(The-Dream_album)"
+  },
+  {
+    "spotifyID": "album-key:the-dream-love-vs-money",
+    "energy": 0.41,
+    "valence": 0.66,
+    "calmness": 0.83,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Love_vs._Money_(The-Dream_album)"
+  },
+  {
+    "spotifyID": "album-key:empire-of-the-sun-walking-on-a-dream",
+    "energy": 0.62,
+    "valence": 0.74,
+    "calmness": 0.67,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Walking_on_a_Dream_(album)"
+  },
+  {
+    "spotifyID": "album-key:beach-house-teen-dream",
+    "energy": 0.48,
+    "valence": 0.72,
+    "calmness": 0.75,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Teen_Dream"
+  },
+  {
+    "spotifyID": "album-key:katy-perry-teenage-dream",
+    "energy": 0.48,
+    "valence": 0.72,
+    "calmness": 0.75,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Teenage_Dream"
+  },
+  {
+    "spotifyID": "album-key:dream-street-dream-street",
+    "energy": 0.48,
+    "valence": 0.72,
+    "calmness": 0.75,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Dream_Street_(Dream_Street_album)"
+  },
+  {
+    "spotifyID": "album-key:beach-house-bloom",
+    "energy": 0.48,
+    "valence": 0.72,
+    "calmness": 0.75,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Bloom_(Beach_House_album)"
+  },
+  {
+    "spotifyID": "album-key:dream-theater-dream-theater",
+    "energy": 0.57,
+    "valence": 0.54,
+    "calmness": 0.64,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Dream_Theater_(album)"
+  },
+  {
+    "spotifyID": "album-key:king-gizzard-the-lizard-wizard-paper-mâché-dream-balloon",
+    "energy": 0.44,
+    "valence": 0.71,
+    "calmness": 0.85,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Paper_M%C3%A2ch%C3%A9_Dream_Balloon"
+  },
+  {
+    "spotifyID": "album-key:taylor-swift-lover",
+    "energy": 0.48,
+    "valence": 0.72,
+    "calmness": 0.75,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Lover_(album)"
+  },
+  {
+    "spotifyID": "album-key:nct-dream-hot-sauce",
+    "energy": 0.46,
+    "valence": 0.76,
+    "calmness": 0.8,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Hot_Sauce_(NCT_Dream_album)"
+  },
+  {
+    "spotifyID": "album-key:ketama-toumani-diabaté-and-danny-thompson-songhai",
+    "energy": 0.66,
+    "valence": 0.7,
+    "calmness": 0.48,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Songhai_(album)"
+  },
+  {
+    "spotifyID": "album-key:ravi-shankar-and-philip-glass-passages",
+    "energy": 0.66,
+    "valence": 0.7,
+    "calmness": 0.48,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Passages_(Ravi_Shankar_and_Philip_Glass_album)"
+  },
+  {
+    "spotifyID": "album-key:fela-ransome-kuti-africa-70-expensive-shit",
+    "energy": 0.66,
+    "valence": 0.7,
+    "calmness": 0.48,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Expensive_Shit"
+  },
+  {
+    "spotifyID": "album-key:fela-kuti-the-best-best-of-fela-kuti",
+    "energy": 0.66,
+    "valence": 0.7,
+    "calmness": 0.48,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Best_Best_of_Fela_Kuti"
+  },
+  {
+    "spotifyID": "album-key:björk-volta",
+    "energy": 0.85,
+    "valence": 0.82,
+    "calmness": 0.37,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Volta_(album)"
+  },
+  {
+    "spotifyID": "album-key:john-debney-the-passion-of-the-christ",
+    "energy": 0.66,
+    "valence": 0.7,
+    "calmness": 0.48,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/The_Passion_of_the_Christ_(soundtrack)"
+  },
+  {
+    "spotifyID": "album-key:femi-kuti-day-by-day",
+    "energy": 0.66,
+    "valence": 0.7,
+    "calmness": 0.48,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Day_by_Day_(Femi_Kuti_album)"
+  },
+  {
+    "spotifyID": "album-key:femi-kuti-fight-to-win",
+    "energy": 0.66,
+    "valence": 0.7,
+    "calmness": 0.48,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Fight_to_Win_(album)"
+  },
+  {
+    "spotifyID": "album-key:goran-bregović-and-george-dalaras-thessaloniki-yannena-with-two-canvas-shoes",
+    "energy": 0.66,
+    "valence": 0.7,
+    "calmness": 0.48,
+    "confidence": 0.24,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Thessaloniki_%E2%80%93_Yannena_with_Two_Canvas_Shoes"
+  },
+  {
+    "spotifyID": "album-key:lily-afshar-hemispheres",
+    "energy": 0.66,
+    "valence": 0.7,
+    "calmness": 0.48,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Hemispheres_(Lily_Afshar_album)"
+  },
+  {
+    "spotifyID": "album-key:lily-afshar-possession",
+    "energy": 0.66,
+    "valence": 0.7,
+    "calmness": 0.48,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Possession_(Lily_Afshar_album)"
+  },
+  {
+    "spotifyID": "album-key:andy-irvine-davy-spillane-eastwind",
+    "energy": 0.6,
+    "valence": 0.73,
+    "calmness": 0.56,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/EastWind"
+  },
+  {
+    "spotifyID": "album-key:various-artists-return-to-pride-rock",
+    "energy": 0.71,
+    "valence": 0.8,
+    "calmness": 0.45,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Return_to_Pride_Rock"
+  },
+  {
+    "spotifyID": "album-key:chiwoniso-maraire-rebel-woman",
+    "energy": 0.66,
+    "valence": 0.7,
+    "calmness": 0.48,
+    "confidence": 0.28,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/Rebel_Woman"
+  },
+  {
+    "spotifyID": "album-key:andy-palacio-the-garifuna-collective-watína",
+    "energy": 0.66,
+    "valence": 0.7,
+    "calmness": 0.48,
+    "confidence": 0.25,
+    "source": "metadataEstimate",
+    "provenance": "https://en.wikipedia.org/wiki/W%C3%A1tina"
+  }
+]
