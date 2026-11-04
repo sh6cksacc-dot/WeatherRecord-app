@@ -211,19 +211,9 @@ function queuedSpotifyFetch(url,options){
   const run=async()=>{const delay=Math.max(0,spotifyNextRequestAt-Date.now(),spotifyCooldownUntil-Date.now());if(delay)await wait(delay);spotifyNextRequestAt=Date.now()+240;return fetch(url,{...options,headers:{Authorization:`Bearer ${state.token}`,...(options.headers||{})}})};
   const request=spotifyRequestTail.then(run,run);spotifyRequestTail=request.then(()=>undefined,()=>undefined);return request;
 }
-async function api(url,options={}){await portableEnsureToken();
-  let response;
-  for(let attempt=0;attempt<3;attempt++){
-    response=await queuedSpotifyFetch(url,options);
-    if(response.status!==429)break;
-    const headerDelay=Number(response.headers.get('Retry-After'))*1000;
-    const delay=Number.isFinite(headerDelay)&&headerDelay>0?Math.min(headerDelay,30000):[1200,3200,7000][attempt];
-    spotifyCooldownUntil=Math.max(spotifyCooldownUntil,Date.now()+delay);
-    if(attempt<2)await wait(delay);
-  }
-  if(response.status===401){if(nativeApp){nativeSend('spotifyConnect');throw Object.assign(Error('Spotify 正在恢复连接，请稍后再试'),{status:401})}localStorage.removeItem('spotify_access_token');state.token=null;throw Error('Spotify 授权已过期，请重新连接')}
-  if(!response.ok)throw Object.assign(Error(`Spotify 请求失败（${response.status}）`),{status:response.status,retryAfter:Math.max(0,spotifyCooldownUntil-Date.now())});
-  return response.status===204?null:response.json();
+async function api(url,options={}){
+  const endpoint=new URL(url);if(endpoint.origin!=='https://api.spotify.com')throw Error('Unsupported Spotify endpoint');
+  return portableAPI(endpoint.pathname.replace(/^\/v1/, '')+endpoint.search,options.method||'GET',options.body?JSON.parse(options.body):undefined);
 }
 let observedTrackURI='',lastConfirmedTrackURI='',playbackTargetPending=false,trackLookupGeneration=0,coverTransitioning=false,deferredTrackURI='',coverGestureActive=false,playbackStartedAt=0;
 function displayPlayingTrack(track){
@@ -815,7 +805,7 @@ function persistQueueSession(){
   if(!nativeApp||state.mode!=='single'||!queueRestored)return;
   try{localStorage.setItem('atmos_queue_session_v1',JSON.stringify({version:1,current:state.track?.uri||null,upcoming:nextSelectionSlots.map(slot=>slot.selection).filter(Boolean)}))}catch(error){console.warn('Queue cache unavailable',error)}
 }
-async function restoreQueueSession(){
+async function restoreQueueSession(){if(portableSessionEnabled())return portableSessionRestore();
   if(queueRestored)return true;
   if(queueRestoreTask)return queueRestoreTask;
   if(Date.now()<queueRestoreRetryAt)return false;
@@ -869,7 +859,7 @@ function queueCommand(action){
     nativeSend('spotifyQueueCommand',{requestID,action});
   });
 }
-async function playSelectedFromQueue(){
+async function playSelectedFromQueue(){if(portableSessionEnabled())return portableSessionPlay();
   if(queueNavigationBusy)return;
   const target=state.track?.uri;
   if(!target)throw Error('还没有选中歌曲');
@@ -926,7 +916,7 @@ function queueStatus(message){
   if(!label){label=document.createElement('div');label.id='atmosQueueStatus';label.style.cssText='text-align:center;font:10px/1.4 -apple-system,sans-serif;color:var(--muted);min-height:14px;margin-top:6px';$('modeBar')?.appendChild(label);if(!label.isConnected)document.querySelector('.player-extras')?.prepend(label)}
   label.textContent=message;console.info('[AtmosQueue]',message);
 }
-function scheduleQueueSync(){
+function scheduleQueueSync(){if(portableSessionEnabled()){portableSessionWake();return;}
   if(queueNavigationBusy)return;
   if(!queueRestored){if(nativeApp&&state.mode==='single'&&state.token)void restoreQueueSession().then(ok=>{if(ok)maybeChooseInitial()});return}
   if(!nativeApp||state.mode!=='single'||document.hidden||coverTransitioning||coverGestureActive||queueSyncTimer||queueWriter.busy)return;
@@ -958,7 +948,7 @@ async function playSelectionAfterSwipe(wasPlaying,previousURI,direction){
   // with play across Spotify's two APIs and can leave the NEW song paused.
   await startNew();
 }
-function prepareNext(){
+function prepareNext(){if(portableSessionEnabled()&&state.mode==='single'){void portableSessionPrepare();return;}
   clearTimeout(prepareNextTimer);
   if(nativeApp&&state.mode==='single'&&!queueRestored)return;
   if(!state.token)return;
@@ -989,7 +979,7 @@ async function takeNextSelection(){
 function showSelection(selection,deferTracks=false){closeLyrics();cachedSelectionVisible=false;lastConfirmedTrackURI='';playbackTargetPending=true;state.hasPausedTrack=false;setPlaying(false);state.track=selection.track;state.albumTracks=selection.tracks||[];state.selectionMood=selection.mood||null;state.selectionContextKey=selection.contextKey||null;state.albumError=null;renderAlbum(selection.album,selection.mode==='single'?'随机单曲':'整张专辑');if(selection.track){$('albumName').textContent=selection.track.name;$('artistName').textContent=selection.track.artists?.map(x=>x.name).join(', ')||'';$('artTitle').textContent=selection.track.name;$('artArtist').textContent=$('artistName').textContent}if(!deferTracks)renderTracks(selection.tracks);tags(selection.mode==='single'?'随机单曲':'整张专辑');cacheSelection(selection);remember(selection.mode,selection.mode==='single'?selection.track?.uri:albumKey(selection.album));prepareNext()}
 async function chooseAlbum(){if(!state.token){renderAlbum({name:'In Rainbows',artist:'Radiohead'},'整张专辑');return}try{showSelection(await takeNextSelection())}catch(error){if(!state.album){renderAlbum({name:'In Rainbows',artist:'Radiohead'},'整张专辑');renderTracks([])}state.albumError=error.status===429?'Spotify 请求过于频繁，请稍后再试':`专辑搜索失败：${error.message}`;tags('整张专辑');console.error('Album selection failed',error)}}
 async function chooseLiked(){if(!state.token){await connectSpotify();return}showSelection(await takeNextSelection())}
-async function stopCurrent(){if(nativeApp){nativeSend('spotifyPause');state.playing=false;state.hasPausedTrack=false;resetProgress();setPlaying(false);return}if(state.player)await state.player.pause().catch(()=>{});if(state.token&&state.deviceId)await fetch(`https://api.spotify.com/v1/me/player/pause?device_id=${encodeURIComponent(state.deviceId)}`,{method:'PUT',headers:{Authorization:`Bearer ${state.token}`}}).catch(()=>{});state.playing=false;state.hasPausedTrack=false;resetProgress();setPlaying(false)}
+async function stopCurrent(){if(portableWindows)await portableHost('context',{...portableContext(),suspend:true});if(nativeApp){nativeSend('spotifyPause');state.playing=false;state.hasPausedTrack=false;resetProgress();setPlaying(false);return}if(state.player)await state.player.pause().catch(()=>{});if(state.token&&state.deviceId)await fetch(`https://api.spotify.com/v1/me/player/pause?device_id=${encodeURIComponent(state.deviceId)}`,{method:'PUT',headers:{Authorization:`Bearer ${state.token}`}}).catch(()=>{});state.playing=false;state.hasPausedTrack=false;resetProgress();setPlaying(false)}
 async function startNew(queueChecked=false){
   if(nativeApp&&state.token&&state.mode==='single'&&!queueChecked)return playSelectedFromQueue();
   if(nativeApp){if(!state.token){nativeSend('spotifyConnect');return}const uri=state.mode==='single'?state.track?.uri:state.album?.uri;if(!uri)throw Error('还没有找到歌曲');state.hasPausedTrack=false;resetProgress();acceptRemoteProgress=true;nativeSend('spotifyPlay',{uri});return}if(!state.token){await connectSpotify();return}if(!state.player||!state.deviceId)throw Error('请先打开 Spotify 播放任意歌曲，再回到此应用');state.manualPosition=0;state.resumePosition=0;acceptRemoteProgress=true;await state.player.activateElement();const body=state.mode==='single'?{uris:[state.track.uri],position_ms:0}:{context_uri:state.album.uri,offset:{position:0},position_ms:0};const r=await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${encodeURIComponent(state.deviceId)}`,{method:'PUT',headers:{Authorization:`Bearer ${state.token}`,'Content-Type':'application/json'},body:JSON.stringify(body)});if(!r.ok)throw Error('Spotify 播放失败');state.hasPausedTrack=true;setPlaying(true)

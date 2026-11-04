@@ -19,7 +19,7 @@ async function portableSend(name,body={}){
       case 'spotifyPause':return await portableControl(async()=>{await portableAPI('/me/player/pause','PUT');await portableRead()});
       case 'spotifyResume':return await portableControl(async()=>{await portableAPI('/me/player/play','PUT');acceptRemoteProgress=true;await portableRead()});
       case 'spotifySeek':return await portableControl(async()=>{await portableAPI('/me/player/seek?position_ms='+Math.max(0,Math.round(body.position)),'PUT');await portableRead()});
-      case 'spotifyStateRefresh':return await portableRead();
+      case 'spotifyStateRefresh':return await portableRead(true);
       case 'spotifyQueueRequest':{
         if(!((body.method==='GET'&&['/me/player','/me/player/queue'].includes(body.path))||(body.method==='POST'&&body.path==='/me/player/queue'&&body.uri?.startsWith('spotify:track:')&&body.deviceID)))throw Error('Unsupported queue request');
         const path=body.path+(body.method==='POST'?'?'+new URLSearchParams({uri:body.uri,device_id:body.deviceID}):'');
@@ -54,7 +54,9 @@ async function portableSend(name,body={}){
         if(!body.uri?.startsWith('spotify:track:')||body.uri!==nativeCurrentTrackURI||!confirmedLikedURIs.has(body.uri))throw Error('Cannot confirm this liked track');
         const values={};for(const key of ['energy','valence','calmness','acousticness','instrumentalness','groove']){if(!Number.isFinite(body.values?.[key]))throw Error('Invalid rating');values[key]=Math.max(0,Math.min(100,Math.round(body.values[key])))}
         portableRatings[body.uri]={title:body.title,artist:body.artist,album:body.album,values,ratedAt:Date.now()};
-        portableStore.write('atmos.portable.ratings.v1',portableRatings);portableApplyRatings();portableEmit('atmosTrackRatingSaved',{uri:body.uri});return;
+        portableStore.write('atmos.portable.ratings.v1',portableRatings);portableApplyRatings();
+        if(window.WEATHER_RECORD_HOST==='windows')await portableHost('context',portableContext());
+        portableEmit('atmosTrackRatingSaved',{uri:body.uri});return;
       }
       case 'trackRatingSuppress':portableSuppressed.add(body.uri);portableStore.write('atmos.portable.suppressed.v1',[...portableSuppressed]);portableEmit('atmosTrackRatingSuppressed',{uri:body.uri});return;
       case 'weatherLocation':return portableWeather();

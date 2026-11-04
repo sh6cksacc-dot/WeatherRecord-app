@@ -48,6 +48,7 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
+      - run: dotnet run --project tests/native/NativeTests.csproj
       - run: dotnet publish windows/WeatherRecord.csproj -c Release -r win-x64 -o dist/windows
       - uses: actions/upload-artifact@v4
         with:

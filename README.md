@@ -9,7 +9,7 @@
 - **我的喜欢**：结合 AtmosRank、天气、时间及六维主观评分进行推荐，控制近期重复和连续艺人。
 - **沉浸式界面**：极简封面播放器、同步歌词、横屏分栏、滑动切歌，以及可保存的左右换边设置。
 - **健身模式**：设置每周训练计划、记录动作完成情况，并从喜欢歌曲中筛选强律动候选。
-- **预加载与简介**：提前将同一组六首推荐加入 Spotify 队列，恢复剩余顺序；专辑模式显示 Pitchfork 短评及可用的中文翻译。
+- **连续播放与简介**：Windows 原生后台维护推荐队列；Android 使用算法生成的私人歌单。专辑模式显示 Pitchfork 短评及可用的中文翻译。
 - **多端支持**：提供 iOS 源码、Android 测试 APK 和 Windows 一键启动 EXE。
 
 **版本说明**：Android/Windows 已接入推荐、评分、健身筛选、队列和简介服务，仍为测试版；平台限制与验证范围见下文。
@@ -40,8 +40,10 @@ The Android APK uses an Android System WebView and opens the system browser for 
 
 The portable service layer now implements AtmosRank weather/time rules, stable
 weighted sampling, recent/skip history, six-axis subjective ratings and workout
-filtering. It reuses the original UI and verified six-track queue engine through
-Spotify Web API, including queue restoration and duplicate-write protection.
+filtering. Windows moves recommendation, OAuth refresh and queue maintenance into
+the C# process, independently of browser timers. Android creates/reuses one private
+Atmos playlist, starts playback at the selected position and appends future batches
+while foregrounded. The same plan supplies swipe candidates and playback order.
 `web/atmos-rank.js` mirrors the Swift reference formulas. `web/track-features.json`
 contains 500 public Wikipedia-backed, low-confidence album metadata estimates;
 these are not audio measurements. Personal ratings and history stay on the device.
@@ -57,10 +59,15 @@ unavailable message; no review or translation is fabricated.
 
 - Audio still plays through an active Spotify Connect device with Premium.
   The ports do not include an in-app Spotify audio decoder or iOS App Remote.
-- Android process suspension and Windows browser sleeping can stop refill after
-  the six submitted tracks. Already-added tracks are managed by Spotify; indefinite
-  background algorithmic refill is not implemented. Returning foreground refreshes
-  player state and resumes verification/refill.
+- Windows continues queue maintenance while its EXE runs, even if the browser is
+  closed or sleeping. Closing the EXE, computer sleep or loss of network stops it.
+  OAuth refresh tokens are persisted with Windows current-user DPAPI encryption.
+- Android generates up to 30 unique tracks per batch and appends when eight or
+  fewer remain while foregrounded (bounded to 300 tracks per session). Spotify can
+  play the generated playlist while Weather Record is suspended. An exhausted
+  playlist still needs the app foregrounded for fresh recommendations; Spotify's
+  own autoplay setting may take over at the end. No endless background refill is
+  claimed. Small libraries can produce shorter batches.
 - Existing external queue entries are preserved. Spotify offers no queue-clear or
   arbitrary queue-reorder endpoint; conflicting order is reported rather than
   silently deleting another app's entries.
@@ -86,6 +93,10 @@ unavailable message; no review or translation is fabricated.
 Port 5500 must be free. Tokens and settings stay in local app/browser storage;
 use a dedicated browser profile on shared computers. Internet access is needed.
 On Android, grant location permission when asked; weather continues after granting it.
+Existing Android users must reconnect once to grant `playlist-modify-private` and
+`playlist-read-private`. The dedicated private playlist is managed by the app;
+other user playlists are never modified. Ambiguous playlist creation/writes are
+reconciled before retry, rather than creating duplicates.
 The app must remain running during OAuth; Android background process termination
 can interrupt authorization. No background service or full offline mode is provided.
 
@@ -113,8 +124,12 @@ Close its console window to stop the local server. Android requires Android 8+.
 `ios/`: original SwiftUI app, native services and unmodified iOS web interface.
 `web/`: exported UI plus the Spotify Connect/PKCE adapter.
 `web/portable-services.js`: rating/history/context/lyrics/review service bridge.
+`web/portable-session.js`: Android private playlist and Windows plan bridge.
 `web/atmos-rank.js`: independent portable recommendation engine.
 `tests/`: Node integration tests (`node --test tests/portable.test.cjs`).
+`tests/native/`: dependency-free native queue tests (`dotnet run --project tests/native/NativeTests.csproj`).
+`windows/NativeQueueService.cs`: serialized native Spotify transport and background queue.
+`windows/AtmosEngine.cs`: C# AtmosRank used when browser scripts are suspended.
 `android/`: native Android WebView host and loopback callback server.
 `windows/`: .NET local server/browser launcher.
 `.github/workflows/`: independent Android and Windows artifact builds.

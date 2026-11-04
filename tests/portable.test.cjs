@@ -19,6 +19,30 @@ function context(){
   return c;
 }
 const run=(c,source)=>vm.runInContext(source,c);
+function androidContext(){
+  const c=context();c.crypto=require('node:crypto').webcrypto;
+  run(c,`window.AndroidHost={};var workoutMode=false,workoutQueueReset=false,nextSelectionEpoch=0,nextSelectionSlots=[],queueTrackCache=new Map(),queueRestored=false;var queueWriter={issued:new Set(),persist(){}};var acceptRemoteProgress=false;var moodArtists={};function recommendationKey(){return 'sunny|morning'}function preloadCover(){return Promise.resolve()}function queueStatus(){};state.mode='single';
+  var track=id=>({id,uri:'spotify:track:'+id,name:id,artists:[{name:'Artist '+id}],album:{id:'album'+id,uri:'spotify:album:'+id,images:[]}});
+  state.track=track('a');var playing=false,position=64000,playerTrack=state.track,playerContext=null,playlistTracks=[],creates=0,replaceLost=false,appendLost=false;
+  localStorage.setItem('portable_scopes','playlist-modify-private playlist-read-private');
+  portableAPI=async(path,method='GET',body)=>{
+    requests.push([path,method,body]);
+    if(path==='/me')return {id:'user'};
+    if(path==='/me/playlists'&&method==='POST'){creates++;return {id:'session'}};
+    if(path==='/playlists/session')return {owner:{id:'user'},public:false};
+    if(path==='/me/player'&&method==='GET')return {item:playerTrack,device:{id:'device'},context:playerContext?{uri:playerContext}:null,is_playing:playing,progress_ms:position};
+    if(path==='/me/player/queue')return {queue:[]};
+    if(path==='/playlists/session/items'&&method==='PUT'){playlistTracks=body.uris.slice();if(replaceLost){replaceLost=false;throw Error('Simulated response loss')}return null;}
+    if(path==='/playlists/session/items'&&method==='POST'){playlistTracks.push(...body.uris);if(appendLost){appendLost=false;throw Error('Simulated response loss')}return null;}
+    if(path.startsWith('/playlists/session/items?')){const q=new URLSearchParams(path.split('?')[1]),offset=Number(q.get('offset'))||0;return {items:playlistTracks.slice(offset).map(uri=>({item:{uri}}))};}
+    if(path.startsWith('/me/player/play')&&method==='PUT'){playing=true;if(body){playerContext=body.context_uri;playerTrack=track(playlistTracks[body.offset.position].split(':').pop());position=body.position_ms;}return null;}
+    if(path.startsWith('/me/player/shuffle')||path.startsWith('/me/player/repeat'))return null;
+    throw Error('Unexpected test API '+method+' '+path);
+  };`);
+  vm.runInContext(fs.readFileSync(path.join(web,'portable-session.js'),'utf8'),c);
+  run(c,"portableBuildSession=async root=>root?[root,track('b'),track('c')]:[track('d'),track('e')]");
+  return c;
+}
 test('contexts, missing weather and Swift-equivalent vectors',()=>{
   const c=context();run(c,'var r=new AtmosPortableRanker()');
   assert.ok(Math.abs(run(c,'r.target(0,8)[0]')-.76)<1e-9);
@@ -72,4 +96,41 @@ test('seed injection reproduces output',()=>{
   const c=context();
   run(c,"function seeded(){let seed=42;return ()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296}};var r=new AtmosPortableRanker(),pool=Array.from({length:30},(_,i)=>({id:String(i),artists:[String(i%4)],tags:[]}));function sample(){return JSON.stringify(r.sample(pool,6,[.5,.5,.5],[],100,null,seeded()))}");
   assert.equal(run(c,'sample()'),run(c,'sample()'));
+});
+test('Android private playlist uses current items endpoints, not manual queue appends',async()=>{
+  const c=androidContext();await run(c,'portableSessionPlay()');
+  assert.equal(run(c,'creates'),1);
+  assert.equal(run(c,"portableAndroidPlan.tracks.map(t=>t.id).join(',')"),'a,b,c');
+  assert.equal(c.requests.find(r=>r[0]==='/me/playlists'&&r[1]==='POST')[2].public,false);
+  assert.equal(c.requests.find(r=>r[0].startsWith('/me/player/play?'))[2].context_uri,'spotify:playlist:session');
+  assert.equal(c.requests.some(r=>r[0]==='/me/player/queue'&&r[1]==='POST'),false);
+});
+test('Android pause/resume retains 64 second position without rebuilding or restarting',async()=>{
+  const c=androidContext();await run(c,'portableSessionPlay()');
+  c.requests.length=0;run(c,'playing=false;position=64000');await run(c,'portableSessionPlay()');
+  assert.equal(run(c,'position'),64000);
+  const plays=c.requests.filter(r=>r[0].startsWith('/me/player/play'));assert.equal(plays.length,1);assert.equal(plays[0][2],undefined);
+  assert.equal(c.requests.some(r=>r[1]==='PUT'&&r[0].includes('/items')),false);
+});
+test('Android next swipe plays the same stored playlist position',async()=>{
+  const c=androidContext();await run(c,'portableSessionPlay()');c.requests.length=0;run(c,"state.track=track('b')");await run(c,'portableSessionPlay()');
+  assert.equal(c.requests.find(r=>r[0].startsWith('/me/player/play?'))[2].offset.position,1);
+  assert.equal(run(c,'creates'),1);assert.equal(c.requests.some(r=>r[0].includes('/items')&&r[1]==='PUT'),false);
+});
+test('Android accepted playlist replace with lost response is verified before play',async()=>{
+  const c=androidContext();run(c,'replaceLost=true');await run(c,'portableSessionPlay()');
+  assert.equal(run(c,'playing'),true);assert.equal(c.requests.filter(r=>r[0]==='/playlists/session/items'&&r[1]==='PUT').length,1);
+});
+test('Android append with lost response is reconciled once without replacing the active playlist',async()=>{
+  const c=androidContext();await run(c,'portableSessionPlay()');c.requests.length=0;run(c,'appendLost=true');await run(c,'portableAndroidExtend()');
+  assert.equal(run(c,'portableAndroidPlan.pending'),false);assert.equal(run(c,'playlistTracks.join(",")'),'spotify:track:a,spotify:track:b,spotify:track:c,spotify:track:d,spotify:track:e');
+  assert.equal(c.requests.filter(r=>r[0]==='/playlists/session/items'&&r[1]==='POST').length,1);assert.equal(c.requests.some(r=>r[1]==='PUT'),false);
+});
+test('Android missing private playlist scope does not create or overwrite playlists',async()=>{
+  const c=androidContext();run(c,"localStorage.setItem('portable_scopes','user-library-read')");
+  await assert.rejects(run(c,'portableSessionPlay()'),/Connect Spotify again/);assert.equal(run(c,'creates'),0);
+});
+test('Android double play shares one session creation and one start request',async()=>{
+  const c=androidContext();await run(c,'Promise.all([portableSessionPlay(),portableSessionPlay()])');
+  assert.equal(run(c,'creates'),1);assert.equal(c.requests.filter(r=>r[0].startsWith('/me/player/play?')).length,1);
 });
