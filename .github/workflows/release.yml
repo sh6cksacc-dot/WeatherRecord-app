@@ -1,0 +1,39 @@
+name: Publish beta release
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/release.yml']
+permissions:
+  contents: read
+jobs:
+  publish:
+    if: github.event_name == 'workflow_dispatch' || github.event.head_commit.message == 'Publish Weather Record v0.1.0-beta.1'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      SOURCE_SHA: 553ec9aae15d866cb0b2f6f6862cc377f9d38a42
+      SOURCE_RUN: '41815642760'
+      VERSION: v0.1.0-beta.1
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify the tested source build
+        run: |
+          test "$(gh api repos/$GH_REPO/actions/runs/$SOURCE_RUN --jq .head_sha)" = "$SOURCE_SHA"
+          test "$(gh api repos/$GH_REPO/actions/runs/$SOURCE_RUN --jq .conclusion)" = success
+      - name: Download the verified build artifacts
+        run: |
+          gh run download "$SOURCE_RUN" --name WeatherRecord-Android-test-apk --dir incoming/android
+          gh run download "$SOURCE_RUN" --name WeatherRecord-Windows-x64 --dir incoming/windows
+          mkdir -p release
+          cp incoming/android/app-debug.apk release/WeatherRecord-Android-test.apk
+          cp incoming/windows/WeatherRecord.exe release/WeatherRecord-Windows-x64.exe
+          cp docs/INSTALL.zh-CN.md release/INSTALL.zh-CN.md
+          cd release
+          sha256sum WeatherRecord-Android-test.apk WeatherRecord-Windows-x64.exe INSTALL.zh-CN.md > SHA256SUMS.txt
+      - name: Publish the prerelease without replacing existing releases
+        run: |
+          gh release create "$VERSION" release/WeatherRecord-Android-test.apk release/WeatherRecord-Windows-x64.exe release/INSTALL.zh-CN.md release/SHA256SUMS.txt --target "$SOURCE_SHA" --title "Weather Record 0.1.0 Beta 1" --notes-file docs/INSTALL.zh-CN.md --prerelease
