@@ -1,5 +1,21 @@
 # Weather Record / 气象唱片
 
+## 中文简介
+
+**气象唱片（Weather Record）** 是一款围绕天气、时间与音乐氛围设计的 Spotify 音乐发现应用。让每个当下，都有一张适合聆听的唱片。
+
+- **整张专辑探索**：从 Spotify 目录中按随机年份和分页发现专辑，减少固定清单带来的重复。
+- **我的喜欢**：随机聆听收藏歌曲；iOS 原版结合 AtmosRank、天气、时间及用户评分进行推荐。
+- **沉浸式界面**：极简封面播放器、同步歌词、横屏分栏、滑动切歌及可保存的左右换边设置。
+- **健身模式**：设置每周训练计划、记录动作完成情况；iOS 原版支持强律动歌曲筛选。
+- **多端支持**：提供 iOS 源码、Android 测试 APK 和 Windows 一键启动 EXE。
+
+**版本说明**：iOS 是功能更完整的原版；Android/Windows 目前为跨平台测试版，部分原生推荐、评分和队列功能尚未移植。首次使用需要配置自己的 Spotify Client ID，远程播放需要 Spotify Premium 和活跃的播放设备。iOS 需要在 Xcode 中自行签名安装。项目源码采用 MIT 许可证，第三方内容保留各自权利。
+
+[下载测试版](https://github.com/sh6cksacc-dot/WeatherRecord-app/releases) · [中文安装说明](docs/INSTALL.zh-CN.md) · [iOS 配置说明](ios/README.md)
+
+## English overview
+
 Weather, time and music discovery. Android APK and a Windows one-click EXE launcher,
 sharing the existing minimalist interface, portrait/landscape layouts, lyrics,
 album discovery, Liked Songs, swipe history and local workout plans.
