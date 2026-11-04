@@ -38,4 +38,9 @@ jobs:
           sha256sum WeatherRecord-Android-test.apk WeatherRecord-Windows-x64.exe INSTALL.zh-CN.md > SHA256SUMS.txt
       - name: Publish the prerelease without replacing existing releases
         run: |
-          gh release create "$VERSION" release/WeatherRecord-Android-test.apk release/WeatherRecord-Windows-x64.exe release/INSTALL.zh-CN.md release/SHA256SUMS.txt --target "$SOURCE_SHA" --title "Weather Record 0.3.0 Beta 1" --notes-file docs/INSTALL.zh-CN.md --prerelease
+          if gh release view "$VERSION" --json tagName > /dev/null 2>&1; then
+            test "$(gh api repos/$GH_REPO/git/ref/tags/$VERSION --jq .object.sha)" = "$SOURCE_SHA"
+            gh release upload "$VERSION" release/WeatherRecord-Android-test.apk release/WeatherRecord-Windows-x64.exe release/INSTALL.zh-CN.md release/SHA256SUMS.txt
+          else
+            gh release create "$VERSION" release/WeatherRecord-Android-test.apk release/WeatherRecord-Windows-x64.exe release/INSTALL.zh-CN.md release/SHA256SUMS.txt --target "$SOURCE_SHA" --title "Weather Record 0.3.0 Beta 1" --notes-file docs/INSTALL.zh-CN.md --prerelease
+          fi
