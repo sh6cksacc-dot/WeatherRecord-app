@@ -15,7 +15,10 @@ async function portableSend(name,body={}){
   try{
     switch(name){
       case 'spotifyConnect':return await portableConnect();
-      case 'spotifyPlay':return await portableControl(()=>portablePlay(body.uri));
+      case 'spotifyPlay':return await portableControl(async()=>{
+        await portablePlay(body.uri);
+        if(portableAStudio)showWebSpotifyStatus('',spotifyMessage('Spotify 已连接','Spotify Connected'));
+      });
       case 'spotifyPause':return await portableControl(async()=>{await portableAPI('/me/player/pause','PUT');await portableRead()});
       case 'spotifyResume':return await portableControl(async()=>{await portableAPI('/me/player/play','PUT');acceptRemoteProgress=true;await portableRead()});
       case 'spotifySeek':return await portableControl(async()=>{await portableAPI('/me/player/seek?position_ms='+Math.max(0,Math.round(body.position)),'PUT');await portableRead()});
@@ -67,7 +70,16 @@ async function portableSend(name,body={}){
     if(name.startsWith('spotifyQueue'))portableEmit('spotifyQueueResponse',{requestID:body.requestID,status:0,message:error.message});
     else if(name==='lyricsFetch')portableEmit('weatherRecordLyrics',{...body,error:error.message});
     else if(name==='pitchforkReview')portableEmit('weatherRecordPitchfork',{...body,error:error.message});
-    else{console.warn(name,error);if(name.startsWith('spotify')){setStatus(error.message);await portableRead()}}
+    else{
+      console.warn(name,error);
+      if(name.startsWith('spotify')){
+        if(portableAStudio){
+          const label=state.token?spotifyMessage('Spotify 已连接','Spotify Connected'):spotifyMessage('连接 Spotify','Connect Spotify');
+          showWebSpotifyStatus(error.message,label);
+        }else setStatus(error.message);
+        await portableRead();
+      }
+    }
   }
 }
 function portableWeather(){
@@ -80,7 +92,7 @@ function portableWeather(){
       if(!Number.isFinite(data?.temperature_2m)||!Number.isFinite(data?.weather_code))throw Error('Weather data is incomplete');
       portableEmit('weatherRecordWeather',{temperature:data.temperature_2m,code:data.weather_code});
     }catch(e){portableEmit('weatherRecordLocationError',e.message)}
-  },e=>portableEmit('weatherRecordLocationError',e.message),{enableHighAccuracy:false,maximumAge:300000,timeout:12000});
+  },e=>portableEmit('weatherRecordLocationError',portableAStudio&&e.code===1?spotifyMessage('定位未授权','Location not allowed'):e.message),{enableHighAccuracy:false,maximumAge:300000,timeout:12000});
 }
 function portableNormalize(s){return String(s||'').normalize('NFKD').replace(/\p{M}/gu,'').toLowerCase().replace(/[^\p{L}\p{N}]/gu,'')}
 function portableLyricsMatch(record,lookup){
@@ -120,6 +132,7 @@ function portableParseReview(html,album,artist){
   return best;
 }
 async function portableReview(body){
+  if(window.WEATHER_RECORD_GITHUB_PAGES)throw Error(isEnglish?'Pitchfork reviews are available in the local player':'Pitchfork 乐评可在本地版查看');
   const r=await fetch('/review-search?'+new URLSearchParams({q:body.artistName+' '+body.albumName}),{signal:AbortSignal.timeout(18000)});
   if(!r.ok)throw Error(isEnglish?'Pitchfork is temporarily unavailable':'Pitchfork 暂时无法连接');
   const review=portableParseReview(await r.text(),body.albumName,body.artistName);

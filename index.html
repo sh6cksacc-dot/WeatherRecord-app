@@ -6,7 +6,9 @@
     <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#f4efe8" />
     <title>气象唱片 · Weather Record</title>
-    <link rel="stylesheet" href="styles.css?v=20261101-i18n2" />
+    <link rel="stylesheet" href="styles.css?v=20261110-lyric-picker" />
+      <link rel="icon" href="icon.svg">
+    <link rel="stylesheet" href="local-player.css">
   </head>
   <body class="app-booting">
     <div class="launch-splash" id="launchSplash" aria-hidden="true">
@@ -20,6 +22,7 @@
         <a class="brand" href="#" data-i18n="brand">气象唱片 <span>WEATHER RECORD</span></a>
         <button class="location-btn" id="locationBtn" type="button"><span class="pin">⌖</span> <span id="locationText" data-i18n="locating">正在定位</span></button>
       </header>
+      <p id="webSpotifyStatus" role="status" hidden></p>
 
       <section class="hero">
         <div class="hero-copy">
@@ -47,11 +50,33 @@
             <p class="description" id="albumDescription" data-i18n="waiting">稍等，让天空给我们一个提示。</p>
             <div class="tags" id="tags"></div>
             <div class="controls"><button class="play-btn" id="playBtn" type="button"><span id="playIcon">▶</span> <span id="playText" data-i18n="play">播放</span></button><button class="shuffle-btn" id="shuffleBtn" type="button" aria-label="重新抽取">↻</button></div>
+            <button class="share-trigger" id="shareCardOpen" type="button" hidden>
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m-4 4 4-4 4 4M7 11H5v9h14v-9h-2"/></svg>
+              <span id="shareCardLabel">分享唱片</span>
+            </button>
           </div>
         </div>
       </section>
       <footer><span data-i18n="curated">CURATED BY THE SKY</span><span><span data-i18n="updated">更新时间</span> <b id="updatedAt">--:--</b></span></footer>
     </main>
+    <dialog class="share-dialog" id="shareCardDialog" aria-labelledby="shareCardTitle">
+      <header class="share-dialog-header">
+        <h2 id="shareCardTitle">分享唱片</h2>
+        <form method="dialog"><button class="share-close" id="shareCardClose" type="submit" aria-label="关闭" autofocus>×</button></form>
+      </header>
+      <canvas id="shareCardCanvas" width="1080" height="1440" role="img" hidden></canvas>
+      <p class="share-status" id="shareCardStatus" role="status" hidden></p>
+      <div class="share-lyrics" id="shareCardLyrics" hidden>
+        <p id="shareCardLyricHint" role="status"></p>
+        <div class="share-lyric-list" id="shareCardLyricList" role="group" aria-label="选择歌词"></div>
+      </div>
+      <div class="share-actions">
+        <button id="shareCardEditLyrics" type="button" hidden>编辑歌词</button>
+        <button id="shareCardPreview" type="button" hidden>预览卡片</button>
+        <button id="shareCardSystem" type="button" hidden>分享图片</button>
+        <a id="shareCardDownload" download="Weather-Record.png" hidden>保存 PNG</a>
+      </div>
+    </dialog>
     <div class="description-modal" id="descriptionModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="descriptionModalTitle">
       <button class="description-close" id="descriptionClose" type="button" aria-label="关闭简介">×</button>
       <div class="description-sheet">
@@ -78,15 +103,27 @@
         <button class="rating-never" id="ratingNever" type="button">不再提醒这首歌</button>
       </div>
     </div>
+    <script src="host-config.js"></script>
+    <script src="atmos-rank.js"></script>
+    <script src="portable.js"></script>
+    <script src="portable-services.js"></script>
+    <script src="portable-session.js"></script>
     <script src="bootstrap.js?v=20261031-1800"></script>
     <script src="localization.js?v=20261101-newday1"></script>
-    <script src="clean-app.js?v=20261101-track-rating1"></script>
+    <script src="desktop-player.js"></script>
+    <script src="local-spotify.js"></script>
+    <script src="clean-app.js?v=20261110-native-png"></script>
     <script>
-      if (!window.WEATHER_RECORD_NATIVE) {
+      if (!window.WEATHER_RECORD_NATIVE && !window.WEATHER_RECORD_PORTABLE) {
         const spotifyWebSDK = document.createElement('script');
         spotifyWebSDK.src = 'https://sdk.scdn.co/spotify-player.js';
+        spotifyWebSDK.onerror = () => reportWebPlayerError(spotifyMessage(
+          'Spotify 播放组件下载失败，请检查网络后刷新',
+          'Could not load the Spotify player. Check your connection and reload.'
+        ));
         document.body.appendChild(spotifyWebSDK);
       }
     </script>
+      <script src="local-player.js"></script>
   </body>
 </html>

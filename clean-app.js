@@ -1,7 +1,8 @@
+let localAdvanceRecommendation;
 const $=id=>document.getElementById(id);
 let workoutMode=false;
 let workoutQueueReset=false;
-const state={mode:localStorage.getItem('playback_mode')||'album',token:window.WEATHER_RECORD_NATIVE?null:localStorage.getItem('spotify_access_token'),player:null,deviceId:null,album:null,albumTracks:[],track:null,playing:false,position:0,updatedAt:0,manualPosition:0,resumePosition:0,duration:0,hasPausedTrack:false,seeking:false,weather:'unknown',weatherReady:false,period:null,selectionMood:null,selectionContextKey:null,albumError:null,pitchforkReview:null};
+const state={mode:localStorage.getItem('playback_mode')||'album',token:window.WEATHER_RECORD_NATIVE?null:portableAuth.getItem('spotify_access_token'),player:null,deviceId:null,album:null,albumTracks:[],track:null,playing:false,position:0,updatedAt:0,manualPosition:0,resumePosition:0,duration:0,hasPausedTrack:false,seeking:false,weather:'unknown',weatherReady:false,period:null,selectionMood:null,selectionContextKey:null,albumError:null,pitchforkReview:null};
 let acceptRemoteProgress=false;
 let progressVisualPosition=0,progressAnchorPosition=0,progressAnchorTime=0,progressLastFrame=0,progressDisplayedSecond=-1;
 let pendingSeekPosition=null,pendingSeekUntil=0;
@@ -20,7 +21,7 @@ function syncProgressAnchor(position,hard=false){
   progressAnchorTime=now;
 }
 function resetProgress(){acceptRemoteProgress=false;state.position=0;state.duration=0;state.manualPosition=0;state.resumePosition=0;state.seeking=false;pendingSeekPosition=null;pendingSeekUntil=0;progressVisualPosition=0;progressAnchorPosition=0;progressAnchorTime=performance.now();progressLastFrame=0;progressDisplayedSecond=0;paintProgress(0);if($('elapsed'))$('elapsed').textContent='0:00';if($('duration'))$('duration').textContent='0:00'}
-const nativeApp=!!(window.WEATHER_RECORD_NATIVE||window.WEATHER_RECORD_PORTABLE);if(nativeApp)document.documentElement.classList.add('native-app');
+const nativeApp=!!(window.WEATHER_RECORD_NATIVE||window.WEATHER_RECORD_PORTABLE);if(nativeApp&&!window.weatherRecordDesktop)document.documentElement.classList.add('native-app');
 const nativeSend=(name,body={})=>portableSend(name,body);
 let nativeCurrentTrackURI='';
 function selectedContainsTrack(uri){if(!uri)return false;if(state.mode==='single')return state.track?.uri===uri;return state.albumTracks.some(track=>track.uri===uri)}
@@ -32,15 +33,15 @@ window.addEventListener('weatherRecordSpotifyState',event=>{
   if(queueNavigationBusy){queueNavigationState=d;return}
   const remoteTrackChanged=!!d.trackURI&&!!nativeCurrentTrackURI&&d.trackURI!==nativeCurrentTrackURI;
   if(d.trackURI)nativeCurrentTrackURI=d.trackURI;
-  const planned=state.mode==='single'&&!playbackTargetPending&&nextSelectionSlots.find(slot=>slot.selection?.track?.uri===nativeCurrentTrackURI);
-  if(planned&&!coverTransitioning&&!coverGestureActive){
-    nextSelectionSlots.splice(0,nextSelectionSlots.indexOf(planned)+1);
-    persistQueueSession();
-    playbackTargetPending=false;acceptRemoteProgress=true;prepareNext();
-  }
-  const selectedIsCurrent=selectedContainsTrack(nativeCurrentTrackURI)||!!planned||(!playbackTargetPending&&!coverTransitioning&&!coverGestureActive&&!!lastConfirmedTrackURI);
+  const selectedIsCurrent=!!d.trackURI&&(state.mode==='single'
+    ? selectedContainsTrack(d.trackURI)||selectedContainsTrack(d.linkedTrackURI)
+    : !!state.album?.uri&&(d.albumURI===state.album.uri||d.contextURI===state.album.uri));
   if(typeof d.playing==='boolean')setPlaying(d.connected===false?false:!!d.playing&&selectedIsCurrent);
   state.hasPausedTrack=!!d.connected&&selectedIsCurrent;
+  if(state.hasPausedTrack){
+    acceptRemoteProgress=true;
+    localConfirmPlayback(d);
+  }
   const freshSample=d.sampleVersion===undefined||d.sampleVersion>lastProgressSample;
   if(acceptRemoteProgress&&d.duration>0&&selectedIsCurrent&&freshSample){
     if(d.sampleVersion!==undefined)lastProgressSample=d.sampleVersion;
@@ -57,7 +58,7 @@ window.addEventListener('weatherRecordSpotifyState',event=>{
     if(!d.playing&&!state.seeking){paintProgress(remotePosition/d.duration*100);$('elapsed').textContent=fmt(remotePosition)}
     $('duration').textContent=fmt(d.duration)
   }
-  if(d.trackURI){updateTrackRatingPlayback(d.trackURI,!!d.connected&&!!d.playing);document.querySelectorAll('#trackList li').forEach(li=>li.classList.toggle('current',li.dataset.uri===d.trackURI&&selectedIsCurrent));if(d.connected&&d.playing&&selectedIsCurrent)observePlaybackTrack(d.trackURI)}
+  if(d.trackURI){updateTrackRatingPlayback(d.trackURI,!!d.connected&&!!d.playing);document.querySelectorAll('#trackList li').forEach(li=>li.classList.toggle('current',li.dataset.uri===d.trackURI&&selectedIsCurrent));if(d.connected&&selectedIsCurrent)observePlaybackTrack(d.trackURI)}
   if(d.connected&&d.playing&&selectedIsCurrent)scheduleQueueSync();
 });
 const CLIENT_ID=portableClientID(),REDIRECT='http://127.0.0.1:5500/';
@@ -138,7 +139,7 @@ function nextLikedIndex(total){
   return index;
 }
 const fmt=ms=>{const s=Math.max(0,Math.floor((ms||0)/1000));return`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`};
-function setPlaying(v){const wasPlaying=state.playing,changed=wasPlaying!==v||!$('playIcon').firstElementChild;state.playing=v;if(v&&!wasPlaying){playbackStartedAt=Date.now();progressAnchorPosition=progressVisualPosition;progressAnchorTime=performance.now();progressLastFrame=0}if(changed){$('playIcon').innerHTML=v?'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.8c0-.8.9-1.3 1.6-.9l10 6.2a1 1 0 0 1 0 1.7l-10 6.2a1 1 0 0 1-1.6-.9z"/></svg>';$('playText').textContent=v?(isEnglish?'Pause':'暂停'):(isEnglish?'Play':'播放')}if(v&&!coverGestureActive)startProgressUpdates();else stopProgressUpdates()}
+function setPlaying(v){const wasPlaying=state.playing,changed=wasPlaying!==v||!$('playIcon').firstElementChild;state.playing=v;window.weatherRecordDesktop?.render(state);if(v&&!wasPlaying){playbackStartedAt=Date.now();progressAnchorPosition=progressVisualPosition;progressAnchorTime=performance.now();progressLastFrame=0}if(changed){$('playIcon').innerHTML=v?'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.8c0-.8.9-1.3 1.6-.9l10 6.2a1 1 0 0 1 0 1.7l-10 6.2a1 1 0 0 1-1.6-.9z"/></svg>';$('playText').textContent=v?(isEnglish?'Pause':'暂停'):(isEnglish?'Play':'播放')}if(v&&!coverGestureActive)startProgressUpdates();else stopProgressUpdates()}
 function tags(){
   if(workoutMode){const artist=state.track?.artists?.map(x=>x.name).join(', ')||'';$('moodHint').textContent=isEnglish?'WORKOUT':'健身模式';$('tags').innerHTML=[isEnglish?'Liked Songs':'我的喜欢',isEnglish?'Strong groove':'强律动'].map(x=>`<span class="tag">${x}</span>`).join('');$('albumDescription').textContent=state.albumError||(artist?(isEnglish?`${artist} · Selected from your liked songs to keep a strong, steady workout rhythm.`:`${artist} · 从你的喜欢中选出的强律动歌曲，用稳定节奏保持训练状态。`):(isEnglish?'Choosing a strong-groove track from your liked songs…':'正在从你的喜欢中挑选强律动歌曲…'));$('matchPercent').textContent='WORKOUT';return}
   const weather=weatherText[state.weather],period=periods[state.period]||(isEnglish?'Now':'此刻'),mode=modeLabel();
@@ -165,7 +166,7 @@ function requestPitchforkReview(album){
   state.pitchforkReview=null;
   if(!name||!artist)return;
   try{const cached=JSON.parse(localStorage.getItem(pitchforkCachePrefix+key));if(cached?.summary){state.pitchforkReview={...cached,albumKey:key};tags(state.mode==='single'?'随机单曲':'整张专辑');return}}catch{}
-  if(nativeApp){state.pitchforkReview={albumKey:key,loading:true};tags(state.mode==='single'?'随机单曲':'整张专辑');nativeSend('pitchforkReview',{requestId,albumURI:album.uri||key,albumKey:key,albumName:name,artistName:artist})}
+  if(nativeApp&&!portableAStudio){state.pitchforkReview={albumKey:key,loading:true};tags(state.mode==='single'?'随机单曲':'整张专辑');nativeSend('pitchforkReview',{requestId,albumURI:album.uri||key,albumKey:key,albumName:name,artistName:artist})}
 }
 window.addEventListener('weatherRecordPitchfork',event=>{
   const result=event.detail;
@@ -179,9 +180,26 @@ window.addEventListener('weatherRecordPitchfork',event=>{
 function openDescriptionModal(){const text=$('albumDescription').textContent.trim(),modal=$('descriptionModal');if(!text||!modal)return;$('descriptionFull').textContent=text;$('descriptionModalTitle').textContent=text.startsWith('Pitchfork')?'PITCHFORK REVIEW':'ALBUM NOTE';modal.classList.add('open');modal.setAttribute('aria-hidden','false');$('descriptionClose').focus()}
 function closeDescriptionModal(){const modal=$('descriptionModal');if(!modal?.classList.contains('open'))return;modal.classList.remove('open');modal.setAttribute('aria-hidden','true');requestAnimationFrame(tryPresentTrackRating)}
 function bindDescriptionModal(){const description=$('albumDescription'),modal=$('descriptionModal');description.tabIndex=0;description.setAttribute('role','button');description.setAttribute('aria-label','查看完整专辑简介');description.onclick=openDescriptionModal;description.onkeydown=event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();openDescriptionModal()}};$('descriptionClose').onclick=closeDescriptionModal;modal.onclick=event=>{if(event.target===modal)closeDescriptionModal()};document.addEventListener('keydown',event=>{if(event.key==='Escape')closeDescriptionModal()})}
-function renderAlbum(a,mode){state.album=a;$('albumName').textContent=a.name||'';$('artTitle').textContent=a.name||'';$('artistName').textContent=a.artists?.map(x=>x.name).join(', ')||a.artist||'';$('artArtist').textContent=$('artistName').textContent;if(a.images?.[0]?.url){$('albumArt').style.backgroundImage=`url("${a.images[0].url}")`;$('albumArt').style.backgroundSize='cover';$('albumArt').style.backgroundPosition='center'}tags(mode);requestPitchforkReview(a)}
+function renderAlbum(a,mode){state.album=a;window.weatherRecordDesktop?.render(state);$('albumName').textContent=a.name||'';$('artTitle').textContent=a.name||'';$('artistName').textContent=a.artists?.map(x=>x.name).join(', ')||a.artist||'';$('artArtist').textContent=$('artistName').textContent;if(a.images?.[0]?.url){$('albumArt').style.backgroundImage=`url("${a.images[0].url}")`;$('albumArt').style.backgroundSize='cover';$('albumArt').style.backgroundPosition='center'}tags(mode);requestPitchforkReview(a)}
 function refreshLandscapeTrack(){if(landscapeLyrics())loadLyricsForTrack(lyricsTrack())}
-function renderTracks(items){$('trackCount').textContent=items.length?`${items.length} 首`:'';$('trackList').innerHTML=items.map((t,i)=>`<li data-uri="${t.uri}"><span>${String(i+1).padStart(2,'0')}</span>${t.name}</li>`).join('')||'<li class="empty-track">暂无曲目</li>';requestAnimationFrame(refreshLandscapeTrack)}
+function renderTracks(items){
+  $('trackCount').textContent=items.length?`${items.length} 首`:'';
+  const rows=items.map((track,index)=>{
+    const row=document.createElement('li'),number=document.createElement('span');
+    row.dataset.uri=track.uri;
+    number.textContent=String(index+1).padStart(2,'0');
+    row.append(number,track.name||'');
+    return row;
+  });
+  if(!rows.length){
+    const empty=document.createElement('li');
+    empty.className='empty-track';
+    empty.textContent='暂无曲目';
+    rows.push(empty);
+  }
+  $('trackList').replaceChildren(...rows);
+  requestAnimationFrame(refreshLandscapeTrack);
+}
 function cacheSelection(selection){
   if(!selection?.album?.uri)return;
   try{localStorage.setItem(selectionCachePrefix+selection.mode,JSON.stringify({...selection,cachedAt:Date.now()}))}catch(error){console.warn('Selection cache unavailable',error)}
@@ -208,7 +226,7 @@ const wait=milliseconds=>new Promise(resolve=>setTimeout(resolve,milliseconds));
 const afterVisualFrame=()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
 let spotifyRequestTail=Promise.resolve(),spotifyNextRequestAt=0,spotifyCooldownUntil=0;
 function queuedSpotifyFetch(url,options){
-  const run=async()=>{const delay=Math.max(0,spotifyNextRequestAt-Date.now(),spotifyCooldownUntil-Date.now());if(delay)await wait(delay);spotifyNextRequestAt=Date.now()+240;return fetch(url,{...options,headers:{Authorization:`Bearer ${state.token}`,...(options.headers||{})}})};
+  const run=async()=>{const delay=Math.max(0,spotifyNextRequestAt-Date.now(),spotifyCooldownUntil-Date.now());if(delay)await wait(delay);const token=nativeApp?state.token:await getWebSpotifyToken();spotifyNextRequestAt=Date.now()+240;return fetch(url,{...options,headers:{Authorization:`Bearer ${token}`,...(options.headers||{})}})};
   const request=spotifyRequestTail.then(run,run);spotifyRequestTail=request.then(()=>undefined,()=>undefined);return request;
 }
 async function api(url,options={}){
@@ -218,6 +236,7 @@ async function api(url,options={}){
 let observedTrackURI='',lastConfirmedTrackURI='',playbackTargetPending=false,trackLookupGeneration=0,coverTransitioning=false,deferredTrackURI='',coverGestureActive=false,playbackStartedAt=0;
 function displayPlayingTrack(track){
   state.track=track;
+  window.weatherRecordDesktop?.render(state);
   if(track.album?.uri!==state.album?.uri){
     state.selectionMood=null;state.selectionContextKey=null;
     renderAlbum(track.album,state.mode==='single'?'随机单曲':'整张专辑');
@@ -278,9 +297,74 @@ async function observePlaybackTrack(uri){
     else{if(track.album?.uri!==state.album?.uri)await preloadCover(track.album?.images?.[0]?.url);if(generation!==trackLookupGeneration||coverTransitioning)return;displayPlayingTrack(track);lastConfirmedTrackURI=uri}
   }catch(error){observedTrackURI=''}
 }
-async function connectSpotify(){return portableConnect()}
+const spotifyMessage = (zh, en) => isEnglish ? en : zh;
+let webPlayerError = '';
+function showWebSpotifyStatus(message, label) {
+  const button = $('spotifyReconnect');
+  if (button) {
+    button.textContent = label;
+    button.title = message;
+  }
+  const status = $('webSpotifyStatus');
+  if (status) {
+    status.textContent = message;
+    status.hidden = !message;
+  }
+}
+
+function clearWebSpotifySession() {
+  state.token = null;
+  state.deviceId = null;
+  const player = state.player;
+  state.player = null;
+  player?.disconnect();
+  localStorage.removeItem('spotify_access_token');
+  localStorage.removeItem('spotify_refresh_token');
+  localStorage.removeItem('spotify_token_expires_at');
+}
+
+async function requestWebSpotifyToken(fields) {
+  const response = await fetch('https://accounts.spotify.com/api/token', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: new URLSearchParams({client_id: CLIENT_ID, ...fields}),
+    signal: AbortSignal.timeout(15000),
+  });
+  const result = await response.json();
+  if (!response.ok || !result.access_token) {
+    throw Object.assign(new Error(result.error_description || result.error || `HTTP ${response.status}`), {
+      spotifyError: result.error,
+    });
+  }
+  state.token = result.access_token;
+  localStorage.setItem('spotify_access_token', state.token);
+  if (result.refresh_token) localStorage.setItem('spotify_refresh_token', result.refresh_token);
+  localStorage.setItem('spotify_token_expires_at', String(Date.now() + result.expires_in * 1000));
+  return state.token;
+}
+
+let webSpotifyRefresh;
+async function getWebSpotifyToken() {
+  const expiresAt = Number(localStorage.getItem('spotify_token_expires_at'));
+  const refreshToken = localStorage.getItem('spotify_refresh_token');
+  if (!refreshToken || (state.token && expiresAt > Date.now() + 60000)) return state.token;
+  if (!webSpotifyRefresh) {
+    webSpotifyRefresh = requestWebSpotifyToken({grant_type: 'refresh_token', refresh_token: refreshToken})
+      .catch(error => {
+        if (error.spotifyError === 'invalid_grant') clearWebSpotifySession();
+        throw error;
+      })
+      .finally(() => { webSpotifyRefresh = null; });
+  }
+  return webSpotifyRefresh;
+}
+
+async function connectSpotify(){
+  try{await portableConnect()}
+  catch(error){showWebSpotifyStatus(error.message,spotifyMessage('连接 Spotify','Connect Spotify'))}
+}
 async function handleCallback(){return portableCallback()}
-function createPlayer(){return portableCreatePlayer()}
+function createPlayer(){return localCreatePlayer()}
 function setStatus(t){$('playText').textContent=t}
 let nextSelectionSlots=[],nextSelectionEpoch=0;
 const queueTrackCache=new Map();
@@ -288,7 +372,7 @@ function invalidateNextSelections(){
   // Weather changes affect newly generated slots, never reorder music already
   // committed to Spotify. Mode changes still discard the old local plan.
   if(nativeApp&&state.mode==='single'&&nextSelectionSlots.length&&nextSelectionSlots.every(slot=>slot.mode==='single'))return;
-  nextSelectionEpoch++;nextSelectionSlots=[];clearTimeout(prepareNextTimer);queueWriter.invalidate();clearTimeout(queueSyncTimer);queueSyncTimer=null;if(nativeApp)queueRestored=false;queueStatus('');
+  nextSelectionEpoch++;nextSelectionSlots=[];clearTimeout(prepareNextTimer);queueWriter.invalidate();clearTimeout(queueSyncTimer);queueSyncTimer=null;queueStatus('');
 }
 const decodedCovers=new Map();
 async function preloadCover(url){
@@ -301,7 +385,9 @@ async function preloadCover(url){
   return loading;
 }
 const lyricsCache=new Map();
-let lyricsInFlight=null,lyricMeasuredAt=0;
+const lyricsPending = new Map();
+const nativeLyricsReplies = new Map();
+let nativeLyricsRequestId = 0, pendingLyricsView = 0, lyricMeasuredAt = 0;
 let lyricsRequest=0,displayedLyricsURI='',timedLyrics=[],activeLyricIndex=-1,lyricsViewportHeight=0,lyricMotionTimer=null;
 function parseSyncedLyrics(source){
   const parsed=[];
@@ -337,7 +423,7 @@ function renderLyrics(record){
   $('lyricsMessage').hidden=true;
   syncLyricsAt(currentLyricsPosition());
 }
-function landscapeLyrics(){return (nativeApp||window.WEATHER_RECORD_PORTABLE)&&matchMedia('(orientation: landscape)').matches}
+function landscapeLyrics(){return nativeApp&&!window.weatherRecordDesktop&&matchMedia('(orientation: landscape)').matches}
 function lyricsVisible(){return landscapeLyrics()||$('albumArt').classList.contains('lyrics-open')}
 function currentLyricsPosition(){return state.playing?Math.min(state.duration||Infinity,progressVisualPosition):state.position}
 function loopedLyric(index){const count=timedLyrics.length;return timedLyrics[((index%count)+count)%count].text}
@@ -389,36 +475,81 @@ function syncLyricsAt(position){
   else if(index===(previous-1+timedLyrics.length)%timedLyrics.length)stepLyricWindow(-1,index);
   else renderLyricWindow(index);
 }
-function receiveLyrics(result){
-  if(result.requestId!==lyricsRequest||result.trackURI!==displayedLyricsURI)return;
-  lyricsInFlight=null;
-  const record={syncedLyrics:result.syncedLyrics||'',instrumental:!!result.instrumental};
-  if(!result.error){lyricsCache.set(result.trackURI,record);if(lyricsCache.size>40)lyricsCache.delete(lyricsCache.keys().next().value)}
-  if(!lyricsVisible())return;
-  if(result.error)lyricsMessage(result.error);else renderLyrics(record);
+window.addEventListener('weatherRecordLyrics', event => {
+  const result = event.detail;
+  const reply = nativeLyricsReplies.get(result.requestId);
+  if (reply?.uri === result.trackURI) reply.finish(result);
+});
+
+async function fetchLyricsRecord(details) {
+  const unavailable = isEnglish ? 'Lyrics service is temporarily unavailable' : '歌词服务暂时不可用';
+  if (nativeApp) {
+    const requestId = ++nativeLyricsRequestId;
+    return new Promise(resolve => {
+      const finish = result => {
+        clearTimeout(timeout);
+        nativeLyricsReplies.delete(requestId);
+        resolve(result);
+      };
+      const timeout = setTimeout(() => finish({error: unavailable}), 24000);
+      nativeLyricsReplies.set(requestId, {uri: details.trackURI, finish});
+      nativeSend('lyricsFetch', {...details, requestId});
+    });
+  }
+  try {
+    const params = new URLSearchParams({track_name: details.trackName, artist_name: details.artistName});
+    if (details.albumName) params.set('album_name', details.albumName);
+    if (details.duration > 0 && details.duration <= 3600) params.set('duration', String(details.duration));
+    const response = await fetch(`https://lrclib.net/api/get?${params}`, {signal: AbortSignal.timeout(12000)});
+    if (response.status === 404) return {syncedLyrics:'', plainLyrics:''};
+    if (!response.ok) return {error: unavailable};
+    return await response.json();
+  } catch {
+    return {error: unavailable};
+  }
 }
-window.addEventListener('weatherRecordLyrics',event=>receiveLyrics(event.detail));
-async function loadLyricsForTrack(track){
-  const uri=track?.uri,artist=track?.artists?.[0]?.name||track?.album?.artists?.[0]?.name||state.album?.artists?.[0]?.name;
-  if(!uri||!track.name||!artist){lyricsMessage(isEnglish?'Play a song to view lyrics':'播放歌曲后显示歌词');return}
-  if(lyricsInFlight?.uri===uri&&lyricsInFlight.requestId===lyricsRequest)return;
-  if(uri===displayedLyricsURI&&timedLyrics.length)return;
-  displayedLyricsURI=uri;
-  const requestId=++lyricsRequest;
-  if(lyricsCache.has(uri)){renderLyrics(lyricsCache.get(uri));return}
-  lyricsMessage(isEnglish?'Searching for synced lyrics…':'正在寻找同步歌词…');
-  lyricsInFlight={uri,requestId};
-  const details={requestId,trackURI:uri,trackName:track.name,artistName:artist,albumName:track.album?.name||state.album?.name||'',duration:Math.round((track.duration_ms||state.duration||0)/1000)};
-  if(nativeApp){nativeSend('lyricsFetch',details);return}
-  try{
-    const params=new URLSearchParams({track_name:details.trackName,artist_name:details.artistName});
-    if(details.albumName)params.set('album_name',details.albumName);
-    if(details.duration>0&&details.duration<=3600)params.set('duration',String(details.duration));
-    const response=await fetch(`https://lrclib.net/api/get?${params}`);
-    if(!response.ok)throw Error(response.status===404?(isEnglish?'Synced lyrics are not available for this song':'这首歌暂时没有同步歌词'):(isEnglish?'Lyrics service is temporarily unavailable':'歌词服务暂时不可用'));
-    receiveLyrics({...details,...await response.json()});
-  }catch(error){receiveLyrics({...details,error:error.message||(isEnglish?'Lyrics service is temporarily unavailable':'歌词服务暂时不可用')})}
+
+function getLyricsRecord(track) {
+  const uri = track?.uri;
+  const artist = track?.artists?.[0]?.name || track?.album?.artists?.[0]?.name || state.album?.artists?.[0]?.name;
+  if (!uri || !track.name || !artist) return Promise.resolve(null);
+  if (lyricsCache.has(uri)) return Promise.resolve(lyricsCache.get(uri));
+  if (lyricsPending.has(uri)) return lyricsPending.get(uri);
+  const details = {
+    trackURI: uri, trackName: track.name, artistName: artist,
+    albumName: track.album?.name || state.album?.name || '',
+    duration: Math.round((track.duration_ms || (uri === nativeCurrentTrackURI ? state.duration : 0)) / 1000),
+  };
+  const request = fetchLyricsRecord(details).then(result => {
+    if (!result.error) {
+      lyricsCache.set(uri, result);
+      if (lyricsCache.size > 40) lyricsCache.delete(lyricsCache.keys().next().value);
+    }
+    return result;
+  }).finally(() => lyricsPending.delete(uri));
+  lyricsPending.set(uri, request);
+  return request;
 }
+
+async function loadLyricsForTrack(track) {
+  const uri = track?.uri || '';
+  if (uri && uri === displayedLyricsURI && (timedLyrics.length || pendingLyricsView === lyricsRequest)) return;
+  displayedLyricsURI = uri;
+  const requestId = ++lyricsRequest;
+  if (lyricsCache.has(uri)) {
+    renderLyrics(lyricsCache.get(uri));
+    return;
+  }
+  lyricsMessage(isEnglish ? 'Searching for synced lyrics…' : '正在寻找同步歌词…');
+  pendingLyricsView = requestId;
+  const record = await getLyricsRecord(track);
+  if (pendingLyricsView === requestId) pendingLyricsView = 0;
+  if (requestId !== lyricsRequest || !lyricsVisible()) return;
+  if (!record) lyricsMessage(isEnglish ? 'Play a song to view lyrics' : '播放歌曲后显示歌词');
+  else if (record.error) lyricsMessage(record.error);
+  else renderLyrics(record);
+}
+
 function toggleLyrics(){
   if(landscapeLyrics()){loadLyricsForTrack(lyricsTrack());return}
   const cover=$('albumArt'),opening=!cover.classList.contains('lyrics-open');
@@ -452,7 +583,7 @@ function updateLandscapeLyrics(){
     cover.classList.remove('lyrics-open','lyrics-closing');restoreAlbumMetadata();
     panel.append(view);view.setAttribute('aria-hidden','false');loadLyricsForTrack(lyricsTrack());
   }else{
-    if(extras)document.querySelector('.record-info').append(extras);
+    if(extras&&!extras.closest('.local-transport'))document.querySelector('.record-info').append(extras);
     cover.append(view);view.setAttribute('aria-hidden',String(!cover.classList.contains('lyrics-open')));
   }
   lyricsViewportHeight=0;
@@ -492,7 +623,7 @@ function updateTrackRatingPlayback(uri,playing){
   if(playing){if(!ratingPlayback.startedAt)ratingPlayback.startedAt=performance.now();scheduleTrackRating()}
   else pauseTrackRatingClock();
 }
-function ratingModalBlocked(){return document.querySelector('.workout-overlay:not([hidden])')||$('descriptionModal')?.classList.contains('open')||$('trackRatingModal')?.classList.contains('open')||modeSwitching||coverTransitioning}
+function ratingModalBlocked(){return $('shareCardDialog')?.open||document.querySelector('.workout-overlay:not([hidden])')||$('descriptionModal')?.classList.contains('open')||$('trackRatingModal')?.classList.contains('open')||modeSwitching||coverTransitioning}
 function tryPresentTrackRating(){
   const uri=ratingPlayback.uri;
   if(!ratingPlayback.ready||!ratingPlayback.eligible||ratingPlayback.presented||ratingPostponedThisSession.has(uri))return;
@@ -720,13 +851,13 @@ class AtmosQueueWriter {
 }
 // End queue engine.
 // Read and confirm every step: never substitute play(uri) for consuming a queue.
-async function advanceSpotifyQueue(snapshot,read,command,delay){
+async function advanceSpotifyQueue(snapshot,read,command,delay,readImmediately=false){
   const expected=snapshot.queue[0]?.uri,previous=snapshot.currently_playing?.uri;
   if(!expected)throw Error('没有可确认的下一首，已停止跳转');
   let commandError=null;
   try{await command('next')}catch(error){commandError=error}
   for(let attempt=0;attempt<6;attempt++){
-    await delay(400);
+    if(attempt>0||!readImmediately)await delay(400);
     const next=await read();
     if(!Array.isArray(next?.queue))throw Error('无法确认切歌结果，已停止继续跳转');
     if(next.currently_playing?.uri===expected&&
@@ -735,24 +866,28 @@ async function advanceSpotifyQueue(snapshot,read,command,delay){
   }
   throw commandError||Error('Spotify 切歌尚未确认，请稍后重试；未重复发送跳转');
 }
-async function ensureQueueTargetPlaying(target,command,readPlayer,delay){
+async function ensureQueueTargetPlaying(target,command,readPlayer,delay,readImmediately=false){
   if(!readPlayer){await command('resume');return}
   let player=await readPlayer();
   if(player.item?.uri!==target)throw Error('Spotify 当前歌曲已改变，已停止恢复播放');
-  if(player.is_playing)return;
+  if(player.is_playing)return player;
   let commandError=null;
   try{await command('resume')}catch(error){commandError=error}
   for(let attempt=0;attempt<6;attempt++){
-    await delay(400);player=await readPlayer();
+    if(attempt>0||!readImmediately)await delay(400);
+    player=await readPlayer();
     if(player.item?.uri!==target)throw Error('Spotify 当前歌曲已改变，已停止恢复播放');
-    if(player.is_playing)return;
+    if(player.is_playing)return player;
   }
   throw commandError||Error('Spotify 尚未确认恢复播放，请稍后重试');
 }
-async function navigateSpotifyQueue(target,read,command,delay,owned=new Set(),consumed=()=>{},readPlayer=null){
+async function navigateSpotifyQueue(target,read,command,delay,owned=new Set(),consumed=()=>{},readPlayer=null,readImmediately=false){
   let snapshot=await read();
   if(!Array.isArray(snapshot?.queue))throw Error('Spotify 队列状态未知，未改变播放');
-  if(snapshot.currently_playing?.uri===target){await ensureQueueTargetPlaying(target,command,readPlayer,delay);return snapshot}
+  if(snapshot.currently_playing?.uri===target){
+    const player=await ensureQueueTargetPlaying(target,command,readPlayer,delay,readImmediately);
+    return {...snapshot,player};
+  }
   const position=snapshot.queue.findIndex(track=>track?.uri===target);
   if(position<0){
     if(snapshot.queue.length===0)return null;
@@ -767,7 +902,7 @@ async function navigateSpotifyQueue(target,read,command,delay,owned=new Set(),co
     if(batch.length>20)throw Error('旧队列超过 20 首，请先在 Spotify 清理，避免连续请求过多');
     for(const uri of batch){
       if(snapshot.queue[0]?.uri!==uri)throw Error('清理期间队列顺序已改变，已停止跳转');
-      snapshot=await advanceSpotifyQueue(snapshot,read,command,delay);
+      snapshot=await advanceSpotifyQueue(snapshot,read,command,delay,readImmediately);
       consumed(uri);
     }
     if(snapshot.queue.some(track=>owned.has(track?.uri)))throw Error('还有 App 歌曲未确认移出队列，请稍后重试');
@@ -776,8 +911,11 @@ async function navigateSpotifyQueue(target,read,command,delay,owned=new Set(),co
   if(position>=20)throw Error('目标歌曲距离超过 20 首，请在 Spotify 中选择，避免连续请求过多');
   for(let step=0;step<=position;step++){
     if(!snapshot.queue.some(track=>track?.uri===target))throw Error('Spotify 队列已改变，请重新播放');
-    snapshot=await advanceSpotifyQueue(snapshot,read,command,delay);
-    if(snapshot.currently_playing?.uri===target){await ensureQueueTargetPlaying(target,command,readPlayer,delay);return snapshot}
+    snapshot=await advanceSpotifyQueue(snapshot,read,command,delay,readImmediately);
+    if(snapshot.currently_playing?.uri===target){
+      const player=await ensureQueueTargetPlaying(target,command,readPlayer,delay,readImmediately);
+      return {...snapshot,player};
+    }
   }
   throw Error('未到达目标歌曲，已停止跳转');
 }
@@ -800,47 +938,9 @@ function reconcileQueueSession(remote,saved,issued){
   return {current:current?.album?selection(current):null,upcoming};
 }
 // End restart reconciliation.
-let queueRestored=!nativeApp,queueRestoreTask=null,queueRestoreRetryAt=0;
-function persistQueueSession(){
-  if(!nativeApp||state.mode!=='single'||!queueRestored)return;
-  try{localStorage.setItem('atmos_queue_session_v1',JSON.stringify({version:1,current:state.track?.uri||null,upcoming:nextSelectionSlots.map(slot=>slot.selection).filter(Boolean)}))}catch(error){console.warn('Queue cache unavailable',error)}
-}
-async function restoreQueueSession(){if(portableSessionEnabled())return portableSessionRestore();
-  if(queueRestored)return true;
-  if(queueRestoreTask)return queueRestoreTask;
-  if(Date.now()<queueRestoreRetryAt)return false;
-  const epoch=nextSelectionEpoch;
-  queueRestoreTask=(async()=>{
-    try{
-      let saved=null;try{saved=JSON.parse(localStorage.getItem('atmos_queue_session_v1')||'null')}catch{}
-      const remote=await queueWriter.read('/me/player/queue');
-      const plan=reconcileQueueSession(remote,saved,queueWriter.issued);
-      if(state.mode!=='single'||epoch!==nextSelectionEpoch)return false;
-      // Check the snapshot against playback before adopting it: a song may have
-      // ended while the first request was in flight.
-      let player=null;
-      if(plan.current){player=await queueWriter.read('/me/player');if(player.item?.uri!==plan.current.track.uri)throw Error('歌曲正在切换，稍后重新核对队列')}
-      if(state.mode!=='single'||epoch!==nextSelectionEpoch)return false;
-      queueRestored=true;
-      nextSelectionSlots=plan.upcoming.map(selection=>({mode:'single',context:recommendationKey(),epoch:nextSelectionEpoch,selection,promise:Promise.resolve(selection)}));
-      for(const item of [plan.current,...plan.upcoming].filter(Boolean))queueTrackCache.set(item.track.uri,item.track);
-      if(plan.current){
-        showSelection(plan.current);
-        cachedSelectionVisible=false;initialPickStarted=true;
-        playbackTargetPending=false;lastConfirmedTrackURI=plan.current.track.uri;observedTrackURI=plan.current.track.uri;
-        nativeCurrentTrackURI=plan.current.track.uri;acceptRemoteProgress=true;state.hasPausedTrack=true;
-        state.duration=player.item.duration_ms||0;state.position=player.progress_ms||0;
-        syncProgressAnchor(state.position,true);paintProgress(state.duration?state.position/state.duration*100:0);
-        $('elapsed').textContent=fmt(state.position);$('duration').textContent=fmt(state.duration);setPlaying(!!player.is_playing);
-      }
-      persistQueueSession();prepareNext();scheduleQueueSync();
-      queueStatus(isEnglish?'Playback queue restored':'已恢复 Spotify 剩余队列');
-      return true;
-    }catch(error){queueRestoreRetryAt=Math.max(Date.now()+15000,queueWriter.until);queueStatus(error.message);setTimeout(()=>{if(state.mode==='single'&&!document.hidden)maybeChooseInitial()},Math.max(1000,queueRestoreRetryAt-Date.now()));return false}
-    finally{queueRestoreTask=null}
-  })();
-  return queueRestoreTask;
-}
+let queueRestored=true,queueRestoreTask=null,queueRestoreRetryAt=0;
+function persistQueueSession(){}
+async function restoreQueueSession(){return true}
 let queueRequestID=0,queueSyncTimer=null,queueLastSync=0;
 let queueNavigationBusy=false,queueNavigationState=null;
 const queueResponses=new Map();
@@ -854,60 +954,21 @@ function queueRequest(method,path,params={}){
 function queueCommand(action){
   return new Promise((resolve,reject)=>{
     const requestID=++queueRequestID;
-    const timer=setTimeout(()=>{queueResponses.delete(requestID);reject(Error('Spotify 操作超时，请稍后核对队列'))},12000);
-    queueResponses.set(requestID,{timer,resolve:result=>result.status===204?resolve():reject(Error(result.message||'Spotify 队列操作失败'))});
+    const timer=setTimeout(()=>{queueResponses.delete(requestID);reject(Error('Spotify 操作超时，请稍后核对队列'))},action==='state'?600:12000);
+    queueResponses.set(requestID,{timer,resolve:result=>{
+      if(action==='state'&&result.status===200)resolve(result.body);
+      else if(result.status===204)resolve();
+      else reject(Error(result.message||'Spotify 队列操作失败'));
+    }});
     nativeSend('spotifyQueueCommand',{requestID,action});
   });
 }
-async function playSelectedFromQueue(){if(portableSessionEnabled())return portableSessionPlay();
-  if(queueNavigationBusy)return;
-  const target=state.track?.uri;
-  if(!target)throw Error('还没有选中歌曲');
-  queueNavigationBusy=true;queueNavigationState=null;let appliedPlayerState=false;
-  queueWriter.invalidate();clearTimeout(queueSyncTimer);queueSyncTimer=null;
-  try{
-    while(queueWriter.busy)await wait(50);
-    queueStatus(isEnglish?'Locating song in Spotify queue':'正在定位 Spotify 队列中的歌曲');
-    const resetWorkout=typeof workoutQueueReset!=='undefined'&&workoutQueueReset;
-    const snapshot=await navigateSpotifyQueue(resetWorkout?'atmos:workout:rebuild':target,()=>queueWriter.read('/me/player/queue'),queueCommand,wait,new Set(queueWriter.issued),uri=>{
-      queueWriter.issued.delete(uri);queueWriter.persist([...queueWriter.issued].slice(-200));
-      queueStatus(isEnglish?'Skipping old App queue':'正在跳过旧的 App 队列');
-    },()=>queueWriter.read('/me/player'));
-    if(!snapshot){
-      // Remote queue is empty, or the frozen App-added batch was consumed.
-      // Keep unrelated/uncertain write receipts for duplicate protection.
-      nextSelectionEpoch++;nextSelectionSlots=[];clearTimeout(prepareNextTimer);
-      persistQueueSession();playbackTargetPending=true;observedTrackURI='';lastConfirmedTrackURI='';
-      queueStatus(isEnglish?'Starting selected song and rebuilding recommendations':'正在播放所选歌曲并重新生成推荐');
-      await startNew(true);if(resetWorkout)workoutQueueReset=false;prepareNext();return;
-    }
-    // Drop browsed/skipped entries and adopt the actual remaining order.
-    const saved={upcoming:nextSelectionSlots.map(slot=>slot.selection).filter(Boolean)};
-    const plan=reconcileQueueSession(snapshot,saved,queueWriter.issued);
-    nextSelectionEpoch++;clearTimeout(prepareNextTimer);
-    const upcoming=typeof workoutMode!=='undefined'&&workoutMode?plan.upcoming.filter(selection=>selection.workout===true):plan.upcoming;
-    nextSelectionSlots=upcoming.map(selection=>({mode:'single',context:recommendationKey(),epoch:nextSelectionEpoch,selection,promise:Promise.resolve(selection)}));
-    for(const selection of plan.upcoming)queueTrackCache.set(selection.track.uri,selection.track);
-    nativeCurrentTrackURI=target;playbackTargetPending=false;observedTrackURI=target;lastConfirmedTrackURI=target;
-    state.hasPausedTrack=true;acceptRemoteProgress=true;
-    // Acknowledge progress/playing only after a fresh player read.
-    const player=await queueWriter.read('/me/player');
-    if(player.item?.uri!==target)throw Error('Spotify 当前歌曲已改变，请重新核对');
-    state.position=player.progress_ms||0;state.duration=player.item.duration_ms||0;
-    syncProgressAnchor(state.position,true);paintProgress(state.duration?state.position/state.duration*100:0);
-    $('elapsed').textContent=fmt(state.position);$('duration').textContent=fmt(state.duration);setPlaying(!!player.is_playing);
-    appliedPlayerState=true;
-    persistQueueSession();prepareNext();queueStatus(isEnglish?'Playing from Spotify queue':'已按 Spotify 队列定位');
-  }catch(error){queueStatus(error.message);throw error}
-  finally{
-    queueNavigationBusy=false;
-    const deferred=queueNavigationState;queueNavigationState=null;
-    if(!appliedPlayerState&&deferred?.trackURI===target){
-      acceptRemoteProgress=true;playbackTargetPending=false;
-      window.dispatchEvent(new CustomEvent('weatherRecordSpotifyState',{detail:deferred}));
-    }
-    scheduleQueueSync();
+async function readQueuePlayer(target){
+  if(window.WEATHER_RECORD_NATIVE){
+    const player=await queueCommand('state').catch(()=>null);
+    if(player?.item?.uri===target)return player;
   }
+  return queueWriter.read('/me/player');
 }
 let queueIssued=[];try{queueIssued=JSON.parse(localStorage.getItem('atmos_queue_issued')||'[]')}catch{}
 const queueWriter=new AtmosQueueWriter(queueRequest,items=>{try{localStorage.setItem('atmos_queue_issued',JSON.stringify(items))}catch{}},Array.isArray(queueIssued)?queueIssued:[]);
@@ -916,34 +977,13 @@ function queueStatus(message){
   if(!label){label=document.createElement('div');label.id='atmosQueueStatus';label.style.cssText='text-align:center;font:10px/1.4 -apple-system,sans-serif;color:var(--muted);min-height:14px;margin-top:6px';$('modeBar')?.appendChild(label);if(!label.isConnected)document.querySelector('.player-extras')?.prepend(label)}
   label.textContent=message;console.info('[AtmosQueue]',message);
 }
-function scheduleQueueSync(){if(portableSessionEnabled()){portableSessionWake();return;}
-  if(queueNavigationBusy)return;
-  if(!queueRestored){if(nativeApp&&state.mode==='single'&&state.token)void restoreQueueSession().then(ok=>{if(ok)maybeChooseInitial()});return}
-  if(!nativeApp||state.mode!=='single'||document.hidden||coverTransitioning||coverGestureActive||queueSyncTimer||queueWriter.busy)return;
-  queueSyncTimer=setTimeout(async()=>{
-    queueSyncTimer=null;
-    if(state.mode!=='single'||!state.playing||coverTransitioning||coverGestureActive||document.hidden)return;
-    prepareNext();
-    const root=state.track?.uri,epoch=nextSelectionEpoch;
-    const desired=nextSelectionSlots.map(slot=>slot.selection?.track?.uri).filter(Boolean);
-    queueLastSync=Date.now();
-    try{
-      if(!root||root!==nativeCurrentTrackURI||!desired.length)return;
-      const result=await queueWriter.sync(root,desired);if(result&&epoch===nextSelectionEpoch)queueStatus(result.message);
-    }catch(error){queueStatus(error.message)}
-    finally{
-      // Candidate completion may occur while sync is busy. Always re-arm after
-      // it finishes, including empty/failed candidate batches, while foreground playing.
-      if(state.mode==='single'&&state.playing&&!document.hidden)scheduleQueueSync();
-    }
-  },Math.max(800,queueLastSync+15000-Date.now(),queueWriter.until-Date.now()));
-}
+function scheduleQueueSync(){}
 async function playSelectionAfterSwipe(wasPlaying,previousURI,direction){
   // Serialize user playback after any append already in flight. Invalidation
   // prevents another append from starting while the selection changes.
   while(queueWriter.busy)await wait(50);
-  if(!wasPlaying){await stopCurrent();return}
-  if(nativeApp&&state.mode==='single')return playSelectedFromQueue();
+  if(!wasPlaying){resetProgress();return}
+  
   // Playing an explicit URI replaces the current song. Sending pause first races
   // with play across Spotify's two APIs and can leave the NEW song paused.
   await startNew();
@@ -979,24 +1019,16 @@ async function takeNextSelection(){
 function showSelection(selection,deferTracks=false){closeLyrics();cachedSelectionVisible=false;lastConfirmedTrackURI='';playbackTargetPending=true;state.hasPausedTrack=false;setPlaying(false);state.track=selection.track;state.albumTracks=selection.tracks||[];state.selectionMood=selection.mood||null;state.selectionContextKey=selection.contextKey||null;state.albumError=null;renderAlbum(selection.album,selection.mode==='single'?'随机单曲':'整张专辑');if(selection.track){$('albumName').textContent=selection.track.name;$('artistName').textContent=selection.track.artists?.map(x=>x.name).join(', ')||'';$('artTitle').textContent=selection.track.name;$('artArtist').textContent=$('artistName').textContent}if(!deferTracks)renderTracks(selection.tracks);tags(selection.mode==='single'?'随机单曲':'整张专辑');cacheSelection(selection);remember(selection.mode,selection.mode==='single'?selection.track?.uri:albumKey(selection.album));prepareNext()}
 async function chooseAlbum(){if(!state.token){renderAlbum({name:'In Rainbows',artist:'Radiohead'},'整张专辑');return}try{showSelection(await takeNextSelection())}catch(error){if(!state.album){renderAlbum({name:'In Rainbows',artist:'Radiohead'},'整张专辑');renderTracks([])}state.albumError=error.status===429?'Spotify 请求过于频繁，请稍后再试':`专辑搜索失败：${error.message}`;tags('整张专辑');console.error('Album selection failed',error)}}
 async function chooseLiked(){if(!state.token){await connectSpotify();return}showSelection(await takeNextSelection())}
-async function stopCurrent(){if(portableWindows)await portableHost('context',{...portableContext(),suspend:true});if(nativeApp){nativeSend('spotifyPause');state.playing=false;state.hasPausedTrack=false;resetProgress();setPlaying(false);return}if(state.player)await state.player.pause().catch(()=>{});if(state.token&&state.deviceId)await fetch(`https://api.spotify.com/v1/me/player/pause?device_id=${encodeURIComponent(state.deviceId)}`,{method:'PUT',headers:{Authorization:`Bearer ${state.token}`}}).catch(()=>{});state.playing=false;state.hasPausedTrack=false;resetProgress();setPlaying(false)}
-async function startNew(queueChecked=false){
-  if(nativeApp&&state.token&&state.mode==='single'&&!queueChecked)return playSelectedFromQueue();
-  if(nativeApp){if(!state.token){nativeSend('spotifyConnect');return}const uri=state.mode==='single'?state.track?.uri:state.album?.uri;if(!uri)throw Error('还没有找到歌曲');state.hasPausedTrack=false;resetProgress();acceptRemoteProgress=true;nativeSend('spotifyPlay',{uri});return}if(!state.token){await connectSpotify();return}if(!state.player||!state.deviceId)throw Error('请先打开 Spotify 播放任意歌曲，再回到此应用');state.manualPosition=0;state.resumePosition=0;acceptRemoteProgress=true;await state.player.activateElement();const body=state.mode==='single'?{uris:[state.track.uri],position_ms:0}:{context_uri:state.album.uri,offset:{position:0},position_ms:0};const r=await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${encodeURIComponent(state.deviceId)}`,{method:'PUT',headers:{Authorization:`Bearer ${state.token}`,'Content-Type':'application/json'},body:JSON.stringify(body)});if(!r.ok)throw Error('Spotify 播放失败');state.hasPausedTrack=true;setPlaying(true)
-}
-async function togglePlay(){
-  if(queueNavigationBusy)return;
-  if(nativeApp&&state.token&&state.mode==='single'&&!queueRestored){await restoreQueueSession();return}
-  if(nativeApp&&state.token&&state.mode==='single'&&!state.playing){try{await playSelectedFromQueue()}catch(error){alert(error.message)}return}
-  try{if(nativeApp){if(!state.token){nativeSend('spotifyConnect');return}if(state.playing){nativeSend('spotifyPause');setPlaying(false)}else if(state.hasPausedTrack){acceptRemoteProgress=true;nativeSend('spotifyResume');setPlaying(true)}else await startNew();return}if(!state.player){await connectSpotify();return}await state.player.activateElement();if(state.playing){const current=await state.player.getCurrentState().catch(()=>null);state.resumePosition=state.manualPosition>500?state.manualPosition:(current?.position||state.position||0);await state.player.pause();setPlaying(false);return}if(state.hasPausedTrack||state.resumePosition>500||state.manualPosition>500){const position=state.resumePosition||state.manualPosition;acceptRemoteProgress=true;await state.player.resume();if(position>500){await state.player.seek(position);state.position=position;paintProgress(state.duration?position/state.duration*100:0);$('elapsed').textContent=fmt(position)}setPlaying(true);return}await startNew()}catch(e){alert(e.message)}
-}
+async function stopCurrent(){await localStopPlayback()}
+async function startNew(){await localStartPlayback()}
+async function togglePlay(){await localTogglePlayback()}
 let initialPickTimer=null,initialPickStarted=false,initialPickUsedWeather=false,userHasChosen=false;
 function maybeChooseInitial(force=false){
   if(nativeApp&&state.mode==='single'&&state.token&&!queueRestored){void restoreQueueSession().then(ok=>{if(ok)maybeChooseInitial(force)});return}
   if(!state.token||(state.album?.uri&&!cachedSelectionVisible)||initialPickStarted||userHasChosen)return;
   if(!state.weatherReady&&!force){if(!initialPickTimer)initialPickTimer=setTimeout(()=>maybeChooseInitial(true),900);return}
   clearTimeout(initialPickTimer);initialPickTimer=null;initialPickStarted=true;initialPickUsedWeather=state.weather!=='unknown';
-  if(state.mode==='single')chooseLiked().catch(error=>{state.albumError=error.message;tags('随机单曲')});else chooseAlbum();
+  void localPickInitial();
 }
 function applyWeather(temperature,code){
   const previous=state.weather;
@@ -1045,10 +1077,21 @@ async function switchPlaybackMode(index,button){
     enters.forEach(animation=>animation.cancel());await stopping
   }catch(error){exits.forEach(animation=>animation.cancel());alert(error.message)}finally{modeSwitching=false;document.body.classList.remove('mode-switch-locked')}
 }
-function bindUI(){const reconnect=document.getElementById('spotifyReconnect');if(reconnect){reconnect.textContent=state.token?(isEnglish?'Spotify Connected':'Spotify 已连接'):(isEnglish?'Connect Spotify':'连接 Spotify');reconnect.onclick=connectSpotify}$('playBtn').onclick=togglePlay;$('shuffleBtn').onclick=async()=>{try{if(state.token)userHasChosen=true;await stopCurrent();if(state.mode==='single')await chooseLiked();else await chooseAlbum()}catch(e){alert(e.message)}};document.querySelectorAll('.mode-bar .mode-btn').forEach((button,index)=>{button.classList.toggle('active',(state.mode==='album'&&index===0)||(state.mode==='single'&&index===1));button.onclick=()=>switchPlaybackMode(index,button)});const progress=$('progress');progress.step='any';progress.oninput=()=>{acceptRemoteProgress=true;state.seeking=true;paintProgress(progress.value);const p=state.duration*Number(progress.value)/100;state.position=p;state.manualPosition=p;state.updatedAt=performance.now();progressVisualPosition=p;progressAnchorPosition=p;progressAnchorTime=performance.now();$('elapsed').textContent=fmt(p)};progress.onchange=async()=>{acceptRemoteProgress=true;const p=state.duration*Number(progress.value)/100;state.position=p;state.manualPosition=p;state.updatedAt=performance.now();progressVisualPosition=p;progressAnchorPosition=p;progressAnchorTime=performance.now();pendingSeekPosition=p;pendingSeekUntil=performance.now()+5000;state.seeking=false;state.hasPausedTrack=true;if(nativeApp){nativeSend('spotifySeek',{position:Math.round(p)});return}if(state.player)await state.player.seek(p).catch(()=>{});if(state.token&&state.deviceId)await fetch(`https://api.spotify.com/v1/me/player/seek?position_ms=${Math.round(p)}&device_id=${encodeURIComponent(state.deviceId)}`,{method:'PUT',headers:{Authorization:`Bearer ${state.token}`}}).catch(()=>{})}}
-async function main(){resetProgress();await handleCallback();if(!nativeApp)state.token=localStorage.getItem('spotify_access_token');bindUI();bindDescriptionModal();bindTrackRatingUI();updateClock();restoreCachedSelection();restoreCachedWeather();tags(state.mode==='single'?'随机单曲':'整张专辑');loadWeather();setInterval(updateClock,30000);if(state.token){createPlayer();maybeChooseInitial()}}
+function bindUI(){const reconnect=document.getElementById('spotifyReconnect');if(reconnect){reconnect.textContent=state.token?(isEnglish?'Spotify Connected':'Spotify 已连接'):(isEnglish?'Connect Spotify':'连接 Spotify');reconnect.onclick=connectSpotify}$('playBtn').onclick=togglePlay;$('shuffleBtn').onclick=async()=>{try{if(state.token)userHasChosen=true;await stopCurrent();if(state.mode==='single')await chooseLiked();else await chooseAlbum()}catch(e){alert(e.message)}};document.querySelectorAll('.mode-bar .mode-btn').forEach((button,index)=>{button.classList.toggle('active',(state.mode==='album'&&index===0)||(state.mode==='single'&&index===1));button.onclick=()=>switchPlaybackMode(index,button)});const progress=$('progress');progress.step='any';progress.oninput=()=>{acceptRemoteProgress=true;state.seeking=true;paintProgress(progress.value);const p=state.duration*Number(progress.value)/100;state.position=p;state.manualPosition=p;state.updatedAt=performance.now();progressVisualPosition=p;progressAnchorPosition=p;progressAnchorTime=performance.now();$('elapsed').textContent=fmt(p)};progress.onchange=async()=>{acceptRemoteProgress=true;const p=state.duration*Number(progress.value)/100;state.position=p;state.manualPosition=p;state.updatedAt=performance.now();progressVisualPosition=p;progressAnchorPosition=p;progressAnchorTime=performance.now();pendingSeekPosition=p;pendingSeekUntil=performance.now()+5000;state.seeking=false;state.hasPausedTrack=true;if(nativeApp){void localSeekPlayback(Math.round(p));return}if(state.player)await state.player.seek(p).catch(()=>{});if(state.token&&state.deviceId)await fetch(`https://api.spotify.com/v1/me/player/seek?position_ms=${Math.round(p)}&device_id=${encodeURIComponent(state.deviceId)}`,{method:'PUT',headers:{Authorization:`Bearer ${state.token}`}}).catch(()=>{})}}
+let webSpotifyStartupFinished = false;
+async function main(){resetProgress();bindUI();bindDescriptionModal();bindTrackRatingUI();updateClock();restoreCachedSelection();restoreCachedWeather();tags(state.mode==='single'?'随机单曲':'整张专辑');loadWeather();setInterval(updateClock,30000);
+  try{
+    await localCompleteAuthorization();
+    if(state.token)showWebSpotifyStatus('',spotifyMessage('Spotify 已连接','Spotify Connected'));
+  }catch(error){
+    showWebSpotifyStatus(error.message,spotifyMessage('重试连接 Spotify','Retry Spotify connection'));
+    return;
+  }
+  webSpotifyStartupFinished = true;
+  if(state.token){createPlayer();maybeChooseInitial()}
+}
 function ensureUI(){if(!document.getElementById('spotifyReconnect')){const b=document.createElement('button');b.id='spotifyReconnect';b.className='spotify-reconnect';b.textContent=isEnglish?'Connect Spotify':'连接 Spotify';document.querySelector('.topbar')?.appendChild(b)}if(!document.querySelector('.mode-bar')){const bar=document.createElement('div');bar.className='mode-bar';bar.innerHTML=isEnglish?'<button class="mode-btn">Full Album</button><button class="mode-btn">Liked Songs · Random</button>':'<button class="mode-btn">整张专辑</button><button class="mode-btn">我的喜欢 · 随机单曲</button>';document.querySelector('.record-info')?.prepend(bar)}}
-if(!window.Spotify)window.onSpotifyWebPlaybackSDKReady=createPlayer;ensureUI();runLaunchAnimation();main();
+if(!window.Spotify)window.onSpotifyWebPlaybackSDKReady=()=>{if(webSpotifyStartupFinished)createPlayer()};ensureUI();runLaunchAnimation();main();
 let progressFrame=0,lastLyricsSync=0,lastProgressPaint=0;
 function stopProgressUpdates(){if(progressFrame)cancelAnimationFrame(progressFrame);progressFrame=0;progressLastFrame=0;lastLyricsSync=0}
 function startProgressUpdates(){if(progressFrame||document.hidden||!state.playing)return;progressFrame=requestAnimationFrame(animateProgress)}
@@ -1076,7 +1119,7 @@ document.addEventListener('visibilitychange',()=>{
     state.position=estimated;state.updatedAt=performance.now();syncProgressAnchor(estimated,true);paintProgress(estimated/state.duration*100);$('elapsed').textContent=fmt(estimated)
   }
   appHiddenAt=0;
-  if(nativeApp)nativeSend('spotifyStateRefresh');
+  void localReadSdk().catch(localPlaybackError);
   if(state.playing){startProgressUpdates();prepareNext();scheduleQueueSync()}
 });
 
@@ -1096,41 +1139,25 @@ document.addEventListener('visibilitychange',()=>{
     document.querySelectorAll('.mode-btn').forEach((b,i)=>b.classList.toggle('active',i===(item.mode==='single'?1:0)));
     cachedSelectionVisible=false;cacheSelection({mode:item.mode,album:item.album,track:item.mode==='single'?item.track:null,tracks:item.albumTracks||[],mood:item.mood,contextKey:item.contextKey});
   };
-  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reducedMotion=true;
   const settle=()=>{cover.style.transition='transform 220ms cubic-bezier(.2,.8,.2,1), opacity 220ms';cover.style.transform='';cover.style.opacity='1';setTimeout(()=>{cover.style.transition=''},230)};
-  async function navigate(direction,dragX=0,dragY=0){
+  async function navigate(direction,dragX=0,dragY=0,automatic=false){
     if(busy||queueNavigationBusy||coverTransitioning||!state.album?.uri)return;
     if(nativeApp&&state.mode==='single'&&!queueRestored){settle();await restoreQueueSession();return}
     closeLyrics();
     userHasChosen=true;
     busy=true;
     coverTransitioning=true;
-    const playing=state.playing;
+    const playing=automatic||state.playing;
     const previousURI=nativeCurrentTrackURI;
     queueWriter.invalidate();
-    let outgoing=null;
     let finished=false;
     try{
       const current=snapshot();
       if(cursor<0||history[cursor]?.album?.uri!==current.album.uri||history[cursor]?.track?.uri!==current.track?.uri||history[cursor]?.mode!==current.mode){history.splice(cursor+1);history.push(current);cursor=history.length-1}
       if(direction<0&&cursor===0){settle();return}
-      if(direction>0&&playing)atmosRecord(state.track||state.albumTracks.find(track=>track.uri===nativeCurrentTrackURI),true);
-      const rect=cover.getBoundingClientRect();
-      outgoing=cover.cloneNode(false);
-      outgoing.removeAttribute('id');
-      Object.assign(outgoing.style,{position:'fixed',left:`${rect.left}px`,top:`${rect.top}px`,width:`${rect.width}px`,height:`${rect.height}px`,margin:'0',transform:`translate3d(${dragX}px,${dragY}px,0) rotate(${dragX/22}deg)`,opacity:'1',pointerEvents:'none',zIndex:'30',willChange:'transform,opacity',boxShadow:'0 12px 28px rgba(23,32,51,.12)'});
-      document.body.appendChild(outgoing);
-      cover.style.transition='none';cover.style.transform='';cover.style.opacity='0';
-      // Start the visual response before any Spotify/network work. A slow request
-      // must never hold the card under the user's finger.
-      const exit=!reducedMotion?outgoing.animate([
-        {transform:`translate3d(${dragX}px,${dragY}px,0) rotate(${dragX/22}deg)`,opacity:1},
-        {transform:landscapeLyrics()?`translate3d(0,${(dragY<0?-1:1)*window.innerHeight*1.12}px,0)`:`translate3d(${direction*window.innerWidth*1.12}px,36px,0) rotate(${direction*14}deg)`,opacity:0}
-      ],{duration:300,easing:'cubic-bezier(.18,.72,.28,1)',fill:'forwards'}):null;
-      // Keep Spotify/App Remote work completely outside the visual transition.
-      // Native bridge calls can briefly occupy WKWebView's main thread and would
-      // otherwise interrupt the compositor midway through the swipe.
-      await afterVisualFrame();
+      if(direction>0&&playing&&!automatic)atmosRecord(state.track||state.albumTracks.find(track=>track.uri===nativeCurrentTrackURI),true);
+      cover.style.transform='';
       const preparing=direction>0&&cursor+1>=history.length?takeNextSelection():Promise.resolve(null);
       const prepared=await preparing;
       let listToRender=null;
@@ -1140,29 +1167,19 @@ document.addEventListener('visibilitychange',()=>{
         showSelection(prepared,true);
         listToRender=prepared.tracks;
       }
-      if(!reducedMotion){
-        const reveal=cover.animate([
-          {transform:'translate3d(0,38px,0) scale(.97)',opacity:0},
-          {transform:'translate3d(0,0,0) scale(1)',opacity:1}
-        ],{duration:440,easing:'cubic-bezier(.16,.72,.22,1)',fill:'forwards'});
-        await Promise.all([exit?.finished.catch(()=>{}),reveal.finished.catch(()=>{})]);
-        cover.style.opacity='1';
-        cover.style.transform='none';
-        exit?.cancel();reveal.cancel();
-      }
-      cover.style.opacity='1';
-      cover.style.transform='none';
-      outgoing.remove();
+      localAnimateSelection(direction);
       if(listToRender){renderTracks(listToRender);history.push(snapshot());cursor=history.length-1}
       deferredTrackURI='';
       await playSelectionAfterSwipe(playing,previousURI,direction);
       finished=true;
-    }catch(error){alert(error.message)}finally{outgoing?.remove();if(finished){cover.style.transition='none';cover.style.transform='none';cover.style.opacity='1'}else settle();busy=false;coverTransitioning=false;if(state.playing)startProgressUpdates();if(deferredTrackURI){const uri=deferredTrackURI;deferredTrackURI='';observePlaybackTrack(uri)}}
+    }catch(error){alert(error.message)}finally{if(finished){cover.style.transition='none';cover.style.transform='none';cover.style.opacity='1'}else settle();busy=false;coverTransitioning=false;if(state.playing)startProgressUpdates();if(deferredTrackURI){const uri=deferredTrackURI;deferredTrackURI='';observePlaybackTrack(uri)}}
   }
   cover.tabIndex=0;
   cover.setAttribute('aria-label',isEnglish?'Album cover. Tap to view lyrics; swipe left for previous and right for next.':'唱片封面，点按查看歌词；左滑上一首，右滑下一首');
   const previous=(x=0,y=0)=>navigate(-1,x,y);
   const next=(x=0,y=0)=>navigate(1,x,y);
+  localAdvanceRecommendation=()=>navigate(1,0,0,true);
+  window.weatherRecordDesktop?.bindNavigation(previous,next);
   let dragFrame=0,pendingDrag=null;
   cover.addEventListener('pointerdown',e=>{if(busy||e.isPrimary===false)return;origin={x:e.clientX,y:e.clientY};coverGestureActive=true;stopProgressUpdates();cover.style.transition='none';cover.setPointerCapture?.(e.pointerId)});
   cover.addEventListener('pointermove',e=>{if(!origin||busy||reducedMotion)return;const dx=e.clientX-origin.x,dy=e.clientY-origin.y;const vertical=landscapeLyrics();if(vertical?Math.abs(dy)<Math.abs(dx)*1.3:Math.abs(dx)<Math.abs(dy)*1.3)return;pendingDrag={dx,dy};if(dragFrame)return;dragFrame=requestAnimationFrame(()=>{dragFrame=0;if(!pendingDrag)return;const {dx,dy}=pendingDrag;pendingDrag=null;cover.style.transform=vertical?`translate3d(${dx*.15}px,${dy}px,0)`:`translate3d(${dx}px,${dy*.25}px,0) rotate(${dx/22}deg)`;cover.style.opacity=String(Math.max(.55,1-Math.abs(vertical?dy:dx)/600))})},{passive:true});
@@ -1203,7 +1220,7 @@ function workoutRemaining(plan,done,date=new Date()){return (plan[date.getDay()]
   const swap=element('input','');swap.type='checkbox';swap.checked=document.body.classList.contains('landscape-swapped');
   swap.onchange=()=>{document.body.classList.toggle('landscape-swapped',swap.checked);try{localStorage.setItem('atmos_landscape_swapped',String(swap.checked))}catch{}lyricsViewportHeight=0;requestAnimationFrame(()=>syncLyricsAt(currentLyricsPosition()))};
   swapLabel.append(swap);settings.firstElementChild.append(swapLabel,element('p','workout-first-note',text('开启后播放器在右、歌词在左。横屏上滑下一首，下滑上一首。','When enabled, the player is on the right and lyrics on the left. Swipe up for next, down for previous.')));
-  menuSheet.append(button(text('设置','Settings'),async()=>{await close(menu,false);open(settings)},'workout-choice'));
+  if(!window.weatherRecordDesktop)menuSheet.append(button(text('设置','Settings'),async()=>{await close(menu,false);open(settings)},'workout-choice'));
   function render(){
     cards.replaceChildren();if(!workoutMode)return;
     const date=new Date(),day=date.getDay(),key=workoutDateKey(date),all=plan[day]?.exercises||[],remaining=workoutRemaining(plan,completed[key]||[],date);
@@ -1290,4 +1307,399 @@ function workoutRemaining(plan,done,date=new Date()){return (plan[date.getDay()]
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){close(menu);close(editor)}if(e.key==='Tab'){const modal=[menu,editor].find(x=>!x.hidden);if(!modal)return;const nodes=[...modal.querySelectorAll('button,input')].filter(x=>!x.disabled);const first=nodes[0],last=nodes.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
   let lastDate=workoutDateKey();setInterval(()=>{const key=workoutDateKey();if(key!==lastDate){lastDate=key;render()}},30000);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)render()});
+})();
+
+(function bindShareCard() {
+  const trigger = $('shareCardOpen');
+  const dialog = $('shareCardDialog');
+  const nativeShare = window.webkit?.messageHandlers?.shareRecordCard;
+  if (!trigger || !dialog || !dialog.showModal || (nativeApp && !nativeShare)) return;
+
+  const canvas = $('shareCardCanvas');
+  const status = $('shareCardStatus');
+  const download = $('shareCardDownload');
+  const lyricField = $('shareCardLyrics');
+  const lyricList = $('shareCardLyricList');
+  const lyricHint = $('shareCardLyricHint');
+  const previewButton = $('shareCardPreview');
+  const editButton = $('shareCardEditLyrics');
+  const systemShare = $('shareCardSystem');
+  const copy = (zh, en) => isEnglish ? en : zh;
+  let previewURL = '';
+  let generation = 0;
+  let shareData = null;
+  let browserShareFailed = false;
+  let renderVersion = 0;
+  let selection = null;
+  let lyrics = [];
+  let selectingLyrics = false;
+  const pickedLyrics = new Set();
+  const maxLyrics = 5;
+
+  function setStatus(message) {
+    status.textContent = message;
+    status.hidden = !message;
+  }
+
+  function loadImage(url) {
+    if (!url) return Promise.resolve(null);
+    return new Promise(resolve => {
+      const image = new Image();
+      const finish = value => {
+        clearTimeout(timeout);
+        image.onload = image.onerror = null;
+        resolve(value);
+      };
+      const timeout = setTimeout(() => finish(null), 3500);
+      try {
+        const resolved = new URL(url, document.baseURI);
+        if (['http:', 'https:'].includes(resolved.protocol) && resolved.origin !== location.origin) {
+          image.crossOrigin = 'anonymous';
+        }
+      } catch {
+        finish(null);
+        return;
+      }
+      image.onload = () => {
+        // Check each asset on a disposable canvas before drawing the export.
+        const probe = document.createElement('canvas');
+        probe.width = probe.height = 1;
+        try {
+          const context = probe.getContext('2d');
+          context.drawImage(image, 0, 0, 1, 1);
+          context.getImageData(0, 0, 1, 1);
+          finish(image);
+        } catch {
+          finish(null);
+        }
+      };
+      image.onerror = () => finish(null);
+      image.src = url;
+    });
+  }
+
+  function drawCard({title, artist, context, cover, logo}, excerpt) {
+    const ctx = canvas.getContext('2d');
+    const ink = '#212621';
+    const muted = '#526057';
+    const paper = '#f7f7f0';
+    function write(text, x, y, size, color = ink, weight = 500, maxWidth = 912) {
+      ctx.fillStyle = color;
+      do {
+        ctx.font = `${weight} ${size}px system-ui, sans-serif`;
+        if (ctx.measureText(text).width <= maxWidth || size <= 24) break;
+        size -= 2;
+      } while (true);
+      if (ctx.measureText(text).width > maxWidth) {
+        const characters = Array.from(text);
+        while (characters.length && ctx.measureText(characters.join('') + '…').width > maxWidth) characters.pop();
+        text = characters.join('') + '…';
+      }
+      ctx.fillText(text, x, y);
+    }
+
+    ctx.fillStyle = paper;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    write(copy('气象唱片', 'Weather Record'), 84, 112, 44, ink, 650, 345);
+    ctx.textAlign = 'right';
+    write(context, 996, 112, 34, muted, 500, 545);
+    ctx.textAlign = 'left';
+
+    const hasLyrics = excerpt.length > 0;
+    const artSize = hasLyrics ? 670 : 912;
+    const artX = (canvas.width - artSize) / 2;
+    const artY = 166;
+    ctx.fillStyle = '#e4e9df';
+    ctx.fillRect(artX, artY, artSize, artSize);
+    if (cover) {
+      const scale = Math.min(artSize / cover.naturalWidth, artSize / cover.naturalHeight);
+      const width = cover.naturalWidth * scale;
+      const height = cover.naturalHeight * scale;
+      ctx.drawImage(cover, artX + (artSize - width) / 2, artY + (artSize - height) / 2, width, height);
+    } else {
+      const centerX = canvas.width / 2;
+      const centerY = artY + artSize / 2;
+      for (const radius of [255, 219, 183, 147, 95, 12]) {
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+        ctx.strokeStyle = '#4c5c50';
+        ctx.lineWidth = radius === 255 ? 4 : 2;
+        ctx.stroke();
+      }
+    }
+
+    write(title, 84, hasLyrics ? 935 : 1180, 78, ink, 690);
+    write(artist, 84, hasLyrics ? 992 : 1244, 43, muted);
+    if (hasLyrics) {
+      const size = excerpt.length > 3 ? 39 : 44;
+      const linesPerLyric = Math.floor(6 / excerpt.length);
+      let baseline = 1060;
+      for (const lyric of excerpt) {
+        const segments = typeof Intl.Segmenter === 'function'
+          ? Array.from(new Intl.Segmenter(undefined, {granularity:'word'}).segment(lyric), part => part.segment)
+          : Array.from(lyric);
+        ctx.font = `550 ${size}px system-ui, sans-serif`;
+        const lines = [''];
+        for (const segment of segments) {
+          const last = lines.length - 1;
+          if (lines[last] && ctx.measureText(lines[last] + segment).width > 912) lines.push(segment.trimStart());
+          else lines[last] += segment;
+        }
+        const visible = lines.slice(0, linesPerLyric);
+        if (lines.length > linesPerLyric) visible[visible.length - 1] = visible.at(-1).trimEnd() + '…';
+        for (const line of visible) {
+          write(line.trim(), 84, baseline, size, muted, 550);
+          baseline += 46;
+        }
+      }
+    }
+    if (logo) ctx.drawImage(logo, 84, 1320, 150, 150 * 225.25 / 823.46);
+  }
+
+  function clearExport() {
+    if (previewURL) URL.revokeObjectURL(previewURL);
+    previewURL = '';
+    shareData = null;
+    download.removeAttribute('href');
+    download.hidden = systemShare.hidden = true;
+    systemShare.disabled = false;
+  }
+
+  function clearPreview() {
+    clearExport();
+    selection = null;
+    lyrics = [];
+    pickedLyrics.clear();
+    selectingLyrics = false;
+    lyricList.replaceChildren();
+    lyricList.scrollTop = 0;
+    lyricField.hidden = canvas.hidden = previewButton.hidden = editButton.hidden = true;
+  }
+
+  async function updatePreview() {
+    if (!selection || selectingLyrics) return;
+    const version = ++renderVersion;
+    const request = generation;
+    const excerpt = lyrics.filter((_, index) => pickedLyrics.has(index)).map(line => line.text);
+    const {title, artist, context} = selection;
+    clearExport();
+    try {
+      drawCard(selection, excerpt);
+      canvas.setAttribute('aria-label', [title, artist, context, ...excerpt].filter(Boolean).join(' · '));
+      canvas.hidden = false;
+      if (nativeShare) {
+        const image = canvas.toDataURL('image/png');
+        if (!image.startsWith('data:image/png;base64,')) throw new Error('PNG export failed');
+        shareData = {image};
+        download.href = '#';
+        download.hidden = false;
+        systemShare.hidden = false;
+      } else {
+        const png = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+        if (!dialog.open || selectingLyrics || request !== generation || version !== renderVersion) return;
+        if (!png) throw new Error('PNG export failed');
+        previewURL = URL.createObjectURL(png);
+        download.href = previewURL;
+        download.hidden = false;
+        if (!browserShareFailed && typeof navigator.share === 'function') {
+          try {
+            // Some Safari share targets reject mixed file and text payloads.
+            const data = {files:[new File([png], download.download, {type:'image/png'})]};
+            if (navigator.canShare?.(data)) {
+              shareData = data;
+              systemShare.hidden = false;
+            }
+          } catch (error) {
+            console.debug('Browser file sharing unavailable', error);
+          }
+        }
+      }
+      setStatus('');
+    } catch {
+      if (dialog.open && request === generation && version === renderVersion) {
+        setStatus(copy('图片生成失败，请关闭后重试。', 'Could not create the image. Close and try again.'));
+      }
+    }
+  }
+
+  function openLyricPicker() {
+    selectingLyrics = true;
+    clearExport();
+    canvas.hidden = editButton.hidden = true;
+    lyricField.hidden = previewButton.hidden = false;
+    setStatus('');
+  }
+
+  function showPreview() {
+    selectingLyrics = false;
+    lyricField.hidden = previewButton.hidden = true;
+    editButton.hidden = !lyrics.length;
+    if (!selection) setStatus(copy('正在生成图片…', 'Preparing image…'));
+    void updatePreview();
+  }
+
+  function updateLyricHint() {
+    const count = `${pickedLyrics.size}/${maxLyrics}`;
+    lyricHint.textContent = copy(`点按歌词选择 · ${count}`, `Tap lyrics to select · ${count}`);
+    previewButton.textContent = pickedLyrics.size
+      ? copy('预览卡片', 'Preview card')
+      : copy('继续，不加歌词', 'Continue without lyrics');
+  }
+
+  async function offerLyrics(track, position, request) {
+    const record = await getLyricsRecord(track).catch(() => null);
+    if (!dialog.open || request !== generation) return;
+    if (record && !record.error && !record.instrumental) {
+      const timed = parseSyncedLyrics(record.syncedLyrics).filter(line => line.text !== '♪');
+      lyrics = timed.length ? timed : (record.plainLyrics || '').split(/\r?\n/)
+        .map(text => ({text:text.trim()})).filter(line => line.text);
+    }
+    if (!lyrics.length) {
+      if (selectingLyrics) showPreview();
+      return;
+    }
+
+    let current = -1;
+    if (position !== null) {
+      for (let index = 0; index < lyrics.length && lyrics[index].time <= position; index++) current = index;
+    }
+    let currentRow;
+    lyricList.replaceChildren(...lyrics.map((line, index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = line.text;
+      button.setAttribute('aria-pressed', 'false');
+      if (index === current) {
+        button.setAttribute('aria-current', 'true');
+        currentRow = button;
+      }
+      button.onclick = () => {
+        if (pickedLyrics.has(index)) pickedLyrics.delete(index);
+        else if (pickedLyrics.size < maxLyrics) pickedLyrics.add(index);
+        else {
+          lyricHint.textContent = copy('最多选 5 句，取消一句后可以继续选。', 'Choose up to 5 lines. Deselect one to choose another.');
+          return;
+        }
+        button.setAttribute('aria-pressed', String(pickedLyrics.has(index)));
+        updateLyricHint();
+      };
+      return button;
+    }));
+    updateLyricHint();
+    if (selectingLyrics) {
+      if (currentRow) {
+        lyricList.scrollTop = currentRow.offsetTop - lyricList.firstElementChild.offsetTop;
+      }
+    } else editButton.hidden = false;
+  }
+
+  trigger.hidden = false;
+  trigger.setAttribute('aria-haspopup', 'dialog');
+  if (nativeShare) document.querySelector('.topbar').append(trigger);
+  $('shareCardLabel').textContent = $('shareCardTitle').textContent = copy('分享唱片', 'Share record');
+  trigger.setAttribute('aria-label', $('shareCardLabel').textContent);
+  $('shareCardClose').setAttribute('aria-label', copy('关闭', 'Close'));
+  download.textContent = copy('保存 PNG', 'Save PNG');
+  lyricList.setAttribute('aria-label', copy('选择歌词', 'Select lyrics'));
+  previewButton.onclick = showPreview;
+  editButton.textContent = copy('编辑歌词', 'Edit lyrics');
+  editButton.onclick = openLyricPicker;
+  systemShare.textContent = copy('分享图片', 'Share image');
+
+  trigger.onclick = async () => {
+    const track = state.mode === 'single' ? lyricsTrack() : null;
+    const position = track?.uri && track.uri === nativeCurrentTrackURI
+      ? currentLyricsPosition() / 1000
+      : null;
+    const album = track?.album || state.album;
+    const item = track || album;
+    const request = ++generation;
+    clearPreview();
+    dialog.showModal();
+    if (!item?.uri) {
+      setStatus(copy('选好一首歌或一张专辑后就能分享。', 'Pick a track or album to share.'));
+      return;
+    }
+    const now = new Date();
+    const title = item.name;
+    const artist = item.artists?.map(entry => entry.name).join(', ') || album?.artist || '';
+    const temperature = $('temperature').textContent.trim();
+    const weather = state.weather === 'unknown'
+      ? ''
+      : [temperature !== '--°' ? temperature : '', weatherText[state.weather]].filter(Boolean).join(' ');
+    const time = new Intl.DateTimeFormat('en-GB', {hour:'2-digit', minute:'2-digit', hourCycle:'h23'}).format(now);
+    const date = new Intl.DateTimeFormat(copy('zh-CN', 'en-GB'), {day:'numeric', month:'short'}).format(now);
+    const context = [weather, date, time].filter(Boolean).join(' · ');
+    if (track) {
+      openLyricPicker();
+      lyricHint.textContent = copy('正在找歌词…', 'Looking for lyrics…');
+      previewButton.textContent = copy('继续，不加歌词', 'Continue without lyrics');
+      void offerLyrics(track, position, request);
+    } else setStatus(copy('正在生成图片…', 'Preparing image…'));
+    const [cover, logo] = await Promise.all([
+      loadImage(album?.images?.[0]?.url),
+      loadImage(nativeShare ? window.WEATHER_RECORD_SHARE_LOGO : 'spotify-share-logo.svg'),
+    ]);
+    if (!dialog.open || request !== generation) return;
+    selection = {title, artist, context, cover, logo};
+    void updatePreview();
+  };
+
+  systemShare.onclick = async () => {
+    if (!shareData || systemShare.disabled) return;
+    const data = shareData;
+    try {
+      if (nativeShare) {
+        setStatus('');
+        nativeShare.postMessage(data);
+        return;
+      }
+      systemShare.disabled = true;
+      await navigator.share(data);
+    } catch (error) {
+      if (!dialog.open || data !== shareData || error.name === 'AbortError') return;
+      if (nativeShare) {
+        setStatus(copy('无法打开分享菜单，可以点「保存 PNG」。', 'Could not open the share sheet. You can save the PNG.'));
+        return;
+      }
+      console.debug('Browser rejected file sharing', error);
+      browserShareFailed = true;
+      shareData = null;
+      systemShare.hidden = true;
+      setStatus(copy('图片已生成。点「保存 PNG」，即可用保存的图片分享。', 'Your image is ready. Save the PNG to share it.'));
+      download.focus();
+    } finally {
+      if (data === shareData || !shareData) systemShare.disabled = false;
+    }
+  };
+
+  if (nativeShare) {
+    download.onclick = event => {
+      event.preventDefault();
+      if (!shareData) return;
+      setStatus('');
+      try {
+        nativeShare.postMessage({action:'save', image:shareData.image});
+      } catch {
+        setStatus(copy('无法保存 PNG，请重试。', 'Could not save the PNG. Try again.'));
+      }
+    };
+    window.addEventListener('weatherRecordShareError', event => {
+      if (!dialog.open || !shareData) return;
+      setStatus(event.detail === 'save'
+        ? copy('无法保存 PNG，请重试。', 'Could not save the PNG. Try again.')
+        : copy('无法打开分享菜单，可以点「保存 PNG」。', 'Could not open the share sheet. You can save the PNG.'));
+    });
+    window.addEventListener('weatherRecordShareSaved', () => {
+      if (dialog.open && shareData) setStatus(copy('已保存到「文件」。', 'Saved to Files.'));
+    });
+  }
+
+  dialog.addEventListener('close', () => {
+    if (dialog.open) return;
+    generation++;
+    clearPreview();
+    trigger.focus();
+    tryPresentTrackRating();
+  });
 })();

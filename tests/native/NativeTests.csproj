@@ -1,8 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable></PropertyGroup>
-  <ItemGroup>
-    <Compile Include="../../windows/AtmosEngine.cs" Link="AtmosEngine.cs" />
-    <Compile Include="../../windows/NativeQueueService.cs" Link="NativeQueueService.cs" />
-    <Compile Include="../../windows/TokenVault.cs" Link="TokenVault.cs" />
-  </ItemGroup>
-</Project>

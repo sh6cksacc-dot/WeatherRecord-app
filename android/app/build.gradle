@@ -1,9 +1,0 @@
-plugins { id 'com.android.application' }
-android {
-    namespace 'org.weatherrecord.app'
-    compileSdk 35
-    buildToolsVersion '35.0.0'
-    defaultConfig { applicationId 'org.weatherrecord.app'; minSdk 26; targetSdk 35; versionCode 3; versionName '0.3.0' }
-    sourceSets.main.assets.srcDirs = ['../../web']
-    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
-}

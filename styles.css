@@ -309,3 +309,114 @@ body:not(.workout-mode) .workout-cards,[hidden].workout-cards,[hidden].workout-o
   .native-app body.landscape-swapped #landscapeLyrics{left:max(22px,env(safe-area-inset-left));right:52%;border-left:0;border-right:1px solid #20211f12;padding-left:0;padding-right:24px}
   .native-app body.landscape-swapped #landscapeLyrics .lyrics-view{left:0;right:24px}
 }
+
+#webSpotifyStatus:not([hidden]) {
+  margin: 0.5rem auto;
+  max-width: 36rem;
+  color: var(--ink);
+  font-size: 0.85rem;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+/* The preview and the exported PNG use the same canvas. */
+.share-trigger {
+  order: 8;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid #deded8;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  box-shadow: none;
+  font: 500 13px/1 system-ui, sans-serif;
+}
+.share-trigger:hover { background: #eeefea; }
+.share-trigger:active { transform: translateY(1px); }
+.share-dialog {
+  width: min(420px, calc(100% - 24px));
+  max-height: calc(100dvh - 24px);
+  padding: 14px 18px 16px;
+  border: 1px solid #e1e1da;
+  border-radius: 22px;
+  background: #fafaf8;
+  color: var(--ink);
+  overflow: auto;
+  box-shadow: 0 18px 70px #20211f26;
+}
+.share-dialog::backdrop { background: #1e211e70; }
+.share-dialog-header, .share-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.share-dialog-header h2 { margin: 0; font: 600 17px/1.3 system-ui, sans-serif; }
+.share-close, .share-actions > * {
+  display: inline-grid;
+  place-items: center;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px solid #deded8;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ink);
+  box-shadow: none;
+  font: 500 13px/1.2 system-ui, sans-serif;
+  text-decoration: none;
+}
+.share-close { width: 44px; font-size: 23px; }
+.share-actions { justify-content: flex-end; flex-wrap: wrap; margin-top: 12px; }
+.share-actions :is(#shareCardDownload, #shareCardSystem, #shareCardPreview) { background: #20211f; color: white; }
+.share-dialog :is(button, a):focus-visible, .share-trigger:focus-visible { outline: 2px solid #53745c; outline-offset: 2px; }
+.share-lyrics { margin-top: 10px; }
+.share-lyrics p { margin: 0 0 10px; color: #526057; font-size: 13px; }
+.share-lyric-list {
+  max-height: min(52dvh, 420px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  padding: 3px;
+}
+.share-lyric-list button {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  margin: 0 0 4px;
+  padding: 9px 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: #526057;
+  box-shadow: none;
+  text-align: left;
+  overflow-wrap: anywhere;
+  font: 600 17px/1.35 system-ui, sans-serif;
+}
+.share-lyric-list button:hover { background: #eef0ea; }
+.share-lyric-list button[aria-current="true"] { border-color: #a9b8aa; color: #20211f; }
+.share-lyric-list button[aria-pressed="true"] { background: #273c31; color: #fff; }
+.share-dialog canvas {
+  display: block;
+  width: min(100%, 340px, calc((100dvh - 220px) * .75));
+  height: auto;
+  margin: 8px auto 0;
+  border: 1px solid #deded8;
+}
+.share-status { margin: 10px 0 0; font-size: 13px; }
+.share-trigger[hidden], .share-dialog [hidden] { display: none; }
+.native-app .share-trigger {
+  order: 0;
+  align-self: center;
+  justify-content: center;
+  flex: none;
+  width: 44px;
+  padding: 0;
+  margin-left: 8px;
+  border-color: transparent;
+}
+.native-app .share-trigger span { display: none; }
